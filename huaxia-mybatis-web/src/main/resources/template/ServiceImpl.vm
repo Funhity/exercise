@@ -1,0 +1,57 @@
+/**
+ * @项目名称:
+ * @文件名称: ${model}Service 版本号：1.0
+ * @创建日期: ${ctime}
+ * <p>
+ * Copyrights © 2016 华夏信财股权投资管理有限公司 All rights reserved.
+ * <p>
+ * 注意：本内容仅限于华夏信财股权投资管理有限公司信息技术部内部传阅，禁止外泄以及用于其他的商业目的。
+ */
+package ${service_path}.impl;
+
+import com.github.pagehelper.PageInfo;
+import com.huaxia.common.core.dao.MBaseDao;
+import ${service_path}.${model}Service;
+import ${model_path}.${model};
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class ${model}ServiceImpl implements ${model}Service {
+    private Logger logger = LoggerFactory.getLogger(${model}ServiceImpl.class);
+
+    @Resource(name="mBaseDao")
+    private MBaseDao<${model}> mBaseDao;
+
+    @Override
+    public Long delete${model}ById(Long id) {
+        return mBaseDao.delete("${namespace}.delete", id);
+    }
+
+    @Override
+    public Long create${model}(${model} record) {
+        return mBaseDao.create("${namespace}.insert", record);
+    }
+
+    @Override
+    public Long update${model}(${model} record) {
+        return mBaseDao.update("${namespace}.update", record);
+    }
+
+    @Override
+    public List<${model}> query${model}List(Map<String, Object> map) {
+        //TODO
+        return mBaseDao.findListByTemplate("${namespace}.selectAll", map);
+    }
+
+    @Override
+    public PageInfo<${model}> find${model}Page(int pageNum, int pageSize, Map<String, Object> map) {
+        //TODO
+        return mBaseDao.findByQuery("${namespace}.selectAll", pageNum, pageSize, map);
+    }
+}
