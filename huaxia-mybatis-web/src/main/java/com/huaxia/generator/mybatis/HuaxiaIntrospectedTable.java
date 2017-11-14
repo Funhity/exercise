@@ -14,8 +14,8 @@ import org.mybatis.generator.api.IntrospectedTable;
 
 /**
  * 说明: TODO
+ *
  * @author xiaogui
- * @version
  */
 public abstract class HuaxiaIntrospectedTable extends IntrospectedTable {
     public HuaxiaIntrospectedTable(TargetRuntime targetRuntime) {
@@ -42,7 +42,8 @@ public abstract class HuaxiaIntrospectedTable extends IntrospectedTable {
         setInsertStatementId("insert"); //$NON-NLS-1$
         //setInsertSelectiveStatementId("insertSelective"); //$NON-NLS-1$
         setInsertSelectiveStatementId("insert"); //insertSelective改成insert
-        setSelectAllStatementId("selectAll"); //$NON-NLS-1$
+        //setSelectAllStatementId("selectAll"); //$NON-NLS-1$
+        setSelectAllStatementId("selectByCondition"); // 增加selectByCondition
         setSelectByExampleStatementId("selectByExample"); //$NON-NLS-1$
         setSelectByExampleWithBLOBsStatementId("selectByExampleWithBLOBs"); //$NON-NLS-1$
         //setSelectByPrimaryKeyStatementId("selectByPrimaryKey"); //$NON-NLS-1$

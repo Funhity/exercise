@@ -16,7 +16,6 @@ import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.XMLMapperGenerator;
 import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.AbstractXmlElementGenerator;
-import org.mybatis.generator.codegen.mybatis3.xmlmapper.elements.SimpleSelectAllElementGenerator;
 
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
@@ -51,13 +50,14 @@ public class HuaxiaXMLMapperGenerator extends XMLMapperGenerator {
         addDeleteByPrimaryKeyElement(answer);
         addInsertSelectiveElement(answer);
         addUpdateByPrimaryKeySelectiveElement(answer);
-        addSelectAllElement(answer);
+        addSelectByConditionElement(answer);
 
         return answer;
     }
 
-    protected void addSelectAllElement(XmlElement parentElement) {
-        AbstractXmlElementGenerator elementGenerator = new SimpleSelectAllElementGenerator();
+
+    protected void addSelectByConditionElement(XmlElement parentElement) {
+        AbstractXmlElementGenerator elementGenerator = new HuaxiaSelectByConditionGenerator();
         initializeAndExecuteGenerator(elementGenerator, parentElement);
     }
 

@@ -59,7 +59,7 @@
 		
 		<!-- 生成模型的包名和位置 -->
 		<javaModelGenerator targetPackage="com.huaxia.demo.model" targetProject="F:\src">
-			<property name="rootClass" value="com.huaxia.common.core.base.BaseEntity"/>
+			<property name="rootClass" value="com.huaxia.common.core.common.BaseEntity"/>
 			<property name="enableSubPackages" value="false" />
 			<property name="trimStrings" value="false" />
 		</javaModelGenerator>

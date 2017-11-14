@@ -174,6 +174,20 @@ public class MybatisGeneratorUtil {
 							}
 						}
 
+						//处理自增主键
+						String queryPKSql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME=? AND COLUMN_KEY=? AND EXTRA=?";
+						List pkParams = new ArrayList();
+						pkParams.add(tableName);
+						pkParams.add("PRI");
+						pkParams.add("AUTO_INCREMENT");
+						List<Map> queryPKResult = jdbcUtil.selectByParams(queryPKSql, pkParams);
+						if(queryPKResult != null && !queryPKResult.isEmpty()) {
+							Map m = queryPKResult.get(0);
+							String pk = ObjectUtils.toString(m.get("COLUMN_NAME"));
+							GeneratedKey gk = new GeneratedKey(pk,"JDBC",true, "post");
+							tableConfiguration.setGeneratedKey(gk);
+						}
+
 						//模型是否驼峰命名，为0则为驼峰
 						if (!"0".equals(param.getIsHump())) {
 							tableConfiguration.getProperties().setProperty("useActualColumnNames", "true");
@@ -190,6 +204,7 @@ public class MybatisGeneratorUtil {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				throw new RuntimeException("生成Mybatis出错", e);
 			} finally {
 				jdbcUtil.release();
 			}
@@ -233,6 +248,7 @@ public class MybatisGeneratorUtil {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+				throw new RuntimeException("生成Mybatis出错", e);
 			} finally {
 				jdbcUtil.release();
 			}

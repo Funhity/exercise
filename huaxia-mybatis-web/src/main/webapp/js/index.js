@@ -65,9 +65,9 @@ function doSubmit(){
 				alert("数据库连接错误");
 			}else if(data.rspCode == "000004"){
 				alert("发生错误，请检查您的用户名或密码");
-			}else if(data.rspCode == "000005"){
-				alert("操作失败");
-			}else{
+			}else if(data.rspCode.indexOf("000005") == 0){
+                alert(data.rspCode.substr(6));
+            }else{
 				//alert("操作成功");
 				doStorageCookies();//存储到cookie
 				window.open(basePath + "/tmp" +data.zipName);

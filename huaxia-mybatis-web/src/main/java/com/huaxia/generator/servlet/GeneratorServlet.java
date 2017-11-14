@@ -4,9 +4,7 @@ import java.io.*;
 import java.net.ConnectException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.zip.CRC32;
 import java.util.zip.CheckedOutputStream;
 import java.util.zip.ZipEntry;
@@ -17,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import com.huaxia.generator.util.MybatisGeneratorUtil;
 import com.huaxia.generator.util.StringUtil;
 import com.huaxia.generator.util.VelocityUtil;
@@ -42,7 +41,7 @@ import static com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImp
 
 public class GeneratorServlet extends HttpServlet {
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -99,20 +98,21 @@ public class GeneratorServlet extends HttpServlet {
     		final String srcPath  = "/src" + new Date().getTime();
     		String targetPath = path + srcPath;
     		param.setBuildPath(targetPath);
-    		String config_path = "/WEB-INF/classes/runtimecfg/generatorConfig.xml";
-    		File configFile = new File(path + config_path);
-    		// 1.创建 配置解析器
-    		ConfigurationParser parser = new ConfigurationParser(warnings);
-    		// 2.获取 配置信息
-    		Configuration config = parser.parseConfiguration(configFile);
-			MybatisGeneratorUtil.fixConfig(config, param);/** 封装参数*/
-    		// 3.创建 默认命令解释调回器
-    		DefaultShellCallback callback = new DefaultShellCallback(overwrite);
-    		// 4.创建 mybatis的生成器
-    		MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
-    		// 5.执行，关闭生成器
+
     		String result = "000000";
     		try {
+                String config_path = "/WEB-INF/classes/runtimecfg/generatorConfig.xml";
+                File configFile = new File(path + config_path);
+                // 1.创建 配置解析器
+                ConfigurationParser parser = new ConfigurationParser(warnings);
+                // 2.获取 配置信息
+                Configuration config = parser.parseConfiguration(configFile);
+                MybatisGeneratorUtil.fixConfig(config, param);/** 封装参数*/
+                // 3.创建 默认命令解释调回器
+                DefaultShellCallback callback = new DefaultShellCallback(overwrite);
+                // 4.创建 mybatis的生成器
+                MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
+                // 5.执行，关闭生成器
 				myBatisGenerator.generate(null);
 				MybatisGeneratorUtil.genService(targetPath, param.getServicePath(), param.getModelPath(), param.getModelNames());
 
@@ -130,7 +130,7 @@ public class GeneratorServlet extends HttpServlet {
     			result = "000004";
     		} catch (Exception e) {
     			e.printStackTrace();
-    			result = "000005";
+    			result = "000005" + e.getLocalizedMessage();
     		}
 			MybatisGeneratorUtil.fileToZip(param.getBuildPath(), path + "/tmp", srcPath);/** 打包操作*/
     		this.responseJson(response, result, srcPath + ".zip");
@@ -152,7 +152,7 @@ public class GeneratorServlet extends HttpServlet {
 			e.printStackTrace();
 			//System.out.println(exceptionToString(e));
 		}
-    	
+
     }
 
     /**
@@ -176,12 +176,18 @@ public class GeneratorServlet extends HttpServlet {
     public void destroy() {
         super.destroy(); // Just puts "destroy" string in log
     }
-    
+
     protected void responseJson(HttpServletResponse response,String responseCode,String zipName) throws IOException{
 		response.setContentType("application/json;charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
-		out.write("{\"rspCode\":\"" + responseCode + "\",\"zipName\":\"" + zipName + "\"}");
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("rspCode", responseCode);
+		map.put("zipName", zipName);
+		String userJson = JSON.toJSONString(map);
+
+		out.write(new String(userJson.getBytes("UTF-8")));
 		out.flush();
 	}
 

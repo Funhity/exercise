@@ -44,14 +44,12 @@ public class ${model}ServiceImpl implements ${model}Service {
     }
 
     @Override
-    public List<${model}> query${model}List(Map<String, Object> map) {
-        //TODO
-        return mBaseDao.findListByTemplate("${namespace}.selectAll", map);
+    public List<${model}> query${model}List(${model} record) {
+        return mBaseDao.findListByTemplate("${namespace}.selectByCondition", record);
     }
 
     @Override
-    public PageInfo<${model}> find${model}Page(int pageNum, int pageSize, Map<String, Object> map) {
-        //TODO
-        return mBaseDao.findByQuery("${namespace}.selectAll", pageNum, pageSize, map);
+    public PageInfo<${model}> find${model}Page(int pageNum, int pageSize, ${model} record) {
+        return mBaseDao.findByQuery("${namespace}.selectByCondition", pageNum, pageSize, record);
     }
 }

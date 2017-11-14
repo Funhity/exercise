@@ -22,6 +22,6 @@ public interface ${model}Service {
     Long delete${model}ById(Long id);
     Long create${model}(${model} record);
     Long update${model}(${model} record);
-    List<${model}> query${model}List(Map<String, Object> map);
-    PageInfo<${model}> find${model}Page(int pageNum, int pageSize,Map<String, Object> map);
+    List<${model}> query${model}List(${model} record);
+    PageInfo<${model}> find${model}Page(int pageNum, int pageSize, ${model} record);
 }

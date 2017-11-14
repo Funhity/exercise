@@ -3,6 +3,8 @@ package com.huaxia.generator.util;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -151,6 +153,17 @@ public class StringUtil {
             return Boolean.parseBoolean(object.toString());
         } catch (Exception e) {
             return defaultValue;
+        }
+    }
+
+    public static String getErrorInfoFromException(Exception e) {
+        try {
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            return "\r\n" + sw.toString() + "\r\n";
+        } catch (Exception e2) {
+            return "ErrorInfoFromException";
         }
     }
 
