@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<queryContext xmlns="http://www.example.org/query" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/query query.xsd ">
+	<!-- 用户列表 -->
+	<query id="user_list" key="id" tableName="用户列表" className="com.huaxia.rms.core.model.RmsUser"
+		pageSize="10"  widthType="px" order="id asc" allowPaging="true"
+		service="userService" method="queryUserListByDeptCode">
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="id" header="id" hidden="true"/>
+		<column key="code" header="编码" operator="eq" width="50" allowSort="true"/>
+        <column key="name" header="登录名" operator="like" width="80" allowSort="true" />
+		<column key="realname" header="姓名" operator="eq" width="100" />
+        <column key="mobile" header="手机" operator="eq" width="80" align="center"/>
+        <column key="userDetail.dutyName" header="岗位" operator="eq" width="150" align="center"/>
+		<!--<column key="orgCode" header="所在机构编码" align="left" width="100" fnRender="fnRenderDept"/>-->
+        <column key="orgName" header="所在机构" align="left" width="200" />
+		<column key="userType" header="员工类型" operator="eq" width="100" allowSort="true" render="0=非正式,1=正式" />
+        <column key="empStatus" header="员工状态" operator="eq" width="100" allowSort="true" render="0=离职,1=在职,2=休假" fnRender="fnChangeColor"/>
+        <column key="accountStatus" header="账户状态" operator="eq" width="100" allowSort="true" render="0=关闭,1=正常,2=锁定" />
+		<!--<column key="birthday" header="出生年月" operator="like" width="80" allowSort="true" dateFormat="yyyy-mm-dd" />-->
+		<!--<column key="email" header="邮箱" align="left" operator="eq" width="100"  />-->
+	    <!--<column key="userFrom" header="用户来源" operator="like" width="100" align="center" />-->
+	</query>
+
+	<!-- 用户修改记录列表 -->
+	<query id="user_update_list" key="id" tableName="用户修改记录" className="com.huaxia.rms.core.model.RmsUserUpdateRecord"
+		   pageSize="10"  widthType="px" order="id asc" allowPaging="true"
+		   service="userService" method="queryUserUpdateListByUid">
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="id" header="id" hidden="true"/>
+		<column key="id" header="操作" operator="eq" width="80" align="center" fnRender="fnRecordLink"/>
+		<column key="updateUser" header="操作人员" operator="eq" align="center" width="100"/>
+		<column key="orgName" header="操作人所属机构" align="center" width="100" />
+		<column key="updateTime" header="操作时间" width="100" align="center" dateFormat="yyyy-mm-dd hh:ii:ss"/>
+		<column key="effectiveDate" header="生效时间" width="100" align="center" dateFormat="yyyy-mm-dd hh:ii:ss"/>
+	</query>
+
+	<!-- 角色列表 根据用户权限获取 查询所有角色method="queryRoleList" 查询用户有权管理的角色selectRoleListByUid-->
+	<query id="role_list" key="id" tableName="角色列表" className="com.huaxia.rms.core.model.RmsRole"
+		   pageSize="10"  widthType="px" order="sort asc" allowPaging="true"
+		   service="roleService" method="queryRoleList">
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="id" header="id" hidden="true"/>
+		<column key="parentCode" hidden="true" operator="eq" width="100" />
+		<column key="name" header="名称" operator="like" width="100" allowSort="true" />
+		<column key="code" header="编码" operator="eq" width="100" allowSort="true"/>
+		<!--<column key="sysCode" header="系统" operator="eq" width="100" fnRender="fnRenderSys"/>-->
+		<column key="orgCode" header="机构" operator="eq" width="100" fnRender="fnRenderDept"/>
+		<!--<column key="parentCode" header="父级" operator="eq" width="100" allowSort="true"/>-->
+		<!--<column key="parentName" header="父级" operator="eq" width="100" />-->
+		<column key="deleteMark" header="是否可用" width="80" allowSort="true" render="0=禁用,1=可用" />
+		<column key="memo" header="备注" width="100" allowSort="false" />
+	</query>
+
+	<!-- 角色用户列表  已经绑定该角色的用户 -->
+	<query id="userRole_selected_list" key="id" tableName="角色用户列表（已绑定）" className="com.huaxia.rms.core.model.RmsUserRole"
+		   pageSize="10"  widthType="px" order="updateDateTime desc" allowPaging="true"
+		   service="userRoleService" method="queryUserRoleList">
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="id" header="id" hidden="true"/>
+		<column key="userId" header="userId" hidden="true"/>
+		<column key="roleId"  header="roleId" operator="eq"  hidden="true"/>
+		<column key="user.realname" header="用户名" operator="eq" width="100" allowSort="false" />
+		<column key="user.name" header="登录名" operator="eq" width="100" allowSort="false"/>
+		<column key="user.orgName" header="部门" operator="eq" width="100" allowSort="false" />
+	</query>
+
+    <!-- 角色用户列表  未绑定角色用户列表-->
+	<query id="userRole_unselected_list" key="id" tableName="角色用户列表（未绑定）"
+		   pageSize="10"  widthType="px"  allowPaging="true"
+		   service="userRoleService" method="queryUnselectedUser">
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="id" header="id" hidden="true"/>
+		<!--<column key="version" header="version" hidden="true"/>-->
+		<column key="realname" header="用户名" operator="like" width="100" allowSort="false" />
+		<column key="name" header="登录名"  operator="eq" width="100" allowSort="false"/>
+		<column key="orgName" header="部门"  operator="eq" width="100" allowSort="false"/>
+	</query>
+
+	<!-- 角色授权列表  已经绑定该角色的权限列表 -->
+	<query id="roleFunc_selected_list" key="id" tableName="角色功能列表（已绑定）"
+		   pageSize="10"  widthType="px" order="" allowPaging="false"
+		   service="rolePermissionService" method="findRolePermissionlistBySelected">
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="id" header="id" hidden="true"/>
+		<!--<column key="version" header="version" hidden="true"/>-->
+		<column key="roleId"  header="roleId" operator="eq"  hidden="true"/>
+		<column key="name" header="功能名" operator="like" width="100" align="center" allowSort="false" />
+		<column key="code" header="功能编码" operator="eq" width="100" allowSort="true"/>
+		<column key="pname" header="父功能" operator="eq" width="100" allowSort="false" align="center"/>
+	</query>
+
+	<!--功能数据权限-->
+	<query id="ff_list" key="id" tableName="功能数据权限列表"  className="com.huaxia.rms.core.model.RmsRolePermissionData"
+		   pageSize="10"  widthType="px" order="sort asc" allowPaging="false"
+		   service="rolePermissionServiceData" method="findPermissionDatalist">
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="id" header="id" hidden="true"/>
+		<!--<column key="version" header="version" hidden="true"/>-->
+		<column key="roleId" header="roleId" hidden="true" operator="eq"/>
+		<column key="resourceId" header="resourceId" hidden="true" operator="eq"/>
+		<column key="funcKey" header="条件" operator="like" width="100" allowSort="true" />
+		<column key="funcOperator" header="操作符" operator="like" width="100" allowSort="true" />
+		<column key="funcValue" header="值" operator="like" width="100" allowSort="true" />
+		<column key="classType" header="类型" operator="eq" width="100" allowSort="true"/>
+	</query>
+
+	<!-- 日志列表 -->
+	<query id="log_list" key="id" tableName="日志列表" className="com.huaxia.rms.core.model.RmsUserOperationLog"
+		   pageSize="10"  widthType="px" order="sort asc" allowPaging="true"
+		   service="logService" method="queryLogList">
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="id" header="id" hidden="true"/>
+		<column key="userName" header="用户" operator="eq" width="100" allowSort="true"/>
+		<column key="remark" header="操作描述" operator="eq" width="100" />
+		<column key="method" header="方法" operator="eq" width="100"/>
+		<column key="ipAddress" header="IP地址" operator="eq" width="100" />
+		<column key="createdTime" header="操作时间" width="80" allowSort="true" dateFormat="yyyy-mm-dd hh:ii:ss"/>
+	</query>
+
+	<!-- 用户列表 -->
+	<query id="black_list" key="id" tableName="黑名单用户列表" className="com.huaxia.rms.core.model.RmsUserBlacklist"
+		   pageSize="10"  widthType="px" order="id asc" allowPaging="true"
+		   service="blacklistService" method="queryUserBlackList">
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="id" header="id" hidden="true"/>
+		<column key="userId" header="用户ID" operator="eq" width="100" allowSort="true"/>
+		<column key="username" header="用户登陆名" operator="eq" width="100" />
+		<column key="ipAddress" header="IP" operator="eq" width="100" />
+		<column key="type" header="类型" operator="eq" width="150"  render="1=黑名单,0=白名单" />
+		<column key="memo" header="备注" width="100" allowSort="false" />
+	</query>
+
+	<!-- 组织机构类别列表 -->
+	<query id="org_category_list" key="id" tableName="机构类别列表" className="com.huaxia.rms.core.model.RmsOrgCategory"
+		   pageSize="10"  widthType="px" order="id asc" allowPaging="true"
+		   service="orgCategoryService" method="queryCategoryList">
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="id" header="id" hidden="true"/>
+		<column key="code" header="编号" operator="eq" width="100" allowSort="false"/>
+		<column key="name" header="机构类别" operator="eq" width="100" />
+		<column key="status" header="状态" operator="eq" width="150"  render="1=启用,0=禁用" />
+		<column key="memo" header="备注" width="100" allowSort="false" />
+	</query>
+
+	<!--通用用户选择-->
+	<query id="user_select_list" key="id" tableName="用户选择" className="com.huaxia.rms.core.model.RmsUser"
+		   pageSize="10"  widthType="px" order="id asc" allowPaging="true"
+		   service="userService" method="queryAllUserList">
+		<column key="isSelected" header="选择" fnRender="fnRenderSelectUser" />
+		<column key="id" header="id" hidden="true" align="center" allowSort="false"/>
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<column key="code" header="工号" operator="like" width="100" allowSort="true" />
+		<column key="realname" header="姓名" operator="like" width="100" allowSort="true" />
+		<column key="name" header="登陆名" operator="like" width="100" allowSort="true" />
+		<column key="sex" header="性别" operator="eq" width="150" allowSort="true" render="1=男,0=女" />
+		<column key="mobile" header="手机"  operator="eq" width="200" align="center"/>
+		<column key="orgName" header="部门" operator="eq" width="200" align="center" />
+		<column key="email" header="邮箱" align="left" operator="eq" width="100"  />
+	</query>
+
+	<!--用户标签选择-->
+	<query id="label_select_list" key="id" tableName="用户标签选择" className="com.huaxia.rms.core.model.RmsLabel"
+		   pageSize="10"  widthType="px" order="id asc" allowPaging="true"
+		   service="labelService" method="queryLabelList">
+		<column key="isSelected" header="选择" fnRender="fnRenderSelectLabel" />
+		<column key="id" header="id" hidden="true" align="center" allowSort="false"/>
+		<column key="rowIndex" header="序号" width="50" allowSort="false"/>
+		<!--<column key="code" header="编号" operator="like" width="100" />-->
+		<column key="name" header="标签" operator="like" width="100" />
+	</query>
+
+</queryContext>

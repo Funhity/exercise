@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rmsuseroperationlog">
+  
+  <resultMap id="BaseResultMap" type="com.huaxia.rms.core.model.RmsUserOperationLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, user_id, user_name, remark, method, ip_address,
+    created_time
+  </sql>
+
+  <sql id="log_where_list">
+    <where>
+      <if test="null != userId and userId != 0">AND a.user_id = #{userId }</if>
+      <if test="null != createdTime">AND DATE(a.created_time) <![CDATA[=]]> DATE(#{createdTime})</if>
+      <if test="null != userName and userName != ''">AND a.user_name like CONCAT(CONCAT('%', #{userName}), '%')</if>
+      <if test="null != method and method != ''">AND a.method like CONCAT(CONCAT('%', #{method}), '%')</if>
+    </where>
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_rms_user_operation_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from t_rms_user_operation_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.huaxia.rms.core.model.RmsUserOperationLog">
+    insert into t_rms_user_operation_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="method != null">
+        method,
+      </if>
+      <if test="ipAddress != null">
+        ip_address,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="com.huaxia.rms.core.model.RmsUserOperationLog">
+    update t_rms_user_operation_log
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, user_name, remark, method, ip_address,
+    created_time
+    from t_rms_user_operation_log
+  </select>
+
+
+  <select id="queryPageData" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+    t_rms_user_operation_log a
+    <include refid="log_where_list" />
+    ORDER BY
+    created_time DESC
+    <if test="orderBy != null and orderBy != ''">
+      ,#{orderBy}
+    </if>
+    limit #{start}, #{limit}
+  </select>
+
+  <select id="queryPageDataCount" resultType="int">
+    SELECT
+      COUNT(1)
+    FROM
+      t_rms_user_operation_log a
+    <include refid="log_where_list" />
+  </select>
+
+
+</mapper>

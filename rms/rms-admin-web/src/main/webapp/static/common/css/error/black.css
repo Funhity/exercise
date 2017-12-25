@@ -1,0 +1,10 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.container{ max-width:640px; margin:0 auto 60px; overflow:hidden;position: relative;}
+
+.una{width: 100%; text-align: center;}
+.una img{ width:70px; height:65px; margin:100px auto 10px;}
+.una p{color:#999999; line-height: 24px; }
+
+
+

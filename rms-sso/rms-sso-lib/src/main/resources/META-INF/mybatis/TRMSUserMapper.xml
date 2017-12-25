@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaxia.sso.dao.TRMSUserMapper" >
+  <resultMap id="BaseResultMap" type="com.huaxia.sso.model.TRMSUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="password_salt" property="passwordSalt" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="user_type" property="userType" jdbcType="INTEGER" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="user_from" property="userFrom" jdbcType="VARCHAR" />
+    <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="user_online" property="userOnline" jdbcType="INTEGER" />
+    <result column="first_visit" property="firstVisit" jdbcType="TIMESTAMP" />
+    <result column="previous_visit" property="previousVisit" jdbcType="TIMESTAMP" />
+    <result column="last_visit" property="lastVisit" jdbcType="TIMESTAMP" />
+    <result column="login_count" property="loginCount" jdbcType="INTEGER" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+    <result column="is_visible" property="isVisible" jdbcType="INTEGER" />
+    <result column="sort_code" property="sortCode" jdbcType="INTEGER" />
+    <result column="enabled" property="enabled" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, realname, password, password_salt, mobile, idcard, sex, age, birthday, 
+    user_type, email, user_from, org_code, org_name, user_online, first_visit, previous_visit, 
+    last_visit, login_count, audit_status, is_visible, sort_code, enabled, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_rms_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_rms_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huaxia.sso.model.TRMSUser" >
+    insert into t_rms_user (id, code, name, 
+      realname, password, password_salt, 
+      mobile, idcard, sex, 
+      age, birthday, user_type, 
+      email, user_from, org_code, 
+      org_name, user_online, first_visit, 
+      previous_visit, last_visit, login_count, 
+      audit_status, is_visible, sort_code, 
+      enabled, create_time)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{passwordSalt,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{age,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{userType,jdbcType=INTEGER}, 
+      #{email,jdbcType=VARCHAR}, #{userFrom,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, 
+      #{orgName,jdbcType=VARCHAR}, #{userOnline,jdbcType=INTEGER}, #{firstVisit,jdbcType=TIMESTAMP}, 
+      #{previousVisit,jdbcType=TIMESTAMP}, #{lastVisit,jdbcType=TIMESTAMP}, #{loginCount,jdbcType=INTEGER}, 
+      #{auditStatus,jdbcType=INTEGER}, #{isVisible,jdbcType=INTEGER}, #{sortCode,jdbcType=INTEGER}, 
+      #{enabled,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huaxia.sso.model.TRMSUser" >
+    insert into t_rms_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="passwordSalt != null" >
+        password_salt,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="userFrom != null" >
+        user_from,
+      </if>
+      <if test="orgCode != null" >
+        org_code,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="userOnline != null" >
+        user_online,
+      </if>
+      <if test="firstVisit != null" >
+        first_visit,
+      </if>
+      <if test="previousVisit != null" >
+        previous_visit,
+      </if>
+      <if test="lastVisit != null" >
+        last_visit,
+      </if>
+      <if test="loginCount != null" >
+        login_count,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="isVisible != null" >
+        is_visible,
+      </if>
+      <if test="sortCode != null" >
+        sort_code,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null" >
+        #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userFrom != null" >
+        #{userFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="userOnline != null" >
+        #{userOnline,jdbcType=INTEGER},
+      </if>
+      <if test="firstVisit != null" >
+        #{firstVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="previousVisit != null" >
+        #{previousVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastVisit != null" >
+        #{lastVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginCount != null" >
+        #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isVisible != null" >
+        #{isVisible,jdbcType=INTEGER},
+      </if>
+      <if test="sortCode != null" >
+        #{sortCode,jdbcType=INTEGER},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huaxia.sso.model.TRMSUser" >
+    update t_rms_user
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null" >
+        password_salt = #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userFrom != null" >
+        user_from = #{userFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="userOnline != null" >
+        user_online = #{userOnline,jdbcType=INTEGER},
+      </if>
+      <if test="firstVisit != null" >
+        first_visit = #{firstVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="previousVisit != null" >
+        previous_visit = #{previousVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastVisit != null" >
+        last_visit = #{lastVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginCount != null" >
+        login_count = #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isVisible != null" >
+        is_visible = #{isVisible,jdbcType=INTEGER},
+      </if>
+      <if test="sortCode != null" >
+        sort_code = #{sortCode,jdbcType=INTEGER},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huaxia.sso.model.TRMSUser" >
+    update t_rms_user
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      password_salt = #{passwordSalt,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=DATE},
+      user_type = #{userType,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      user_from = #{userFrom,jdbcType=VARCHAR},
+      org_code = #{orgCode,jdbcType=VARCHAR},
+      org_name = #{orgName,jdbcType=VARCHAR},
+      user_online = #{userOnline,jdbcType=INTEGER},
+      first_visit = #{firstVisit,jdbcType=TIMESTAMP},
+      previous_visit = #{previousVisit,jdbcType=TIMESTAMP},
+      last_visit = #{lastVisit,jdbcType=TIMESTAMP},
+      login_count = #{loginCount,jdbcType=INTEGER},
+      audit_status = #{auditStatus,jdbcType=INTEGER},
+      is_visible = #{isVisible,jdbcType=INTEGER},
+      sort_code = #{sortCode,jdbcType=INTEGER},
+      enabled = #{enabled,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_rms_user
+    where name = #{name,jdbcType=VARCHAR} and enabled = 1
+  </select>
+
+
+  <select id="selectByMobile" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_rms_user
+    where mobile = #{mobile,jdbcType=VARCHAR} and enabled = 1
+  </select>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:application name="rms-consumer" owner="rms" organization="huaxia" />
+
+	<!-- 配置注册中心，多个地址用逗号隔开-->
+	<dubbo:registry id="rms.registry" protocol="${huaxia.dubbo.protocol}" address="${huaxia.dubbo.address}"
+					timeout="${huaxia.dubbo.timeout}" file="${dubbo.registry.cusfile}"/>
+
+    <!-- 生成远程服务代理，可以和本地bean一样使用ssoUserService -->
+    <dubbo:reference id="apiResourceService" interface="com.huaxia.rms.api.service.ApiResourceService" check="false" version="${dubbo.customer.version}"/>
+
+	<!-- 生成远程服务代理，可以和本地bean一样使用ssoUserService -->
+	<dubbo:reference id="apiOrganizationService" interface="com.huaxia.rms.api.service.ApiOrganizationService" check="false" version="${dubbo.customer.version}"/>
+
+</beans>

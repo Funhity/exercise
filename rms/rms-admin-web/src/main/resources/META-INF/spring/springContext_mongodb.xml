@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	   xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.7.xsd">
+
+	<mongo:mongo host="${mongo.url}" port="${mongo.port}" id="mongo">
+		<mongo:options auto-connect-retry="${mongo.auto-connect-retry}"
+					   connect-timeout="${mongo.connect-timeout}" connections-per-host="${mongo.connections-per-host}"
+					   max-wait-time="${mongo.max-wait-time}" socket-keep-alive="${mongo.socket-keep-alive}"
+					   socket-timeout="${mongo.socket-timeout}" threads-allowed-to-block-for-connection-multiplier="${mongo.threads-allowed-to-block-for-connection-multiplier}"
+					   write-fsync="true"
+					   write-number="1" write-timeout="0" />
+	</mongo:mongo>
+
+	<mongo:db-factory dbname="${mongo.dbname}" username="${mongo.user}"  password="${mongo.passwd}"
+					  mongo-ref="mongo" id="mongoDbFactory" authentication-dbname="admin"/>
+
+	<mongo:template db-factory-ref="mongoDbFactory" id="mongoTemplate"/>
+
+	<mongo:repositories base-package="com.core.cms.dao.mongo.coreInsurance"/>
+</beans>

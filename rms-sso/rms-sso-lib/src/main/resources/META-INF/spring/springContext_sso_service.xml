@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd" default-autowire="byType">
+
+    <!--==================================================限制策略===================================================-->
+    <!--无策略实现-->
+    <bean name="noneRestrictionPolicy" class="com.huaxia.sso.service.impl.NoneRestrictionPolicyImpl"/>
+    <!--登录错误次数限制-->
+    <bean name="loginErrorCountRestrictionPolicy"
+          class="com.huaxia.sso.service.impl.LoginErrorCountRestrictionPolicyImpl">
+    </bean>
+
+    <!--==================================================认证规则===================================================-->
+    <!--帐号是否存在-->
+    <bean name="accountExistAuthenticationHandler"
+          class="com.huaxia.sso.service.impl.AccountExistAuthenticationHandlerImpl"/>
+    <!--密码是否正确-->
+    <bean name="passwordCheckAuthenticationHandler"
+          class="com.huaxia.sso.service.impl.PasswordCheckAuthenticationHandlerImpl">
+        <property name="passwordEncoder">
+            <bean class="com.huaxia.sso.service.impl.Md5PasswordEncoder"/>
+        </property>
+    </bean>
+
+    <bean name="passwordCheckAutoAuthenticationHandler"
+          class="com.huaxia.sso.service.impl.PasswordCheckAutoAuthenticationHandlerImpl">
+        <property name="passwordEncoder">
+            <bean class="com.huaxia.sso.service.impl.Md5PasswordEncoderAuto"/>
+        </property>
+    </bean>
+    <bean name="fgPasswordCheckAutoAuthenticationHandler"
+          class="com.huaxia.sso.service.impl.FgPasswordCheckAuthenticationHandlerImpl">
+        <property name="passwordEncoder">
+            <bean class="com.huaxia.sso.service.impl.Md5PasswordEncoderAuto"/>
+        </property>
+    </bean>
+    <!--验证码是否正确-->
+    <bean name="validateCodeCheckAuthenticationHandler"
+          class="com.huaxia.sso.service.impl.ValidateCodeCheckAuthenticationHandlerImpl">
+    </bean>
+    <!--老密码修改密码-->
+    <bean name="upPwdValidateCodeCheckAuthenticationHandlerImpl"
+          class="com.huaxia.sso.service.impl.UpPwdValidateCodeCheckAuthenticationHandlerImpl">
+    </bean>
+
+    <!--忘记密码验证码是否正确-->
+    <bean name="fgvalidateCodeCheckAuthenticationHandler"
+          class="com.huaxia.sso.service.impl.FgValidateCodeCheckAuthenticationHandlerImpl">
+    </bean>
+    <!--注册密码验证码是否正确-->
+    <bean name="rgvalidateCodeCheckAuthenticationHandler"
+          class="com.huaxia.sso.service.impl.RgValidateCodeCheckAuthenticationHandlerImpl">
+    </bean>
+
+    <!--注册验证码是否正确-->
+    <bean name="registValidateCodeCheckAuthenticationHandlerImpl"
+          class="com.huaxia.sso.service.impl.RegistValidateCodeCheckAuthenticationHandlerImpl">
+    </bean>
+
+
+
+    <!--登录错误次数-->
+    <bean name="loginErrorCountAuthenticationHandler"
+          class="com.huaxia.sso.service.impl.LoginErrorCountAuthenticationHandlerImpl">
+        <property name="maxLoginErrorCount" value="${sso.restriction.policy.error.number}"/>
+    </bean>
+    <!--用户状态-->
+    <bean name="statusAuthenticationHandlerImpl" class="com.huaxia.sso.service.impl.StatusAuthenticationHandlerImpl"/>
+
+    <!--==================================================Ticket生成规则=============================================-->
+    <bean name="defaultUniqueTicketIdGenerator"
+          class="com.huaxia.sso.service.impl.DefaultUniqueTicketIdGeneratorImpl"/>
+
+    <!--主要 门面类-->
+    <bean name="rmsManager" class="com.huaxia.sso.service.impl.RMSManagerImpl">
+        <!-- 登录 限制策略-->
+        <property name="logonRestrictionPolicy" ref="loginErrorCountRestrictionPolicy"/>
+        <property name="uniqueTicketIdGenerator" ref="defaultUniqueTicketIdGenerator"/>
+
+        <!--密码登录Handler-->
+        <property name="authenticationHandler">
+            <list>
+                <!--账户是否存在验证-->
+                <ref bean="accountExistAuthenticationHandler"/>
+                <!--验证用户状态-->
+                <ref bean="statusAuthenticationHandlerImpl"/>
+                <!--登录错误次数是否超限验证-->
+                <ref bean="loginErrorCountAuthenticationHandler"/>
+                <!--密码是否正确验证-->
+                <ref bean="passwordCheckAuthenticationHandler"/>
+            </list>
+        </property>
+
+        <!--密码自动登录Handler-->
+        <property name="authenticationAutoHandler">
+            <list>
+                <!--账户是否存在验证-->
+                <ref bean="accountExistAuthenticationHandler"/>
+                <!--验证用户状态-->
+                <ref bean="statusAuthenticationHandlerImpl"/>
+                <!--密码是否正确验证-->
+                <ref bean="passwordCheckAutoAuthenticationHandler"/>
+            </list>
+        </property>
+
+        <!--验证码登录Handle-->
+        <property name="authenticationValidateCodeHandler">
+            <list>
+                <!--验证码是否正确验证-->
+                <ref bean="validateCodeCheckAuthenticationHandler"/>
+            </list>
+        </property>
+
+        <!--忘记密码验证码登录Handle-->
+        <property name="fgAuthenticationValidateCodeHandler">
+            <list>
+                <!--验证码是否正确验证-->
+                <ref bean="fgvalidateCodeCheckAuthenticationHandler"/>
+                <!--密码是否正确验证-->
+                <ref bean="fgPasswordCheckAutoAuthenticationHandler"/>
+            </list>
+        </property>
+
+        <!--注册密码验证码登录Handle-->
+        <property name="registAuthenticationValidateCodeHandler">
+            <list>
+                <!--验证码是否正确验证-->
+                <ref bean="rgvalidateCodeCheckAuthenticationHandler"/>
+            </list>
+        </property>
+
+
+        <!--修改密码密码修改Handle-->
+        <property name="upPwdAuthenticationValidateCodeHandler">
+            <list>
+                <!--验证码是否正确验证-->
+                <ref bean="upPwdValidateCodeCheckAuthenticationHandlerImpl"/>
+            </list>
+        </property>
+
+
+        <!--验证码注册Handle-->
+        <property name="registValidateCodeHandler">
+            <list>
+                <!--验证码是否正确验证-->
+                <ref bean="registValidateCodeCheckAuthenticationHandlerImpl"/>
+            </list>
+        </property>
+
+        <property name="keyEncoder">
+            <bean class="com.huaxia.sso.service.impl.DefaultKeyEncoderImpl"/>
+        </property>
+    </bean>
+
+</beans>

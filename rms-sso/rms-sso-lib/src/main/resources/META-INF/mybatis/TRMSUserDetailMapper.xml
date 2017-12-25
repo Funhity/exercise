@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaxia.sso.dao.TRMSUserDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.huaxia.sso.model.TRMSUserDetail" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="work_group_id" property="workGroupId" jdbcType="INTEGER" />
+    <result column="work_group_name" property="workGroupName" jdbcType="VARCHAR" />
+    <result column="duty_id" property="dutyId" jdbcType="INTEGER" />
+    <result column="duty_name" property="dutyName" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="office_phone" property="officePhone" jdbcType="VARCHAR" />
+    <result column="office_address" property="officeAddress" jdbcType="VARCHAR" />
+    <result column="office_fax" property="officeFax" jdbcType="VARCHAR" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="working_date" property="workingDate" jdbcType="VARCHAR" />
+    <result column="joinin_date" property="joininDate" jdbcType="VARCHAR" />
+    <result column="home_address" property="homeAddress" jdbcType="VARCHAR" />
+    <result column="native_place" property="nativePlace" jdbcType="VARCHAR" />
+    <result column="party" property="party" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="nationality" property="nationality" jdbcType="VARCHAR" />
+    <result column="is_dimission" property="isDimission" jdbcType="INTEGER" />
+    <result column="dimission_date" property="dimissionDate" jdbcType="TIMESTAMP" />
+    <result column="dimission_cause" property="dimissionCause" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="created_user_id" property="createdUserId" jdbcType="INTEGER" />
+    <result column="created_user_name" property="createdUserName" jdbcType="VARCHAR" />
+    <result column="modified_date" property="modifiedDate" jdbcType="TIMESTAMP" />
+    <result column="modified_user_id" property="modifiedUserId" jdbcType="INTEGER" />
+    <result column="modified_user_name" property="modifiedUserName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, work_group_id, work_group_name, duty_id, duty_name, bank_code, telephone, 
+    office_phone, office_address, office_fax, school, education, major, working_date, 
+    joinin_date, home_address, native_place, party, nation, nationality, is_dimission, 
+    dimission_date, dimission_cause, memo, created_user_id, created_user_name, modified_date, 
+    modified_user_id, modified_user_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_rms_user_detail
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_rms_user_detail
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.huaxia.sso.model.TRMSUserDetail" >
+    insert into t_rms_user_detail (user_id, work_group_id, work_group_name, 
+      duty_id, duty_name, bank_code, 
+      telephone, office_phone, office_address, 
+      office_fax, school, education, 
+      major, working_date, joinin_date, 
+      home_address, native_place, party, 
+      nation, nationality, is_dimission, 
+      dimission_date, dimission_cause, memo, 
+      created_user_id, created_user_name, modified_date, 
+      modified_user_id, modified_user_name)
+    values (#{userId,jdbcType=INTEGER}, #{workGroupId,jdbcType=INTEGER}, #{workGroupName,jdbcType=VARCHAR}, 
+      #{dutyId,jdbcType=INTEGER}, #{dutyName,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{officePhone,jdbcType=VARCHAR}, #{officeAddress,jdbcType=VARCHAR}, 
+      #{officeFax,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{major,jdbcType=VARCHAR}, #{workingDate,jdbcType=VARCHAR}, #{joininDate,jdbcType=VARCHAR}, 
+      #{homeAddress,jdbcType=VARCHAR}, #{nativePlace,jdbcType=VARCHAR}, #{party,jdbcType=VARCHAR}, 
+      #{nation,jdbcType=VARCHAR}, #{nationality,jdbcType=VARCHAR}, #{isDimission,jdbcType=INTEGER}, 
+      #{dimissionDate,jdbcType=TIMESTAMP}, #{dimissionCause,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, 
+      #{createdUserId,jdbcType=INTEGER}, #{createdUserName,jdbcType=VARCHAR}, #{modifiedDate,jdbcType=TIMESTAMP}, 
+      #{modifiedUserId,jdbcType=INTEGER}, #{modifiedUserName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huaxia.sso.model.TRMSUserDetail" >
+    insert into t_rms_user_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="workGroupId != null" >
+        work_group_id,
+      </if>
+      <if test="workGroupName != null" >
+        work_group_name,
+      </if>
+      <if test="dutyId != null" >
+        duty_id,
+      </if>
+      <if test="dutyName != null" >
+        duty_name,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="officePhone != null" >
+        office_phone,
+      </if>
+      <if test="officeAddress != null" >
+        office_address,
+      </if>
+      <if test="officeFax != null" >
+        office_fax,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="workingDate != null" >
+        working_date,
+      </if>
+      <if test="joininDate != null" >
+        joinin_date,
+      </if>
+      <if test="homeAddress != null" >
+        home_address,
+      </if>
+      <if test="nativePlace != null" >
+        native_place,
+      </if>
+      <if test="party != null" >
+        party,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="nationality != null" >
+        nationality,
+      </if>
+      <if test="isDimission != null" >
+        is_dimission,
+      </if>
+      <if test="dimissionDate != null" >
+        dimission_date,
+      </if>
+      <if test="dimissionCause != null" >
+        dimission_cause,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="createdUserId != null" >
+        created_user_id,
+      </if>
+      <if test="createdUserName != null" >
+        created_user_name,
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date,
+      </if>
+      <if test="modifiedUserId != null" >
+        modified_user_id,
+      </if>
+      <if test="modifiedUserName != null" >
+        modified_user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="workGroupId != null" >
+        #{workGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="workGroupName != null" >
+        #{workGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyId != null" >
+        #{dutyId,jdbcType=INTEGER},
+      </if>
+      <if test="dutyName != null" >
+        #{dutyName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null" >
+        #{officePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="officeAddress != null" >
+        #{officeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="officeFax != null" >
+        #{officeFax,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="workingDate != null" >
+        #{workingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="joininDate != null" >
+        #{joininDate,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null" >
+        #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null" >
+        #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="party != null" >
+        #{party,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="isDimission != null" >
+        #{isDimission,jdbcType=INTEGER},
+      </if>
+      <if test="dimissionDate != null" >
+        #{dimissionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dimissionCause != null" >
+        #{dimissionCause,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUserId != null" >
+        #{createdUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createdUserName != null" >
+        #{createdUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedDate != null" >
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedUserId != null" >
+        #{modifiedUserId,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedUserName != null" >
+        #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huaxia.sso.model.TRMSUserDetail" >
+    update t_rms_user_detail
+    <set >
+      <if test="workGroupId != null" >
+        work_group_id = #{workGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="workGroupName != null" >
+        work_group_name = #{workGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyId != null" >
+        duty_id = #{dutyId,jdbcType=INTEGER},
+      </if>
+      <if test="dutyName != null" >
+        duty_name = #{dutyName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null" >
+        office_phone = #{officePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="officeAddress != null" >
+        office_address = #{officeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="officeFax != null" >
+        office_fax = #{officeFax,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="workingDate != null" >
+        working_date = #{workingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="joininDate != null" >
+        joinin_date = #{joininDate,jdbcType=VARCHAR},
+      </if>
+      <if test="homeAddress != null" >
+        home_address = #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null" >
+        native_place = #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="party != null" >
+        party = #{party,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="isDimission != null" >
+        is_dimission = #{isDimission,jdbcType=INTEGER},
+      </if>
+      <if test="dimissionDate != null" >
+        dimission_date = #{dimissionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dimissionCause != null" >
+        dimission_cause = #{dimissionCause,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createdUserId != null" >
+        created_user_id = #{createdUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createdUserName != null" >
+        created_user_name = #{createdUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedDate != null" >
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedUserId != null" >
+        modified_user_id = #{modifiedUserId,jdbcType=INTEGER},
+      </if>
+      <if test="modifiedUserName != null" >
+        modified_user_name = #{modifiedUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huaxia.sso.model.TRMSUserDetail" >
+    update t_rms_user_detail
+    set work_group_id = #{workGroupId,jdbcType=INTEGER},
+      work_group_name = #{workGroupName,jdbcType=VARCHAR},
+      duty_id = #{dutyId,jdbcType=INTEGER},
+      duty_name = #{dutyName,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      office_phone = #{officePhone,jdbcType=VARCHAR},
+      office_address = #{officeAddress,jdbcType=VARCHAR},
+      office_fax = #{officeFax,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      working_date = #{workingDate,jdbcType=VARCHAR},
+      joinin_date = #{joininDate,jdbcType=VARCHAR},
+      home_address = #{homeAddress,jdbcType=VARCHAR},
+      native_place = #{nativePlace,jdbcType=VARCHAR},
+      party = #{party,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      is_dimission = #{isDimission,jdbcType=INTEGER},
+      dimission_date = #{dimissionDate,jdbcType=TIMESTAMP},
+      dimission_cause = #{dimissionCause,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      created_user_id = #{createdUserId,jdbcType=INTEGER},
+      created_user_name = #{createdUserName,jdbcType=VARCHAR},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      modified_user_id = #{modifiedUserId,jdbcType=INTEGER},
+      modified_user_name = #{modifiedUserName,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

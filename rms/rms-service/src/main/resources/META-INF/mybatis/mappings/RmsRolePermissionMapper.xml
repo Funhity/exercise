@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rmsrolepermission">
+  
+  <resultMap id="BaseResultMap" type="com.huaxia.rms.core.model.RmsRolePermission">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="resource_id" jdbcType="INTEGER" property="resourceId" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_user" jdbcType="VARCHAR" property="deleteUser" />
+    <result column="delete_mark" jdbcType="INTEGER" property="deleteMark" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, role_id, resource_id, memo, create_time, create_user, update_time, update_user, 
+    delete_time, delete_user, delete_mark
+  </sql>
+
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from t_rms_role_permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.huaxia.rms.core.model.RmsRolePermission">
+    insert into t_rms_role_permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="resourceId != null">
+        resource_id,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+      <if test="deleteUser != null">
+        delete_user,
+      </if>
+      <if test="deleteMark != null">
+        delete_mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null">
+        #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null">
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null">
+        #{deleteMark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="com.huaxia.rms.core.model.RmsRolePermission">
+    update t_rms_role_permission
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null">
+        resource_id = #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null">
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null">
+        delete_mark = #{deleteMark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, role_id, resource_id, memo, create_time, create_user, update_time, update_user, 
+    delete_time, delete_user, delete_mark
+    from t_rms_role_permission
+  </select>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_rms_role_permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <insert id="addTrainRecordBatch" useGeneratedKeys="true" parameterType="java.util.List">
+    <selectKey resultType="long" keyProperty="id" order="AFTER">
+      SELECT
+      LAST_INSERT_ID()
+    </selectKey>
+    insert into t_rms_role_permission (role_id, resource_id, create_user)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.roleId},#{item.resourceId},#{item.createUser})
+    </foreach>
+  </insert>
+
+  <select id="selectRolePermissionByParam" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from t_rms_role_permission
+    where delete_mark = 1
+    <if test="roleId != null and roleId != 0">
+      and role_id = #{roleId,jdbcType=INTEGER}
+    </if>
+    <if test="resourceId != null and resourceId != 0 " >
+      and resource_id = #{resourceId,jdbcType=INTEGER}
+    </if>
+    order by create_time desc
+  </select>
+
+  <select id="selectRolePermissionList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from t_rms_role_permission
+    where delete_mark = 1
+    <if test="roleId != null and roleId != 0">
+      and role_id = #{roleId,jdbcType=INTEGER}
+    </if>
+    <if test="resourceId != null and resourceId != 0 " >
+      and resource_id = #{resourceId,jdbcType=INTEGER}
+    </if>
+    order by create_time desc
+    limit #{start}, #{limit}
+  </select>
+
+  <select id="selectRolePermissionListCount" parameterType="java.util.Map" resultType="java.lang.String">
+    select count(id) urcount
+    from t_rms_role_permission
+    where delete_mark = 1
+    <if test="roleId != null and roleId != 0">
+      and role_id = #{roleId,jdbcType=INTEGER}
+    </if>
+    <if test="resourceId != null and resourceId != 0 " >
+      and resource_id = #{resourceId,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <update id="deleteRolePermission" parameterType="java.util.Map">
+    update t_rms_role_permission set delete_time = now(), delete_user = #{username,jdbcType=VARCHAR}, delete_mark = 0
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectRolePermissionlistBySelected" parameterType="java.util.Map" resultType="java.util.Map">
+    select rf.id id,rf.role_id roleId, f.name name,f.parent_name pname, f.code code
+    from t_rms_role_permission rf
+    left join t_rms_resource f on rf.resource_id = f.id
+    where f.delete_mark = 1 and rf.delete_mark = 1 and f.restype > 1
+    <if test="roleId != null and roleId != 0">
+      and rf.role_id = #{roleId,jdbcType=INTEGER}
+    </if>
+    <if test="name != null and name != ''">
+      and f.name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%')
+    </if>
+    order by rf.create_time desc
+    limit #{start}, #{limit}
+  </select>
+
+  <select id="selectRolePermissionlistBySelectedCount" parameterType="java.util.Map" resultType="java.lang.String" >
+    select count(rf.id) rfcount
+    from t_rms_role_permission rf
+    left join t_rms_resource f on rf.resource_id = f.id
+    where f.delete_mark = 1 and rf.delete_mark = 1 and f.restype > 1
+    <if test="roleId != null and roleId != 0">
+      and rf.role_id = #{roleId,jdbcType=INTEGER}
+    </if>
+
+  </select>
+
+  <select id="selectRolePermissionByRoleCodes" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from t_rms_role_permission
+    where delete_mark = 1 and role_id in
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+
+
+
+</mapper>

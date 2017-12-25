@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaxia.sso.dao.TRMSUserLockOutMapper" >
+  <resultMap id="BaseResultMap" type="com.huaxia.sso.model.TRMSUserLockOut" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="failed_num" property="failedNum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="failed_source" property="failedSource" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, username, ip, failed_num, status, failed_source, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_rms_user_lock_out
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_rms_user_lock_out
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.huaxia.sso.model.TRMSUserLockOut" >
+    insert into t_rms_user_lock_out (id, user_id, username, 
+      ip, failed_num, status, 
+      failed_source, create_time)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{failedNum,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{failedSource,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.huaxia.sso.model.TRMSUserLockOut" >
+    insert into t_rms_user_lock_out
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="failedNum != null" >
+        failed_num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="failedSource != null" >
+        failed_source,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="failedNum != null" >
+        #{failedNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failedSource != null" >
+        #{failedSource,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huaxia.sso.model.TRMSUserLockOut" >
+    update t_rms_user_lock_out
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="failedNum != null" >
+        failed_num = #{failedNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="failedSource != null" >
+        failed_source = #{failedSource,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huaxia.sso.model.TRMSUserLockOut" >
+    update t_rms_user_lock_out
+    set user_id = #{userId,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      failed_num = #{failedNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      failed_source = #{failedSource,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByToday" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_rms_user_lock_out
+    where
+    user_id= #{userId,jdbcType=INTEGER} and date(create_time)=date(now()) and status=1
+  </select>
+</mapper>

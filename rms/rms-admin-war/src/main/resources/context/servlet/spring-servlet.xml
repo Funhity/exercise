@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- 支持上传文件 -->  
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<bean id="servletHandlerAdapter" class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter" />  
+	
+	 <!--自动扫描的包名 -->
+	<context:component-scan base-package="com.huaxia.middle.**.controller" />
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- 默认的注解映射的支持 -->
+	<!-- 默认的注解映射的支持，org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<!-- 将StringHttpMessageCOnverter的默认编码设为UTF-8 -->
+		 	<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+				<property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html; charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value> 
+                    </list>
+                </property>
+			</bean> 
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/static/**" location="/static/"/>  
+	
+	<!-- springmvc的 thymeleaf 模版解析器-->
+	<bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+	  <property name="prefix" value="/WEB-INF/templates/" />
+	  <property name="suffix" value=".html" />
+	  <property name="templateMode" value="HTML5" />
+	</bean>
+	
+	<!--thymeleaf模版引擎-->
+	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+	    <property name="templateResolver" ref="templateResolver" />
+	    <property name="enableSpringELCompiler" value="true" />
+  		<property name="additionalDialects">
+  			<set>
+  				<bean class="at.pollux.thymeleaf.shiro.dialect.ShiroDialect"></bean>
+  			</set>
+  		</property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"> 
+		<property name="contentNegotiationManager" ref="cnManager"/>
+		<property name="viewResolvers">
+			<list>
+				<!--thymeleaf视图解析器-->
+				<bean id="thymeleafViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+				  <property name="templateEngine" ref="templateEngine" />
+				  <property name="viewNames" value="*.html,*.xhtml" />
+				  <property name="order" value="2" />
+				  <property name="characterEncoding" value="UTF-8"/>  
+				</bean>
+				
+				<!--springmvc的jsp视图解析器&模版解析器-->
+				<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+					<property name="prefix" value="/WEB-INF/views/" />
+					<property name="suffix" value=".jsp" />
+					<property name="order" value="1" />
+				</bean>				 
+			</list>
+		</property>
+	</bean>	
+	
+	
+	<bean id="cnManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="true"/>
+        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="defaultContentType" value="text/html"/>
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html" />
+                <entry key="xml"  value="application/xml" />  
+                <entry key="atom" value="application/atom+xml" /> 
+            </map>
+        </property>
+    </bean>
+	
+</beans>

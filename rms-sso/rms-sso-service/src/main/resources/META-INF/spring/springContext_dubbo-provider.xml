@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	
+	<dubbo:application name="rms-sso-provider" owner="rms" organization="huaxia" />
+	
+	<!-- 配置注册中心，多个地址用逗号隔开-->
+	<dubbo:registry id="rms_sso.registry" protocol="${huaxia.dubbo.protocol}" address="${huaxia.dubbo.address}" timeout="${huaxia.dubbo.timeout}" />
+
+	<!-- 配置服务提供者delay:延迟注册服务时间(毫秒) ，设为-1时，表示延迟到Spring容器初始化完成时暴露服务 -->
+	<dubbo:provider delay="-1" timeout="10000" />
+
+	<!-- 配置服务提供者协议 ，由提供方指定，消费方被动接受-->
+	<dubbo:protocol name="dubbo" port="30601" accesslog="true"  threads="800" host=""/>
+
+	<!-- 监控中心协议，如果为protocol="registry"，表示从注册中心发现监控中心地址，否则直连监控中心 -->
+	<dubbo:monitor protocol="registry"/>
+
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:service interface="com.huaxia.sso.service.UserService" ref="ssoUserService" version="${dubbo.provider.version}"/>
+	
+</beans>

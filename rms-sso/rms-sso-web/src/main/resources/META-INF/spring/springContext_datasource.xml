@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		 				   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+		 				   
+	 <bean id="boss_ucenter_dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName">
+			<value>${boss_ucenter.datasource.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${boss_ucenter.datasource.url}</value>
+		</property>
+		<property name="username">
+			<value>${boss_ucenter.datasource.username}</value>
+		</property>
+		<property name="password">
+			<value>${boss_ucenter.datasource.password}</value>
+		</property>
+		<property name="maxActive" >
+			<value>${boss_ucenter.datasource.maxActive}</value>
+		</property>
+		<property name="maxIdle" >
+			<value>${boss_ucenter.datasource.maxIdle}</value>
+		</property>
+		<property name="maxWait" >
+			<value>${boss_ucenter.datasource.maxWait}</value>
+		</property>
+		
+		<property name="testWhileIdle" >
+			<value>${boss_ucenter.datasource.testWhileIdle}</value>
+		</property>
+		<property name="timeBetweenEvictionRunsMillis" >
+			<value>${boss_ucenter.datasource.timeBetweenEvictionRunsMillis}</value>
+		</property>
+		<property name="minEvictableIdleTimeMillis" >
+			<value>${boss_ucenter.datasource.minEvictableIdleTimeMillis}</value>
+		</property>
+		<property name="validationQuery" >
+			<value>${boss_ucenter.datasource.validationQuery}</value>
+		</property>
+		
+	 </bean>
+
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	    <property name="dataSource" ref="boss_ucenter_dataSource"/>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager" />
+
+</beans>

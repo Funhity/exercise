@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rmsuserupdaterecord">
+  
+  <resultMap id="BaseResultMap" type="com.huaxia.rms.core.model.RmsUserUpdateRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="password_salt" jdbcType="VARCHAR" property="passwordSalt" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="account_status" jdbcType="INTEGER" property="accountStatus" />
+    <result column="emp_status" jdbcType="INTEGER" property="empStatus" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="user_from" jdbcType="VARCHAR" property="userFrom" />
+    <result column="org_code" jdbcType="VARCHAR" property="orgCode" />
+    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+    <result column="financial_planner" jdbcType="INTEGER" property="financialPlanner" />
+    <result column="fplanner_name" jdbcType="VARCHAR" property="fplannerName" />
+    <result column="user_online" jdbcType="INTEGER" property="userOnline" />
+    <result column="first_visit" jdbcType="TIMESTAMP" property="firstVisit" />
+    <result column="previous_visit" jdbcType="TIMESTAMP" property="previousVisit" />
+    <result column="last_visit" jdbcType="TIMESTAMP" property="lastVisit" />
+    <result column="login_count" jdbcType="INTEGER" property="loginCount" />
+    <result column="audit_status" jdbcType="INTEGER" property="auditStatus" />
+    <result column="is_visible" jdbcType="INTEGER" property="isVisible" />
+    <result column="sort_code" jdbcType="INTEGER" property="sortCode" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
+    <result column="role_names" jdbcType="VARCHAR" property="roleNames" />
+    <result column="work_group_id" jdbcType="INTEGER" property="workGroupId" />
+    <result column="work_group_name" jdbcType="VARCHAR" property="workGroupName" />
+    <result column="duty_id" jdbcType="INTEGER" property="dutyId" />
+    <result column="duty_name" jdbcType="VARCHAR" property="dutyName" />
+    <result column="bank_code" jdbcType="VARCHAR" property="bankCode" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="office_phone" jdbcType="VARCHAR" property="officePhone" />
+    <result column="office_address" jdbcType="VARCHAR" property="officeAddress" />
+    <result column="office_fax" jdbcType="VARCHAR" property="officeFax" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="major" jdbcType="VARCHAR" property="major" />
+    <result column="working_date" jdbcType="VARCHAR" property="workingDate" />
+    <result column="joinin_date" jdbcType="TIMESTAMP" property="joininDate" />
+    <result column="home_address" jdbcType="VARCHAR" property="homeAddress" />
+    <result column="native_place" jdbcType="VARCHAR" property="nativePlace" />
+    <result column="party" jdbcType="VARCHAR" property="party" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="nationality" jdbcType="VARCHAR" property="nationality" />
+    <result column="is_dimission" jdbcType="INTEGER" property="isDimission" />
+    <result column="dimission_date" jdbcType="TIMESTAMP" property="dimissionDate" />
+    <result column="dimission_cause" jdbcType="VARCHAR" property="dimissionCause" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="effective_date" jdbcType="TIMESTAMP" property="effectiveDate" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_userid" jdbcType="INTEGER" property="updateUserid" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, user_id, code, name, realname, password, password_salt, mobile, idcard, sex, 
+    age, birthday, user_type, account_status, emp_status, email, user_from, org_code, 
+    org_name, financial_planner, fplanner_name, user_online, first_visit, previous_visit, 
+    last_visit, login_count, audit_status, is_visible, sort_code, label, enabled, role_names, 
+    work_group_id, work_group_name, duty_id, duty_name, bank_code, telephone, office_phone, 
+    office_address, office_fax, school, education, major, working_date, joinin_date, 
+    home_address, native_place, party, nation, nationality, is_dimission, dimission_date, 
+    dimission_cause, memo, effective_date, update_time, update_userid, update_user, create_time
+  </sql>
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from t_rms_user_update_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.huaxia.rms.core.model.RmsUserUpdateRecord">
+    insert into t_rms_user_update_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="passwordSalt != null">
+        password_salt,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="idcard != null">
+        idcard,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="accountStatus != null">
+        account_status,
+      </if>
+      <if test="empStatus != null">
+        emp_status,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="userFrom != null">
+        user_from,
+      </if>
+      <if test="orgCode != null">
+        org_code,
+      </if>
+      <if test="orgName != null">
+        org_name,
+      </if>
+      <if test="financialPlanner != null">
+        financial_planner,
+      </if>
+      <if test="fplannerName != null">
+        fplanner_name,
+      </if>
+      <if test="userOnline != null">
+        user_online,
+      </if>
+      <if test="firstVisit != null">
+        first_visit,
+      </if>
+      <if test="previousVisit != null">
+        previous_visit,
+      </if>
+      <if test="lastVisit != null">
+        last_visit,
+      </if>
+      <if test="loginCount != null">
+        login_count,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="isVisible != null">
+        is_visible,
+      </if>
+      <if test="sortCode != null">
+        sort_code,
+      </if>
+      <if test="label != null">
+        label,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="roleNames != null">
+        role_names,
+      </if>
+      <if test="workGroupId != null">
+        work_group_id,
+      </if>
+      <if test="workGroupName != null">
+        work_group_name,
+      </if>
+      <if test="dutyId != null">
+        duty_id,
+      </if>
+      <if test="dutyName != null">
+        duty_name,
+      </if>
+      <if test="bankCode != null">
+        bank_code,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="officePhone != null">
+        office_phone,
+      </if>
+      <if test="officeAddress != null">
+        office_address,
+      </if>
+      <if test="officeFax != null">
+        office_fax,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="major != null">
+        major,
+      </if>
+      <if test="workingDate != null">
+        working_date,
+      </if>
+      <if test="joininDate != null">
+        joinin_date,
+      </if>
+      <if test="homeAddress != null">
+        home_address,
+      </if>
+      <if test="nativePlace != null">
+        native_place,
+      </if>
+      <if test="party != null">
+        party,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="nationality != null">
+        nationality,
+      </if>
+      <if test="isDimission != null">
+        is_dimission,
+      </if>
+      <if test="dimissionDate != null">
+        dimission_date,
+      </if>
+      <if test="dimissionCause != null">
+        dimission_cause,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="effectiveDate != null">
+        effective_date,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUserid != null">
+        update_userid,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null">
+        #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="accountStatus != null">
+        #{accountStatus,jdbcType=INTEGER},
+      </if>
+      <if test="empStatus != null">
+        #{empStatus,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userFrom != null">
+        #{userFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="financialPlanner != null">
+        #{financialPlanner,jdbcType=INTEGER},
+      </if>
+      <if test="fplannerName != null">
+        #{fplannerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userOnline != null">
+        #{userOnline,jdbcType=INTEGER},
+      </if>
+      <if test="firstVisit != null">
+        #{firstVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="previousVisit != null">
+        #{previousVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastVisit != null">
+        #{lastVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginCount != null">
+        #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isVisible != null">
+        #{isVisible,jdbcType=INTEGER},
+      </if>
+      <if test="sortCode != null">
+        #{sortCode,jdbcType=INTEGER},
+      </if>
+      <if test="label != null">
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="roleNames != null">
+        #{roleNames,jdbcType=VARCHAR},
+      </if>
+      <if test="workGroupId != null">
+        #{workGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="workGroupName != null">
+        #{workGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyId != null">
+        #{dutyId,jdbcType=INTEGER},
+      </if>
+      <if test="dutyName != null">
+        #{dutyName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null">
+        #{officePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="officeAddress != null">
+        #{officeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="officeFax != null">
+        #{officeFax,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="workingDate != null">
+        #{workingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="joininDate != null">
+        #{joininDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="homeAddress != null">
+        #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null">
+        #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="party != null">
+        #{party,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="isDimission != null">
+        #{isDimission,jdbcType=INTEGER},
+      </if>
+      <if test="dimissionDate != null">
+        #{dimissionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dimissionCause != null">
+        #{dimissionCause,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveDate != null">
+        #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="com.huaxia.rms.core.model.RmsUserUpdateRecord">
+    update t_rms_user_update_record
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null">
+        password_salt = #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="accountStatus != null">
+        account_status = #{accountStatus,jdbcType=INTEGER},
+      </if>
+      <if test="empStatus != null">
+        emp_status = #{empStatus,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userFrom != null">
+        user_from = #{userFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="financialPlanner != null">
+        financial_planner = #{financialPlanner,jdbcType=INTEGER},
+      </if>
+      <if test="fplannerName != null">
+        fplanner_name = #{fplannerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userOnline != null">
+        user_online = #{userOnline,jdbcType=INTEGER},
+      </if>
+      <if test="firstVisit != null">
+        first_visit = #{firstVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="previousVisit != null">
+        previous_visit = #{previousVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastVisit != null">
+        last_visit = #{lastVisit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginCount != null">
+        login_count = #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+      <if test="isVisible != null">
+        is_visible = #{isVisible,jdbcType=INTEGER},
+      </if>
+      <if test="sortCode != null">
+        sort_code = #{sortCode,jdbcType=INTEGER},
+      </if>
+      <if test="label != null">
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="roleNames != null">
+        role_names = #{roleNames,jdbcType=VARCHAR},
+      </if>
+      <if test="workGroupId != null">
+        work_group_id = #{workGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="workGroupName != null">
+        work_group_name = #{workGroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="dutyId != null">
+        duty_id = #{dutyId,jdbcType=INTEGER},
+      </if>
+      <if test="dutyName != null">
+        duty_name = #{dutyName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="officePhone != null">
+        office_phone = #{officePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="officeAddress != null">
+        office_address = #{officeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="officeFax != null">
+        office_fax = #{officeFax,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        major = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="workingDate != null">
+        working_date = #{workingDate,jdbcType=VARCHAR},
+      </if>
+      <if test="joininDate != null">
+        joinin_date = #{joininDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="homeAddress != null">
+        home_address = #{homeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null">
+        native_place = #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="party != null">
+        party = #{party,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="isDimission != null">
+        is_dimission = #{isDimission,jdbcType=INTEGER},
+      </if>
+      <if test="dimissionDate != null">
+        dimission_date = #{dimissionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dimissionCause != null">
+        dimission_cause = #{dimissionCause,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="effectiveDate != null">
+        effective_date = #{effectiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserid != null">
+        update_userid = #{updateUserid,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, code, name, realname, password, password_salt, mobile, idcard, 
+    sex, age, birthday, user_type, account_status, emp_status, email, user_from, org_code, 
+    org_name, financial_planner, fplanner_name, user_online, first_visit, previous_visit, 
+    last_visit, login_count, audit_status, is_visible, sort_code, label, enabled, role_names, 
+    work_group_id, work_group_name, duty_id, duty_name, bank_code, telephone, office_phone, 
+    office_address, office_fax, school, education, major, working_date, joinin_date, 
+    home_address, native_place, party, nation, nationality, is_dimission, dimission_date, 
+    dimission_cause, memo, effective_date, update_time, update_userid, update_user, create_time
+    from t_rms_user_update_record
+  </select>
+
+  <select id="selectListByUid" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from t_rms_user_update_record
+    where 1 = 1
+    <![CDATA[ and effective_date <= now() ]]>
+    <if test="userId != null and userId !='' " >
+      and user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="updateUser != null and updateUser != ''">
+      and update_user like  concat(concat('%',#{updateUser,jdbcType=VARCHAR}),'%')
+    </if>
+    order by sort_code desc
+    limit #{start}, #{limit}
+  </select>
+
+  <select id="selectListByUidCount" parameterType="java.util.Map" resultType="java.lang.String">
+    select count(code) usercount
+    from t_rms_user_update_record
+    where 1 = 1
+    <![CDATA[ and effective_date <= now() ]]>
+    <if test="userId != null and userId !='' " >
+      and user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="updateUser != null and updateUser != ''">
+      and update_user like  concat(concat('%',#{updateUser,jdbcType=VARCHAR}),'%')
+    </if>
+  </select>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_rms_user_update_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		 				   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+		 				   
+	 <bean id="rms_dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName">
+			<value>${rms.datasource.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${rms.datasource.url}</value>
+		</property>
+		<property name="username">
+			<value>${rms.datasource.username}</value>
+		</property>
+		<property name="password">
+			<value>${rms.datasource.password}</value>
+		</property>
+		<property name="maxActive" >
+			<value>${rms.datasource.maxActive}</value>
+		</property>
+		<property name="maxIdle" >
+			<value>${rms.datasource.maxIdle}</value>
+		</property>
+		<property name="maxWait" >
+			<value>${rms.datasource.maxWait}</value>
+		</property>
+		
+		<property name="testWhileIdle" >
+			<value>${rms.datasource.testWhileIdle}</value>
+		</property>
+		<property name="timeBetweenEvictionRunsMillis" >
+			<value>${rms.datasource.timeBetweenEvictionRunsMillis}</value>
+		</property>
+		<property name="minEvictableIdleTimeMillis" >
+			<value>${rms.datasource.minEvictableIdleTimeMillis}</value>
+		</property>
+		<property name="validationQuery" >
+			<value>${rms.datasource.validationQuery}</value>
+		</property>
+		
+	 </bean>
+
+	<!-- mybatis config -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="rms_dataSource" />
+		<!-- 显式指定Mapper文件位置 -->
+		<!-- classpath:META-INF/mybatis/*Mapper.xml 调整为 classpath:META-INF/mybatis/**/*Mapper.xml -->
+		<!-- mybatis/**/*Mapper.xml 将查询其子文件夹, since 3.0.1 K9999 -->
+		<property name="mapperLocations" value="classpath:META-INF/mybatis/**/*Mapper.xml" />
+	</bean>
+
+	<bean id="mBaseDao" class="com.huaxia.common.core.dao.impl.MyBatisAccessor">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	    <property name="dataSource" ref="rms_dataSource"/>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager" />
+
+</beans>

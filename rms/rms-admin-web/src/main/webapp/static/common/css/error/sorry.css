@@ -1,0 +1,20 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/* header */
+body{background-color: #efeff4}
+
+.bjr_content{}
+.bjr_msg{padding-top: 10%; padding-left: 15%;}
+.bjr_msg img{width: 40%;float: left;}
+.bjr_msg_p{color: #ff6750;}
+.bjr_msg_p p{color: #ff6750;font-weight: bold;font-size: 18px}
+
+.bjr_btn{margin: 12% auto 0;overflow: hidden;}
+.bjr_btn a{background-color: #aeaeae;color: #fff;text-align: center;line-height: 35px;display: inline-block;font-size: 16px;padding: 0 20px 0 30px;border-radius: 5px;position: relative;}
+.bjr_btn a i{border: 2px solid #fff;border-right: none;border-top: none;width: 10px;height: 10px;display: inline-block;transform:rotate(45deg);-webkit-transform:rotate(45deg);position: absolute;top: 50%;left:18%;margin-top: -5px; }
+
+
+
+
+
+

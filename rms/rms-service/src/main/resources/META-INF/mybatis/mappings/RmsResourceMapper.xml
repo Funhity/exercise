@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rmsresource">
+  
+  <resultMap id="BaseResultMap" type="com.huaxia.rms.core.model.RmsResource">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="parent_name" jdbcType="VARCHAR" property="parentName" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="short_name" jdbcType="VARCHAR" property="shortName" />
+    <result column="layer" jdbcType="INTEGER" property="layer" />
+    <result column="restype" jdbcType="INTEGER" property="restype" />
+    <result column="icon_index" jdbcType="VARCHAR" property="iconIndex" />
+    <result column="org_code" jdbcType="VARCHAR" property="orgCode" />
+    <result column="sys_code" jdbcType="VARCHAR" property="sysCode" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="is_public" jdbcType="INTEGER" property="isPublic" />
+    <result column="is_control" jdbcType="INTEGER" property="isControl" />
+    <result column="sort_code" jdbcType="INTEGER" property="sortCode" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_user" jdbcType="VARCHAR" property="deleteUser" />
+    <result column="delete_mark" jdbcType="INTEGER" property="deleteMark" />
+
+    <!--<collection property="rplist" javaType="java.util.ArrayList" ofType="com.huaxia.rms.core.model.RmsRolePermissionData"-->
+                <!--column="{role_id=role_id, resource_id=resource_id}" select="selectPermissionDataByRoleidAndResid" />-->
+
+  </resultMap>
+
+  <select id="selectPermissionDataByRoleidAndResid" resultType="com.huaxia.rms.core.model.RmsRolePermissionData" parameterType="java.util.Map">
+    select id AS id, role_id AS roleId, resource_id AS resourceId, func_key AS funcKey, func_value AS funcValue, func_operator AS funcOperator,
+      class_type AS classType, sort_code AS sortCode, memo AS memo
+    from t_rms_role_permission_data
+    WHERE role_id = #{role_id} and resource_id = #{resource_id}
+  </select>
+
+  <sql id="Base_Column_List">
+    id, code, parent_code, parent_name, name, short_name, layer, restype, icon_index, org_code, sys_code, url,
+    is_public, is_control, sort_code, memo, create_time, create_user, update_time, update_user, 
+    delete_time, delete_user, delete_mark
+  </sql>
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from t_rms_resource
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.huaxia.rms.core.model.RmsResource">
+    insert into t_rms_resource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+      <if test="parentName != null">
+        parent_name,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="shortName != null">
+        short_name,
+      </if>
+      <if test="layer != null">
+        layer,
+      </if>
+      <if test="restype != null">
+        restype,
+      </if>
+      <if test="iconIndex != null">
+        icon_index,
+      </if>
+      <if test="orgCode != null">
+        org_code,
+      </if>
+      <if test="sysCode != null">
+        sys_code,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="isPublic != null">
+        is_public,
+      </if>
+      <if test="isControl != null">
+        is_control,
+      </if>
+      <if test="sortCode != null">
+        sort_code,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+      <if test="deleteUser != null">
+        delete_user,
+      </if>
+      <if test="deleteMark != null">
+        delete_mark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentName != null">
+        #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="layer != null">
+        #{layer,jdbcType=INTEGER},
+      </if>
+      <if test="restype != null">
+        #{restype,jdbcType=INTEGER},
+      </if>
+      <if test="iconIndex != null">
+        #{iconIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCode != null">
+        #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isPublic != null">
+        #{isPublic,jdbcType=INTEGER},
+      </if>
+      <if test="isControl != null">
+        #{isControl,jdbcType=INTEGER},
+      </if>
+      <if test="sortCode != null">
+        #{sortCode,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null">
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null">
+        #{deleteMark,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="com.huaxia.rms.core.model.RmsResource">
+    update t_rms_resource
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentName != null">
+        parent_name = #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null">
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="layer != null">
+        layer = #{layer,jdbcType=INTEGER},
+      </if>
+      <if test="restype != null">
+        restype = #{restype,jdbcType=INTEGER},
+      </if>
+      <if test="iconIndex != null">
+        icon_index = #{iconIndex,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null">
+        org_code = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCode != null">
+        sys_code = #{sysCode,jdbcType=VARCHAR},
+      </if>
+
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="isPublic != null">
+        is_public = #{isPublic,jdbcType=INTEGER},
+      </if>
+      <if test="isControl != null">
+        is_control = #{isControl,jdbcType=INTEGER},
+      </if>
+      <if test="sortCode != null">
+        sort_code = #{sortCode,jdbcType=INTEGER},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null">
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteMark != null">
+        delete_mark = #{deleteMark,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_rms_resource
+    where delete_mark = 1 and id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from t_rms_resource where delete_mark = 1
+    order by code, sort_code desc
+  </select>
+
+
+  <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_rms_resource
+    where delete_mark = 1 and code = #{code,jdbcType=VARCHAR}
+  </select>
+
+  <!--<select id="referByUser" parameterType="java.lang.String" resultType="java.util.HashMap">-->
+    <!--select u.name from t_rms_resource o, t_rms_user u-->
+    <!--where u._code = o.code-->
+    <!--and o.code like concat(concat('%',#{code,jdbcType=VARCHAR}),'%')-->
+  <!--</select>-->
+
+  <select id="selectMaxCodeByParentCode" parameterType="java.lang.String" resultType="java.lang.String">
+    select max(code) code from t_rms_resource where parent_code = #{parentCode,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectResesByCode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_rms_resource where delete_mark = 1 and parent_code = (
+      select parent_code from t_rms_resource where code = #{code,jdbcType=VARCHAR}
+    )
+  </select>
+
+  <select id="selectResesByRoleCodes" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from t_rms_resource
+    where delete_mark = 1 and id in(
+      select rf.resource_id from t_rms_role_permission rf
+      left join t_rms_role r on rf.role_id = r.id
+      where rf.delete_mark = 1 and r.id in
+      <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    )
+    <if test="sysCode != null">
+      and sys_code = #{syscode,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+
+</mapper>
