@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context.xsd
+	    http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="defaultConsumer" class="com.huaxia.rocketmq.consumer.DefaultConsumer">
+        <property name="namesrvAddr" value="${mq.namesrvAddr}"/>
+        <property name="applicationName" value="${mq.applicationName}"/>
+        <property name="messageDispatcher" ref="messageDispatcher"/>
+    </bean>
+
+    <bean id="oneTopic" class="com.huaxia.rocketmq.message.model.Topic">
+        <property name="name" value="${mq.topic.name.one}"/>
+        <property name="subExpression" value="${mq.topic.subExpression.one}"/>
+    </bean>
+
+    <bean id="twoTopic" class="com.huaxia.rocketmq.message.model.Topic">
+        <property name="name" value="${mq.topic.name.two}"/>
+        <property name="subExpression" value="${mq.topic.subExpression.two}"/>
+    </bean>
+
+    <bean id="oneListener" class="com.huaxia.rocketmq.demo.consumer.listener.OneListener" />
+    <bean id="twoListener" class="com.huaxia.rocketmq.demo.consumer.listener.TwoListener" />
+
+    <bean id="messageDispatcher" class="com.huaxia.rocketmq.consumer.MessageDispatcher">
+        <property name = "messageListenerMap">
+            <map>
+                <entry key-ref="oneTopic" value-ref="oneListener" />
+                <entry key-ref="twoTopic" value-ref="twoListener" />
+            </map>
+        </property>
+    </bean>
+
+
+</beans>
