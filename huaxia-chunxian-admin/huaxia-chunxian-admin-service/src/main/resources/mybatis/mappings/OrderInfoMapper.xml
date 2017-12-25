@@ -1,0 +1,1293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderinfo">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.OrderInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+    <result column="TELEPHONE" jdbcType="VARCHAR" property="telephone" />
+    <result column="IDENTITY_AUTH" jdbcType="INTEGER" property="identityAuth" />
+    <result column="SUPPLEMENT_INFO" jdbcType="INTEGER" property="supplementInfo" />
+    <result column="FUND_AUTH" jdbcType="INTEGER" property="fundAuth" />
+    <result column="FUND_AUTH_TIME" jdbcType="TIMESTAMP" property="fundAuthTime" />
+    <result column="OPERATOR_AUTH" jdbcType="INTEGER" property="operatorAuth" />
+    <result column="OPERATOR_AUTH_TASKID" jdbcType="VARCHAR" property="operatorAuthTaskid" />
+    <result column="OPERATOR_AUTH_TIME" jdbcType="TIMESTAMP" property="operatorAuthTime" />
+    <result column="BANK_AUTH" jdbcType="INTEGER" property="bankAuth" />
+    <result column="BANK_AUTH_TIME" jdbcType="TIMESTAMP" property="bankAuthTime" />
+    <result column="REAL_NAME" jdbcType="VARCHAR" property="realName" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="IDENTITY_FRONT_PHOTO_ID" jdbcType="VARCHAR" property="identityFrontPhotoId" />
+    <result column="IDENTITY_FRONT_PHOTO" jdbcType="VARCHAR" property="identityFrontPhoto" />
+    <result column="IDENTITY_BACK_PHOTO_ID" jdbcType="VARCHAR" property="identityBackPhotoId" />
+    <result column="IDENTITY_BACK_PHOTO" jdbcType="VARCHAR" property="identityBackPhoto" />
+    <result column="IDENTITY_HAND_PHOTO_ID" jdbcType="VARCHAR" property="identityHandPhotoId" />
+    <result column="IDENTITY_HAND_PHOTO" jdbcType="VARCHAR" property="identityHandPhoto" />
+    <result column="IDENTITY_ID" jdbcType="VARCHAR" property="identityId" />
+    <result column="IDENTITY_START_TIME" jdbcType="VARCHAR" property="identityStartTime" />
+    <result column="IDENTITY_END_TIME" jdbcType="VARCHAR" property="identityEndTime" />
+    <result column="PRODUCT_NO" jdbcType="VARCHAR" property="productNo" />
+    <result column="LOAN_TYPE" jdbcType="VARCHAR" property="loanType" />
+    <result column="LOAN_TYPE_REMARK" jdbcType="VARCHAR" property="loanTypeRemark" />
+    <result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+    <result column="MARRIAGE" jdbcType="VARCHAR" property="marriage" />
+    <result column="IS_LOCAL" jdbcType="VARCHAR" property="isLocal" />
+    <result column="LIVE_PROVINCE" jdbcType="VARCHAR" property="liveProvince" />
+    <result column="LIVE_CITY" jdbcType="VARCHAR" property="liveCity" />
+    <result column="LIVE_DISTINCT" jdbcType="VARCHAR" property="liveDistinct" />
+    <result column="LIVE_ADDRESS" jdbcType="VARCHAR" property="liveAddress" />
+    <result column="LIVE_TYPE" jdbcType="VARCHAR" property="liveType" />
+    <result column="RENT" jdbcType="DOUBLE" property="rent" />
+    <result column="LIVE_DATE" jdbcType="VARCHAR" property="liveDate" />
+    <result column="MOVE_IN_DATE" jdbcType="VARCHAR" property="moveInDate" />
+    <result column="CAR_STATE" jdbcType="VARCHAR" property="carState" />
+    <result column="CAR_SAFE_STATE" jdbcType="VARCHAR" property="carSafeState" />
+    <result column="UNIT_NAME" jdbcType="VARCHAR" property="unitName" />
+    <result column="UNIT_NATURE" jdbcType="VARCHAR" property="unitNature" />
+    <result column="ENTRY_DATE" jdbcType="VARCHAR" property="entryDate" />
+    <result column="UNIT_PROVINCE" jdbcType="VARCHAR" property="unitProvince" />
+    <result column="UNIT_CITY" jdbcType="VARCHAR" property="unitCity" />
+    <result column="UNIT_DISTINCT" jdbcType="VARCHAR" property="unitDistinct" />
+    <result column="UNIT_ADDRESS" jdbcType="VARCHAR" property="unitAddress" />
+    <result column="UNIT_PHONE" jdbcType="VARCHAR" property="unitPhone" />
+    <result column="LOAN_AMOUNT" jdbcType="DOUBLE" property="loanAmount" />
+    <result column="TERM" jdbcType="INTEGER" property="term" />
+    <result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+    <result column="ACCOUNT_HOLDER" jdbcType="VARCHAR" property="accountHolder" />
+    <result column="BANK_NAME" jdbcType="VARCHAR" property="bankName" />
+    <result column="BANK_BRANCH" jdbcType="VARCHAR" property="bankBranch" />
+    <result column="BANK_PROVINCE" jdbcType="VARCHAR" property="bankProvince" />
+    <result column="BANK_CITY" jdbcType="VARCHAR" property="bankCity" />
+    <result column="CONTRACT_JSON" jdbcType="VARCHAR" property="contractJson" />
+    <result column="CPF_USER_NAME" jdbcType="VARCHAR" property="cpfUserName" />
+    <result column="CPF_ACCOUNT" jdbcType="VARCHAR" property="cpfAccount" />
+    <result column="CPF_INSURED_UNIT" jdbcType="VARCHAR" property="cpfInsuredUnit" />
+    <result column="CPF_BASE" jdbcType="VARCHAR" property="cpfBase" />
+    <result column="CPF_PAY_STATUS" jdbcType="VARCHAR" property="cpfPayStatus" />
+    <result column="CPF_PAY_MONTH" jdbcType="VARCHAR" property="cpfPayMonth" />
+    <result column="CPF_TOTAL_MONTH" jdbcType="VARCHAR" property="cpfTotalMonth" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="CHECK_REASON" jdbcType="VARCHAR" property="checkReason" />
+    <result column="APPLY_AMOUNT" jdbcType="DOUBLE" property="applyAmount" />
+    <result column="APPLY_TERM" jdbcType="INTEGER" property="applyTerm" />
+    <result column="RISK_LEVEL" jdbcType="VARCHAR" property="riskLevel" />
+    <result column="SUBMIT_TIME" jdbcType="TIMESTAMP" property="submitTime" />
+    <result column="CHECK_BACK_TIME" jdbcType="TIMESTAMP" property="checkBackTime" />
+    <result column="CHECK_PASS_TIME" jdbcType="TIMESTAMP" property="checkPassTime" />
+    <result column="CHECK_NOPASS_TIME" jdbcType="TIMESTAMP" property="checkNopassTime" />
+    <result column="CHECK_CANCL_TIME" jdbcType="TIMESTAMP" property="checkCanclTime" />
+    <result column="SIGN_STATE" jdbcType="INTEGER" property="signState" />
+    <result column="SIGN_AMOUNT" jdbcType="DOUBLE" property="signAmount" />
+    <result column="SIGN_TIME" jdbcType="TIMESTAMP" property="signTime" />
+    <result column="MONTY_TIME" jdbcType="TIMESTAMP" property="montyTime" />
+    <result column="CONTRACT_SIGN_STATE" jdbcType="INTEGER" property="contractSignState" />
+    <result column="CONTRACT_SIGN_TIME" jdbcType="TIMESTAMP" property="contractSignTime" />
+    <result column="CONTRACT_FILE_NAME" jdbcType="VARCHAR" property="contractFileName" />
+    <result column="VIEW_PAYMENT_PLAN" jdbcType="INTEGER" property="viewPaymentPlan" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="BANK_TELEPHONE" jdbcType="VARCHAR" property="bankTelephone" />
+    <result column="BANK_CUSTOMER_ID" jdbcType="VARCHAR" property="bankCustomerId" />
+    <result column="CPF_CITY" jdbcType="VARCHAR" property="cpfCity" />
+    <result column="CPF_REAL_NAME" jdbcType="VARCHAR" property="cpfRealName" />
+    <result column="APPLY_ADDRESS" jdbcType="VARCHAR" property="applyAddress" />
+    <result column="SOURCE_TYPE" jdbcType="VARCHAR" property="sourceType" />
+    <result column="ID_LIVE_ADDRESS" jdbcType="VARCHAR" property="idLiveAddress" />
+    <result column="ID_BIRTHDAY" jdbcType="VARCHAR" property="idBirthday" />
+    <result column="ID_ISSUED" jdbcType="VARCHAR" property="idIssued" />
+    <result column="TOTAL_RATE" jdbcType="DOUBLE" property="totalRate" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    ID, LOGIN_NAME, ORDER_NO, TELEPHONE, IDENTITY_AUTH, SUPPLEMENT_INFO, FUND_AUTH, FUND_AUTH_TIME, 
+    OPERATOR_AUTH, OPERATOR_AUTH_TASKID, OPERATOR_AUTH_TIME, BANK_AUTH, BANK_AUTH_TIME, 
+    REAL_NAME, SEX, IDENTITY_FRONT_PHOTO_ID, IDENTITY_FRONT_PHOTO, IDENTITY_BACK_PHOTO_ID, 
+    IDENTITY_BACK_PHOTO, IDENTITY_HAND_PHOTO_ID, IDENTITY_HAND_PHOTO, IDENTITY_ID, IDENTITY_START_TIME, 
+    IDENTITY_END_TIME, PRODUCT_NO, LOAN_TYPE, LOAN_TYPE_REMARK, EDUCATION, MARRIAGE, 
+    IS_LOCAL, LIVE_PROVINCE, LIVE_CITY, LIVE_DISTINCT, LIVE_ADDRESS, LIVE_TYPE, RENT, 
+    LIVE_DATE, MOVE_IN_DATE, CAR_STATE, CAR_SAFE_STATE, UNIT_NAME, UNIT_NATURE, ENTRY_DATE, 
+    UNIT_PROVINCE, UNIT_CITY, UNIT_DISTINCT, UNIT_ADDRESS, UNIT_PHONE, LOAN_AMOUNT, TERM, 
+    CARD_NO, ACCOUNT_HOLDER, BANK_NAME, BANK_BRANCH, BANK_PROVINCE, BANK_CITY, CONTRACT_JSON, 
+    CPF_USER_NAME, CPF_ACCOUNT, CPF_INSURED_UNIT, CPF_BASE, CPF_PAY_STATUS, CPF_PAY_MONTH, 
+    CPF_TOTAL_MONTH, STATE, CHECK_REASON, APPLY_AMOUNT, APPLY_TERM, RISK_LEVEL, SUBMIT_TIME, 
+    CHECK_BACK_TIME, CHECK_PASS_TIME, CHECK_NOPASS_TIME, CHECK_CANCL_TIME, SIGN_STATE, 
+    SIGN_AMOUNT, SIGN_TIME, MONTY_TIME, CONTRACT_SIGN_STATE, CONTRACT_SIGN_TIME, CONTRACT_FILE_NAME, 
+    VIEW_PAYMENT_PLAN, REMARK, CREATE_USER, CREATE_TIME, BANK_TELEPHONE, BANK_CUSTOMER_ID, 
+    CPF_CITY, CPF_REAL_NAME, APPLY_ADDRESS, SOURCE_TYPE, ID_LIVE_ADDRESS, ID_BIRTHDAY, 
+    ID_ISSUED, TOTAL_RATE
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_order_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from front_order_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.OrderInfo">
+    insert into front_order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME,
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO,
+      </if>
+      <if test="telephone != null">
+        TELEPHONE,
+      </if>
+      <if test="identityAuth != null">
+        IDENTITY_AUTH,
+      </if>
+      <if test="supplementInfo != null">
+        SUPPLEMENT_INFO,
+      </if>
+      <if test="fundAuth != null">
+        FUND_AUTH,
+      </if>
+      <if test="fundAuthTime != null">
+        FUND_AUTH_TIME,
+      </if>
+      <if test="operatorAuth != null">
+        OPERATOR_AUTH,
+      </if>
+      <if test="operatorAuthTaskid != null">
+        OPERATOR_AUTH_TASKID,
+      </if>
+      <if test="operatorAuthTime != null">
+        OPERATOR_AUTH_TIME,
+      </if>
+      <if test="bankAuth != null">
+        BANK_AUTH,
+      </if>
+      <if test="bankAuthTime != null">
+        BANK_AUTH_TIME,
+      </if>
+      <if test="realName != null">
+        REAL_NAME,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="identityFrontPhotoId != null">
+        IDENTITY_FRONT_PHOTO_ID,
+      </if>
+      <if test="identityFrontPhoto != null">
+        IDENTITY_FRONT_PHOTO,
+      </if>
+      <if test="identityBackPhotoId != null">
+        IDENTITY_BACK_PHOTO_ID,
+      </if>
+      <if test="identityBackPhoto != null">
+        IDENTITY_BACK_PHOTO,
+      </if>
+      <if test="identityHandPhotoId != null">
+        IDENTITY_HAND_PHOTO_ID,
+      </if>
+      <if test="identityHandPhoto != null">
+        IDENTITY_HAND_PHOTO,
+      </if>
+      <if test="identityId != null">
+        IDENTITY_ID,
+      </if>
+      <if test="identityStartTime != null">
+        IDENTITY_START_TIME,
+      </if>
+      <if test="identityEndTime != null">
+        IDENTITY_END_TIME,
+      </if>
+      <if test="productNo != null">
+        PRODUCT_NO,
+      </if>
+      <if test="loanType != null">
+        LOAN_TYPE,
+      </if>
+      <if test="loanTypeRemark != null">
+        LOAN_TYPE_REMARK,
+      </if>
+      <if test="education != null">
+        EDUCATION,
+      </if>
+      <if test="marriage != null">
+        MARRIAGE,
+      </if>
+      <if test="isLocal != null">
+        IS_LOCAL,
+      </if>
+      <if test="liveProvince != null">
+        LIVE_PROVINCE,
+      </if>
+      <if test="liveCity != null">
+        LIVE_CITY,
+      </if>
+      <if test="liveDistinct != null">
+        LIVE_DISTINCT,
+      </if>
+      <if test="liveAddress != null">
+        LIVE_ADDRESS,
+      </if>
+      <if test="liveType != null">
+        LIVE_TYPE,
+      </if>
+      <if test="rent != null">
+        RENT,
+      </if>
+      <if test="liveDate != null">
+        LIVE_DATE,
+      </if>
+      <if test="moveInDate != null">
+        MOVE_IN_DATE,
+      </if>
+      <if test="carState != null">
+        CAR_STATE,
+      </if>
+      <if test="carSafeState != null">
+        CAR_SAFE_STATE,
+      </if>
+      <if test="unitName != null">
+        UNIT_NAME,
+      </if>
+      <if test="unitNature != null">
+        UNIT_NATURE,
+      </if>
+      <if test="entryDate != null">
+        ENTRY_DATE,
+      </if>
+      <if test="unitProvince != null">
+        UNIT_PROVINCE,
+      </if>
+      <if test="unitCity != null">
+        UNIT_CITY,
+      </if>
+      <if test="unitDistinct != null">
+        UNIT_DISTINCT,
+      </if>
+      <if test="unitAddress != null">
+        UNIT_ADDRESS,
+      </if>
+      <if test="unitPhone != null">
+        UNIT_PHONE,
+      </if>
+      <if test="loanAmount != null">
+        LOAN_AMOUNT,
+      </if>
+      <if test="term != null">
+        TERM,
+      </if>
+      <if test="cardNo != null">
+        CARD_NO,
+      </if>
+      <if test="accountHolder != null">
+        ACCOUNT_HOLDER,
+      </if>
+      <if test="bankName != null">
+        BANK_NAME,
+      </if>
+      <if test="bankBranch != null">
+        BANK_BRANCH,
+      </if>
+      <if test="bankProvince != null">
+        BANK_PROVINCE,
+      </if>
+      <if test="bankCity != null">
+        BANK_CITY,
+      </if>
+      <if test="contractJson != null">
+        CONTRACT_JSON,
+      </if>
+      <if test="cpfUserName != null">
+        CPF_USER_NAME,
+      </if>
+      <if test="cpfAccount != null">
+        CPF_ACCOUNT,
+      </if>
+      <if test="cpfInsuredUnit != null">
+        CPF_INSURED_UNIT,
+      </if>
+      <if test="cpfBase != null">
+        CPF_BASE,
+      </if>
+      <if test="cpfPayStatus != null">
+        CPF_PAY_STATUS,
+      </if>
+      <if test="cpfPayMonth != null">
+        CPF_PAY_MONTH,
+      </if>
+      <if test="cpfTotalMonth != null">
+        CPF_TOTAL_MONTH,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="checkReason != null">
+        CHECK_REASON,
+      </if>
+      <if test="applyAmount != null">
+        APPLY_AMOUNT,
+      </if>
+      <if test="applyTerm != null">
+        APPLY_TERM,
+      </if>
+      <if test="riskLevel != null">
+        RISK_LEVEL,
+      </if>
+      <if test="submitTime != null">
+        SUBMIT_TIME,
+      </if>
+      <if test="checkBackTime != null">
+        CHECK_BACK_TIME,
+      </if>
+      <if test="checkPassTime != null">
+        CHECK_PASS_TIME,
+      </if>
+      <if test="checkNopassTime != null">
+        CHECK_NOPASS_TIME,
+      </if>
+      <if test="checkCanclTime != null">
+        CHECK_CANCL_TIME,
+      </if>
+      <if test="signState != null">
+        SIGN_STATE,
+      </if>
+      <if test="signAmount != null">
+        SIGN_AMOUNT,
+      </if>
+      <if test="signTime != null">
+        SIGN_TIME,
+      </if>
+      <if test="montyTime != null">
+        MONTY_TIME,
+      </if>
+      <if test="contractSignState != null">
+        CONTRACT_SIGN_STATE,
+      </if>
+      <if test="contractSignTime != null">
+        CONTRACT_SIGN_TIME,
+      </if>
+      <if test="contractFileName != null">
+        CONTRACT_FILE_NAME,
+      </if>
+      <if test="viewPaymentPlan != null">
+        VIEW_PAYMENT_PLAN,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="bankTelephone != null">
+        BANK_TELEPHONE,
+      </if>
+      <if test="bankCustomerId != null">
+        BANK_CUSTOMER_ID,
+      </if>
+      <if test="cpfCity != null">
+        CPF_CITY,
+      </if>
+      <if test="cpfRealName != null">
+        CPF_REAL_NAME,
+      </if>
+      <if test="applyAddress != null">
+        APPLY_ADDRESS,
+      </if>
+      <if test="sourceType != null">
+        SOURCE_TYPE,
+      </if>
+      <if test="idLiveAddress != null">
+        ID_LIVE_ADDRESS,
+      </if>
+      <if test="idBirthday != null">
+        ID_BIRTHDAY,
+      </if>
+      <if test="idIssued != null">
+        ID_ISSUED,
+      </if>
+      <if test="totalRate != null">
+        TOTAL_RATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="identityAuth != null">
+        #{identityAuth,jdbcType=INTEGER},
+      </if>
+      <if test="supplementInfo != null">
+        #{supplementInfo,jdbcType=INTEGER},
+      </if>
+      <if test="fundAuth != null">
+        #{fundAuth,jdbcType=INTEGER},
+      </if>
+      <if test="fundAuthTime != null">
+        #{fundAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorAuth != null">
+        #{operatorAuth,jdbcType=INTEGER},
+      </if>
+      <if test="operatorAuthTaskid != null">
+        #{operatorAuthTaskid,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorAuthTime != null">
+        #{operatorAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankAuth != null">
+        #{bankAuth,jdbcType=INTEGER},
+      </if>
+      <if test="bankAuthTime != null">
+        #{bankAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="identityFrontPhotoId != null">
+        #{identityFrontPhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityFrontPhoto != null">
+        #{identityFrontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="identityBackPhotoId != null">
+        #{identityBackPhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityBackPhoto != null">
+        #{identityBackPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="identityHandPhotoId != null">
+        #{identityHandPhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityHandPhoto != null">
+        #{identityHandPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="identityId != null">
+        #{identityId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityStartTime != null">
+        #{identityStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="identityEndTime != null">
+        #{identityEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null">
+        #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanType != null">
+        #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTypeRemark != null">
+        #{loanTypeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="isLocal != null">
+        #{isLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="liveProvince != null">
+        #{liveProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCity != null">
+        #{liveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="liveDistinct != null">
+        #{liveDistinct,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null">
+        #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="liveType != null">
+        #{liveType,jdbcType=VARCHAR},
+      </if>
+      <if test="rent != null">
+        #{rent,jdbcType=DOUBLE},
+      </if>
+      <if test="liveDate != null">
+        #{liveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="moveInDate != null">
+        #{moveInDate,jdbcType=VARCHAR},
+      </if>
+      <if test="carState != null">
+        #{carState,jdbcType=VARCHAR},
+      </if>
+      <if test="carSafeState != null">
+        #{carSafeState,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null">
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNature != null">
+        #{unitNature,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null">
+        #{entryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="unitProvince != null">
+        #{unitProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCity != null">
+        #{unitCity,jdbcType=VARCHAR},
+      </if>
+      <if test="unitDistinct != null">
+        #{unitDistinct,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAddress != null">
+        #{unitAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPhone != null">
+        #{unitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        #{loanAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=INTEGER},
+      </if>
+      <if test="cardNo != null">
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountHolder != null">
+        #{accountHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBranch != null">
+        #{bankBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null">
+        #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null">
+        #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="contractJson != null">
+        #{contractJson,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfUserName != null">
+        #{cpfUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfAccount != null">
+        #{cpfAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfInsuredUnit != null">
+        #{cpfInsuredUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfBase != null">
+        #{cpfBase,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfPayStatus != null">
+        #{cpfPayStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfPayMonth != null">
+        #{cpfPayMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfTotalMonth != null">
+        #{cpfTotalMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="checkReason != null">
+        #{checkReason,jdbcType=VARCHAR},
+      </if>
+      <if test="applyAmount != null">
+        #{applyAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="applyTerm != null">
+        #{applyTerm,jdbcType=INTEGER},
+      </if>
+      <if test="riskLevel != null">
+        #{riskLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="submitTime != null">
+        #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkBackTime != null">
+        #{checkBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkPassTime != null">
+        #{checkPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkNopassTime != null">
+        #{checkNopassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkCanclTime != null">
+        #{checkCanclTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signState != null">
+        #{signState,jdbcType=INTEGER},
+      </if>
+      <if test="signAmount != null">
+        #{signAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="signTime != null">
+        #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="montyTime != null">
+        #{montyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractSignState != null">
+        #{contractSignState,jdbcType=INTEGER},
+      </if>
+      <if test="contractSignTime != null">
+        #{contractSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractFileName != null">
+        #{contractFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="viewPaymentPlan != null">
+        #{viewPaymentPlan,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankTelephone != null">
+        #{bankTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCustomerId != null">
+        #{bankCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfCity != null">
+        #{cpfCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfRealName != null">
+        #{cpfRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyAddress != null">
+        #{applyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null">
+        #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="idLiveAddress != null">
+        #{idLiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="idBirthday != null">
+        #{idBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idIssued != null">
+        #{idIssued,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRate != null">
+        #{totalRate,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.OrderInfo">
+    update front_order_info
+    <set>
+      <if test="loginName != null">
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="identityAuth != null">
+        IDENTITY_AUTH = #{identityAuth,jdbcType=INTEGER},
+      </if>
+      <if test="supplementInfo != null">
+        SUPPLEMENT_INFO = #{supplementInfo,jdbcType=INTEGER},
+      </if>
+      <if test="fundAuth != null">
+        FUND_AUTH = #{fundAuth,jdbcType=INTEGER},
+      </if>
+      <if test="fundAuthTime != null">
+        FUND_AUTH_TIME = #{fundAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorAuth != null">
+        OPERATOR_AUTH = #{operatorAuth,jdbcType=INTEGER},
+      </if>
+      <if test="operatorAuthTaskid != null">
+        OPERATOR_AUTH_TASKID = #{operatorAuthTaskid,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorAuthTime != null">
+        OPERATOR_AUTH_TIME = #{operatorAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankAuth != null">
+        BANK_AUTH = #{bankAuth,jdbcType=INTEGER},
+      </if>
+      <if test="bankAuthTime != null">
+        BANK_AUTH_TIME = #{bankAuthTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realName != null">
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="identityFrontPhotoId != null">
+        IDENTITY_FRONT_PHOTO_ID = #{identityFrontPhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityFrontPhoto != null">
+        IDENTITY_FRONT_PHOTO = #{identityFrontPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="identityBackPhotoId != null">
+        IDENTITY_BACK_PHOTO_ID = #{identityBackPhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityBackPhoto != null">
+        IDENTITY_BACK_PHOTO = #{identityBackPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="identityHandPhotoId != null">
+        IDENTITY_HAND_PHOTO_ID = #{identityHandPhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityHandPhoto != null">
+        IDENTITY_HAND_PHOTO = #{identityHandPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="identityId != null">
+        IDENTITY_ID = #{identityId,jdbcType=VARCHAR},
+      </if>
+      <if test="identityStartTime != null">
+        IDENTITY_START_TIME = #{identityStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="identityEndTime != null">
+        IDENTITY_END_TIME = #{identityEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null">
+        PRODUCT_NO = #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanType != null">
+        LOAN_TYPE = #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTypeRemark != null">
+        LOAN_TYPE_REMARK = #{loanTypeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        EDUCATION = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        MARRIAGE = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="isLocal != null">
+        IS_LOCAL = #{isLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="liveProvince != null">
+        LIVE_PROVINCE = #{liveProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCity != null">
+        LIVE_CITY = #{liveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="liveDistinct != null">
+        LIVE_DISTINCT = #{liveDistinct,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null">
+        LIVE_ADDRESS = #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="liveType != null">
+        LIVE_TYPE = #{liveType,jdbcType=VARCHAR},
+      </if>
+      <if test="rent != null">
+        RENT = #{rent,jdbcType=DOUBLE},
+      </if>
+      <if test="liveDate != null">
+        LIVE_DATE = #{liveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="moveInDate != null">
+        MOVE_IN_DATE = #{moveInDate,jdbcType=VARCHAR},
+      </if>
+      <if test="carState != null">
+        CAR_STATE = #{carState,jdbcType=VARCHAR},
+      </if>
+      <if test="carSafeState != null">
+        CAR_SAFE_STATE = #{carSafeState,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null">
+        UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNature != null">
+        UNIT_NATURE = #{unitNature,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null">
+        ENTRY_DATE = #{entryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="unitProvince != null">
+        UNIT_PROVINCE = #{unitProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCity != null">
+        UNIT_CITY = #{unitCity,jdbcType=VARCHAR},
+      </if>
+      <if test="unitDistinct != null">
+        UNIT_DISTINCT = #{unitDistinct,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAddress != null">
+        UNIT_ADDRESS = #{unitAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPhone != null">
+        UNIT_PHONE = #{unitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        LOAN_AMOUNT = #{loanAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="term != null">
+        TERM = #{term,jdbcType=INTEGER},
+      </if>
+      <if test="cardNo != null">
+        CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountHolder != null">
+        ACCOUNT_HOLDER = #{accountHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBranch != null">
+        BANK_BRANCH = #{bankBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null">
+        BANK_PROVINCE = #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null">
+        BANK_CITY = #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="contractJson != null">
+        CONTRACT_JSON = #{contractJson,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfUserName != null">
+        CPF_USER_NAME = #{cpfUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfAccount != null">
+        CPF_ACCOUNT = #{cpfAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfInsuredUnit != null">
+        CPF_INSURED_UNIT = #{cpfInsuredUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfBase != null">
+        CPF_BASE = #{cpfBase,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfPayStatus != null">
+        CPF_PAY_STATUS = #{cpfPayStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfPayMonth != null">
+        CPF_PAY_MONTH = #{cpfPayMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfTotalMonth != null">
+        CPF_TOTAL_MONTH = #{cpfTotalMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="checkReason != null">
+        CHECK_REASON = #{checkReason,jdbcType=VARCHAR},
+      </if>
+      <if test="applyAmount != null">
+        APPLY_AMOUNT = #{applyAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="applyTerm != null">
+        APPLY_TERM = #{applyTerm,jdbcType=INTEGER},
+      </if>
+      <if test="riskLevel != null">
+        RISK_LEVEL = #{riskLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="submitTime != null">
+        SUBMIT_TIME = #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkBackTime != null">
+        CHECK_BACK_TIME = #{checkBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkPassTime != null">
+        CHECK_PASS_TIME = #{checkPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkNopassTime != null">
+        CHECK_NOPASS_TIME = #{checkNopassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkCanclTime != null">
+        CHECK_CANCL_TIME = #{checkCanclTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signState != null">
+        SIGN_STATE = #{signState,jdbcType=INTEGER},
+      </if>
+      <if test="signAmount != null">
+        SIGN_AMOUNT = #{signAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="signTime != null">
+        SIGN_TIME = #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="montyTime != null">
+        MONTY_TIME = #{montyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractSignState != null">
+        CONTRACT_SIGN_STATE = #{contractSignState,jdbcType=INTEGER},
+      </if>
+      <if test="contractSignTime != null">
+        CONTRACT_SIGN_TIME = #{contractSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractFileName != null">
+        CONTRACT_FILE_NAME = #{contractFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="viewPaymentPlan != null">
+        VIEW_PAYMENT_PLAN = #{viewPaymentPlan,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bankTelephone != null">
+        BANK_TELEPHONE = #{bankTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCustomerId != null">
+        BANK_CUSTOMER_ID = #{bankCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfCity != null">
+        CPF_CITY = #{cpfCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cpfRealName != null">
+        CPF_REAL_NAME = #{cpfRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyAddress != null">
+        APPLY_ADDRESS = #{applyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null">
+        SOURCE_TYPE = #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="idLiveAddress != null">
+        ID_LIVE_ADDRESS = #{idLiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="idBirthday != null">
+        ID_BIRTHDAY = #{idBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="idIssued != null">
+        ID_ISSUED = #{idIssued,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRate != null">
+        TOTAL_RATE = #{totalRate,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.OrderInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_order_info
+    <where>
+      <if test="id != null">
+         and ID = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="loginName != null">
+         and LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+      </if>
+      <if test="orderNo != null">
+         and ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="telephone != null">
+         and TELEPHONE = #{telephone,jdbcType=VARCHAR}
+      </if>
+      <if test="identityAuth != null">
+         and IDENTITY_AUTH = #{identityAuth,jdbcType=INTEGER}
+      </if>
+      <if test="supplementInfo != null">
+         and SUPPLEMENT_INFO = #{supplementInfo,jdbcType=INTEGER}
+      </if>
+      <if test="fundAuth != null">
+         and FUND_AUTH = #{fundAuth,jdbcType=INTEGER}
+      </if>
+      <if test="fundAuthTime != null">
+         and FUND_AUTH_TIME = #{fundAuthTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="operatorAuth != null">
+         and OPERATOR_AUTH = #{operatorAuth,jdbcType=INTEGER}
+      </if>
+      <if test="operatorAuthTaskid != null">
+         and OPERATOR_AUTH_TASKID = #{operatorAuthTaskid,jdbcType=VARCHAR}
+      </if>
+      <if test="operatorAuthTime != null">
+         and OPERATOR_AUTH_TIME = #{operatorAuthTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="bankAuth != null">
+         and BANK_AUTH = #{bankAuth,jdbcType=INTEGER}
+      </if>
+      <if test="bankAuthTime != null">
+         and BANK_AUTH_TIME = #{bankAuthTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="realName != null">
+         and REAL_NAME = #{realName,jdbcType=VARCHAR}
+      </if>
+      <if test="sex != null">
+         and SEX = #{sex,jdbcType=VARCHAR}
+      </if>
+      <if test="identityFrontPhotoId != null">
+         and IDENTITY_FRONT_PHOTO_ID = #{identityFrontPhotoId,jdbcType=VARCHAR}
+      </if>
+      <if test="identityFrontPhoto != null">
+         and IDENTITY_FRONT_PHOTO = #{identityFrontPhoto,jdbcType=VARCHAR}
+      </if>
+      <if test="identityBackPhotoId != null">
+         and IDENTITY_BACK_PHOTO_ID = #{identityBackPhotoId,jdbcType=VARCHAR}
+      </if>
+      <if test="identityBackPhoto != null">
+         and IDENTITY_BACK_PHOTO = #{identityBackPhoto,jdbcType=VARCHAR}
+      </if>
+      <if test="identityHandPhotoId != null">
+         and IDENTITY_HAND_PHOTO_ID = #{identityHandPhotoId,jdbcType=VARCHAR}
+      </if>
+      <if test="identityHandPhoto != null">
+         and IDENTITY_HAND_PHOTO = #{identityHandPhoto,jdbcType=VARCHAR}
+      </if>
+      <if test="identityId != null">
+         and IDENTITY_ID = #{identityId,jdbcType=VARCHAR}
+      </if>
+      <if test="identityStartTime != null">
+         and IDENTITY_START_TIME = #{identityStartTime,jdbcType=VARCHAR}
+      </if>
+      <if test="identityEndTime != null">
+         and IDENTITY_END_TIME = #{identityEndTime,jdbcType=VARCHAR}
+      </if>
+      <if test="productNo != null">
+         and PRODUCT_NO = #{productNo,jdbcType=VARCHAR}
+      </if>
+      <if test="loanType != null">
+         and LOAN_TYPE = #{loanType,jdbcType=VARCHAR}
+      </if>
+      <if test="loanTypeRemark != null">
+         and LOAN_TYPE_REMARK = #{loanTypeRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="education != null">
+         and EDUCATION = #{education,jdbcType=VARCHAR}
+      </if>
+      <if test="marriage != null">
+         and MARRIAGE = #{marriage,jdbcType=VARCHAR}
+      </if>
+      <if test="isLocal != null">
+         and IS_LOCAL = #{isLocal,jdbcType=VARCHAR}
+      </if>
+      <if test="liveProvince != null">
+         and LIVE_PROVINCE = #{liveProvince,jdbcType=VARCHAR}
+      </if>
+      <if test="liveCity != null">
+         and LIVE_CITY = #{liveCity,jdbcType=VARCHAR}
+      </if>
+      <if test="liveDistinct != null">
+         and LIVE_DISTINCT = #{liveDistinct,jdbcType=VARCHAR}
+      </if>
+      <if test="liveAddress != null">
+         and LIVE_ADDRESS = #{liveAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="liveType != null">
+         and LIVE_TYPE = #{liveType,jdbcType=VARCHAR}
+      </if>
+      <if test="rent != null">
+         and RENT = #{rent,jdbcType=DOUBLE}
+      </if>
+      <if test="liveDate != null">
+         and LIVE_DATE = #{liveDate,jdbcType=VARCHAR}
+      </if>
+      <if test="moveInDate != null">
+         and MOVE_IN_DATE = #{moveInDate,jdbcType=VARCHAR}
+      </if>
+      <if test="carState != null">
+         and CAR_STATE = #{carState,jdbcType=VARCHAR}
+      </if>
+      <if test="carSafeState != null">
+         and CAR_SAFE_STATE = #{carSafeState,jdbcType=VARCHAR}
+      </if>
+      <if test="unitName != null">
+         and UNIT_NAME = #{unitName,jdbcType=VARCHAR}
+      </if>
+      <if test="unitNature != null">
+         and UNIT_NATURE = #{unitNature,jdbcType=VARCHAR}
+      </if>
+      <if test="entryDate != null">
+         and ENTRY_DATE = #{entryDate,jdbcType=VARCHAR}
+      </if>
+      <if test="unitProvince != null">
+         and UNIT_PROVINCE = #{unitProvince,jdbcType=VARCHAR}
+      </if>
+      <if test="unitCity != null">
+         and UNIT_CITY = #{unitCity,jdbcType=VARCHAR}
+      </if>
+      <if test="unitDistinct != null">
+         and UNIT_DISTINCT = #{unitDistinct,jdbcType=VARCHAR}
+      </if>
+      <if test="unitAddress != null">
+         and UNIT_ADDRESS = #{unitAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="unitPhone != null">
+         and UNIT_PHONE = #{unitPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="loanAmount != null">
+         and LOAN_AMOUNT = #{loanAmount,jdbcType=DOUBLE}
+      </if>
+      <if test="term != null">
+         and TERM = #{term,jdbcType=INTEGER}
+      </if>
+      <if test="cardNo != null">
+         and CARD_NO = #{cardNo,jdbcType=VARCHAR}
+      </if>
+      <if test="accountHolder != null">
+         and ACCOUNT_HOLDER = #{accountHolder,jdbcType=VARCHAR}
+      </if>
+      <if test="bankName != null">
+         and BANK_NAME = #{bankName,jdbcType=VARCHAR}
+      </if>
+      <if test="bankBranch != null">
+         and BANK_BRANCH = #{bankBranch,jdbcType=VARCHAR}
+      </if>
+      <if test="bankProvince != null">
+         and BANK_PROVINCE = #{bankProvince,jdbcType=VARCHAR}
+      </if>
+      <if test="bankCity != null">
+         and BANK_CITY = #{bankCity,jdbcType=VARCHAR}
+      </if>
+      <if test="contractJson != null">
+         and CONTRACT_JSON = #{contractJson,jdbcType=VARCHAR}
+      </if>
+      <if test="cpfUserName != null">
+         and CPF_USER_NAME = #{cpfUserName,jdbcType=VARCHAR}
+      </if>
+      <if test="cpfAccount != null">
+         and CPF_ACCOUNT = #{cpfAccount,jdbcType=VARCHAR}
+      </if>
+      <if test="cpfInsuredUnit != null">
+         and CPF_INSURED_UNIT = #{cpfInsuredUnit,jdbcType=VARCHAR}
+      </if>
+      <if test="cpfBase != null">
+         and CPF_BASE = #{cpfBase,jdbcType=VARCHAR}
+      </if>
+      <if test="cpfPayStatus != null">
+         and CPF_PAY_STATUS = #{cpfPayStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="cpfPayMonth != null">
+         and CPF_PAY_MONTH = #{cpfPayMonth,jdbcType=VARCHAR}
+      </if>
+      <if test="cpfTotalMonth != null">
+         and CPF_TOTAL_MONTH = #{cpfTotalMonth,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+         and STATE = #{state,jdbcType=INTEGER}
+      </if>
+      <if test="checkReason != null">
+         and CHECK_REASON = #{checkReason,jdbcType=VARCHAR}
+      </if>
+      <if test="applyAmount != null">
+         and APPLY_AMOUNT = #{applyAmount,jdbcType=DOUBLE}
+      </if>
+      <if test="applyTerm != null">
+         and APPLY_TERM = #{applyTerm,jdbcType=INTEGER}
+      </if>
+      <if test="riskLevel != null">
+         and RISK_LEVEL = #{riskLevel,jdbcType=VARCHAR}
+      </if>
+      <if test="submitTime != null">
+         and SUBMIT_TIME = #{submitTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="checkBackTime != null">
+         and CHECK_BACK_TIME = #{checkBackTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="checkPassTime != null">
+         and CHECK_PASS_TIME = #{checkPassTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="checkNopassTime != null">
+         and CHECK_NOPASS_TIME = #{checkNopassTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="checkCanclTime != null">
+         and CHECK_CANCL_TIME = #{checkCanclTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="signState != null">
+         and SIGN_STATE = #{signState,jdbcType=INTEGER}
+      </if>
+      <if test="signAmount != null">
+         and SIGN_AMOUNT = #{signAmount,jdbcType=DOUBLE}
+      </if>
+      <if test="signTime != null">
+         and SIGN_TIME = #{signTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="montyTime != null">
+         and MONTY_TIME = #{montyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="contractSignState != null">
+         and CONTRACT_SIGN_STATE = #{contractSignState,jdbcType=INTEGER}
+      </if>
+      <if test="contractSignTime != null">
+         and CONTRACT_SIGN_TIME = #{contractSignTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="contractFileName != null">
+         and CONTRACT_FILE_NAME = #{contractFileName,jdbcType=VARCHAR}
+      </if>
+      <if test="viewPaymentPlan != null">
+         and VIEW_PAYMENT_PLAN = #{viewPaymentPlan,jdbcType=INTEGER}
+      </if>
+      <if test="remark != null">
+         and REMARK = #{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="createUser != null">
+         and CREATE_USER = #{createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+         and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="bankTelephone != null">
+         and BANK_TELEPHONE = #{bankTelephone,jdbcType=VARCHAR}
+      </if>
+      <if test="bankCustomerId != null">
+         and BANK_CUSTOMER_ID = #{bankCustomerId,jdbcType=VARCHAR}
+      </if>
+      <if test="cpfCity != null">
+         and CPF_CITY = #{cpfCity,jdbcType=VARCHAR}
+      </if>
+      <if test="cpfRealName != null">
+         and CPF_REAL_NAME = #{cpfRealName,jdbcType=VARCHAR}
+      </if>
+      <if test="applyAddress != null">
+         and APPLY_ADDRESS = #{applyAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="sourceType != null">
+         and SOURCE_TYPE = #{sourceType,jdbcType=VARCHAR}
+      </if>
+      <if test="idLiveAddress != null">
+         and ID_LIVE_ADDRESS = #{idLiveAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="idBirthday != null">
+         and ID_BIRTHDAY = #{idBirthday,jdbcType=VARCHAR}
+      </if>
+      <if test="idIssued != null">
+         and ID_ISSUED = #{idIssued,jdbcType=VARCHAR}
+      </if>
+      <if test="totalRate != null">
+         and TOTAL_RATE = #{totalRate,jdbcType=DOUBLE}
+      </if>
+    </where>
+  </select>
+</mapper>

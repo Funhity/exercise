@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="accountinfo">
+
+    <resultMap id="BaseResultMap" type="chunxian.admin.model.AccountInfo">
+        <id column="ID" jdbcType="INTEGER" property="id"/>
+        <result column="HXXC_USER_ID" jdbcType="VARCHAR" property="hxxcUserId"/>
+        <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName"/>
+        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
+        <result column="EMAIL" jdbcType="VARCHAR" property="email"/>
+        <result column="PHONE" jdbcType="VARCHAR" property="phone"/>
+        <result column="REAL_NAME" jdbcType="VARCHAR" property="realName"/>
+        <result column="USER_TYPE" jdbcType="INTEGER" property="userType"/>
+        <result column="ROLE_IDS" jdbcType="VARCHAR" property="roleIds"/>
+        <result column="LOGIN_NUM" jdbcType="INTEGER" property="loginNum"/>
+        <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="LAST_LOGIN_TIME" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+        <result column="STATUS" jdbcType="INTEGER" property="status"/>
+        <result column="SUPER_ADMIN" jdbcType="INTEGER" property="superAdmin"/>
+        <result column="ADMIN_LOGIN_NAME" jdbcType="VARCHAR" property="adminLoginName"/>
+        <result column="FINGERPRINT" jdbcType="VARCHAR" property="fingerprint"/>
+        <result column="DEVIC_TYPE" jdbcType="VARCHAR" property="devicType"/>
+        <result column="app_type" jdbcType="VARCHAR" property="appType"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="device_model_register" jdbcType="VARCHAR" property="deviceModelRegister"/>
+        <result column="device_model_login" jdbcType="VARCHAR" property="deviceModelLogin"/>
+        <result column="register_channel" jdbcType="VARCHAR" property="registerChannel"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    ID, HXXC_USER_ID, LOGIN_NAME, PASSWORD, EMAIL, PHONE, REAL_NAME, USER_TYPE, ROLE_IDS, 
+    LOGIN_NUM, CREATE_TIME, LAST_LOGIN_TIME, STATUS, SUPER_ADMIN, ADMIN_LOGIN_NAME, FINGERPRINT, 
+    DEVIC_TYPE, app_type, user_id, device_model_register, device_model_login, register_channel
+  </sql>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from front_accout_info
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+    delete from front_accout_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insert" parameterType="chunxian.admin.model.AccountInfo">
+        insert into front_accout_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="hxxcUserId != null">
+                HXXC_USER_ID,
+            </if>
+            <if test="loginName != null">
+                LOGIN_NAME,
+            </if>
+            <if test="password != null">
+                PASSWORD,
+            </if>
+            <if test="email != null">
+                EMAIL,
+            </if>
+            <if test="phone != null">
+                PHONE,
+            </if>
+            <if test="realName != null">
+                REAL_NAME,
+            </if>
+            <if test="userType != null">
+                USER_TYPE,
+            </if>
+            <if test="roleIds != null">
+                ROLE_IDS,
+            </if>
+            <if test="loginNum != null">
+                LOGIN_NUM,
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME,
+            </if>
+            <if test="lastLoginTime != null">
+                LAST_LOGIN_TIME,
+            </if>
+            <if test="status != null">
+                STATUS,
+            </if>
+            <if test="superAdmin != null">
+                SUPER_ADMIN,
+            </if>
+            <if test="adminLoginName != null">
+                ADMIN_LOGIN_NAME,
+            </if>
+            <if test="fingerprint != null">
+                FINGERPRINT,
+            </if>
+            <if test="devicType != null">
+                DEVIC_TYPE,
+            </if>
+            <if test="appType != null">
+                app_type,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="deviceModelRegister != null">
+                device_model_register,
+            </if>
+            <if test="deviceModelLogin != null">
+                device_model_login,
+            </if>
+            <if test="registerChannel != null">
+                register_channel,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="hxxcUserId != null">
+                #{hxxcUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="loginName != null">
+                #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=INTEGER},
+            </if>
+            <if test="roleIds != null">
+                #{roleIds,jdbcType=VARCHAR},
+            </if>
+            <if test="loginNum != null">
+                #{loginNum,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastLoginTime != null">
+                #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="superAdmin != null">
+                #{superAdmin,jdbcType=INTEGER},
+            </if>
+            <if test="adminLoginName != null">
+                #{adminLoginName,jdbcType=VARCHAR},
+            </if>
+            <if test="fingerprint != null">
+                #{fingerprint,jdbcType=VARCHAR},
+            </if>
+            <if test="devicType != null">
+                #{devicType,jdbcType=VARCHAR},
+            </if>
+            <if test="appType != null">
+                #{appType,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceModelRegister != null">
+                #{deviceModelRegister,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceModelLogin != null">
+                #{deviceModelLogin,jdbcType=VARCHAR},
+            </if>
+            <if test="registerChannel != null">
+                #{registerChannel,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="chunxian.admin.model.AccountInfo">
+        update front_accout_info
+        <set>
+            <if test="hxxcUserId != null">
+                HXXC_USER_ID = #{hxxcUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="loginName != null">
+                LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                PASSWORD = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                EMAIL = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                PHONE = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                REAL_NAME = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="userType != null">
+                USER_TYPE = #{userType,jdbcType=INTEGER},
+            </if>
+            <if test="roleIds != null">
+                ROLE_IDS = #{roleIds,jdbcType=VARCHAR},
+            </if>
+            <if test="loginNum != null">
+                LOGIN_NUM = #{loginNum,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastLoginTime != null">
+                LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                STATUS = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="superAdmin != null">
+                SUPER_ADMIN = #{superAdmin,jdbcType=INTEGER},
+            </if>
+            <if test="adminLoginName != null">
+                ADMIN_LOGIN_NAME = #{adminLoginName,jdbcType=VARCHAR},
+            </if>
+            <if test="fingerprint != null">
+                FINGERPRINT = #{fingerprint,jdbcType=VARCHAR},
+            </if>
+            <if test="devicType != null">
+                DEVIC_TYPE = #{devicType,jdbcType=VARCHAR},
+            </if>
+            <if test="appType != null">
+                app_type = #{appType,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceModelRegister != null">
+                device_model_register = #{deviceModelRegister,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceModelLogin != null">
+                device_model_login = #{deviceModelLogin,jdbcType=VARCHAR},
+            </if>
+            <if test="registerChannel != null">
+                register_channel = #{registerChannel,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByCondition" parameterType="chunxian.admin.model.AccountInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from front_accout_info
+        <where>
+            <if test="id != null">
+                and ID = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="hxxcUserId != null">
+                and HXXC_USER_ID = #{hxxcUserId,jdbcType=VARCHAR}
+            </if>
+            <if test="loginName != null">
+                and LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null">
+                and PASSWORD = #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null">
+                and EMAIL = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="phone != null">
+                and PHONE = #{phone,jdbcType=VARCHAR}
+            </if>
+            <if test="realName != null">
+                and REAL_NAME = #{realName,jdbcType=VARCHAR}
+            </if>
+            <if test="userType != null">
+                and USER_TYPE = #{userType,jdbcType=INTEGER}
+            </if>
+            <if test="roleIds != null">
+                and ROLE_IDS = #{roleIds,jdbcType=VARCHAR}
+            </if>
+            <if test="loginNum != null">
+                and LOGIN_NUM = #{loginNum,jdbcType=INTEGER}
+            </if>
+            <if test="createTime != null">
+                and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="lastLoginTime != null">
+                and LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="status != null">
+                and STATUS = #{status,jdbcType=INTEGER}
+            </if>
+            <if test="superAdmin != null">
+                and SUPER_ADMIN = #{superAdmin,jdbcType=INTEGER}
+            </if>
+            <if test="adminLoginName != null">
+                and ADMIN_LOGIN_NAME = #{adminLoginName,jdbcType=VARCHAR}
+            </if>
+            <if test="fingerprint != null">
+                and FINGERPRINT = #{fingerprint,jdbcType=VARCHAR}
+            </if>
+            <if test="devicType != null">
+                and DEVIC_TYPE = #{devicType,jdbcType=VARCHAR}
+            </if>
+            <if test="appType != null">
+                and app_type = #{appType,jdbcType=VARCHAR}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="deviceModelRegister != null">
+                and device_model_register = #{deviceModelRegister,jdbcType=VARCHAR}
+            </if>
+            <if test="deviceModelLogin != null">
+                and device_model_login = #{deviceModelLogin,jdbcType=VARCHAR}
+            </if>
+            <if test="registerChannel != null">
+                and register_channel = #{registerChannel,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectCountCondition" parameterType="chunxian.admin.model.AccountInfo" resultMap="BaseResultMap">
+  select date_format(f.CREATE_TIME,'%Y-%m-%d') loginName,count(1) LOGIN_NUM from front_accout_info  f 
+  where date_format(f.CREATE_TIME,'%Y-%m-%d') &gt;=#{realName,jdbcType=TIMESTAMP}
+   and  date_format(f.CREATE_TIME,'%Y-%m-%d') &lt;=#{loginName,jdbcType=TIMESTAMP}  
+   GROUP BY date_format(f.CREATE_TIME,'%Y-%m-%d') ORDER BY date_format(f.CREATE_TIME,'%Y-%m-%d')
+  </select>
+
+    <select id="selectReceiverByCondition" parameterType="chunxian.admin.model.AccountInfo" resultMap="BaseResultMap">
+        select
+        a.user_id,
+        i.name as login_name,
+        a.phone,
+        a.register_channel,
+        a.create_time
+        from
+        front_user_identity i
+        left join front_accout_info a on i.user_id = a.user_id
+        where a.phone > ''
+        <if test="loginName != null">
+            and i.name like concat(#{loginName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="phone != null">
+            and a.phone like concat(#{phone,jdbcType=VARCHAR},'%')
+        </if>
+        order by a.phone
+    </select>
+
+</mapper>

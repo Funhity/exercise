@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.Order">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="product_no" jdbcType="VARCHAR" property="productNo" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="loan_amount" jdbcType="DECIMAL" property="loanAmount" />
+    <result column="loan_term" jdbcType="INTEGER" property="loanTerm" />
+    <result column="loan_type" jdbcType="VARCHAR" property="loanType" />
+    <result column="loan_type_remark" jdbcType="VARCHAR" property="loanTypeRemark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="check_reason" jdbcType="VARCHAR" property="checkReason" />
+    <result column="apply_amount" jdbcType="DECIMAL" property="applyAmount" />
+    <result column="apply_term" jdbcType="INTEGER" property="applyTerm" />
+    <result column="submit_time" jdbcType="TIMESTAMP" property="submitTime" />
+    <result column="check_back_time" jdbcType="TIMESTAMP" property="checkBackTime" />
+    <result column="check_pass_time" jdbcType="TIMESTAMP" property="checkPassTime" />
+    <result column="check_reject_time" jdbcType="TIMESTAMP" property="checkRejectTime" />
+    <result column="check_cancle_time" jdbcType="TIMESTAMP" property="checkCancleTime" />
+    <result column="confirm_amount" jdbcType="DECIMAL" property="confirmAmount" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="money_time" jdbcType="TIMESTAMP" property="moneyTime" />
+    <result column="contract_sign_time" jdbcType="TIMESTAMP" property="contractSignTime" />
+    <result column="contract_file_name" jdbcType="VARCHAR" property="contractFileName" />
+    <result column="view_payment_plan" jdbcType="VARCHAR" property="viewPaymentPlan" />
+    <result column="apply_address" jdbcType="VARCHAR" property="applyAddress" />
+    <result column="app_type" jdbcType="VARCHAR" property="appType" />
+    <result column="total_rate" jdbcType="DECIMAL" property="totalRate" />
+    <result column="contract_read_status_loan" jdbcType="VARCHAR" property="contractReadStatusLoan" />
+    <result column="contract_read_status_consult" jdbcType="VARCHAR" property="contractReadStatusConsult" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="wealth_platfrom" jdbcType="VARCHAR" property="wealthPlatfrom" />
+    <result column="bqs_token_key" jdbcType="VARCHAR" property="bqsTokenKey" />
+    <result column="st_task_id" jdbcType="VARCHAR" property="stTaskId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, user_id, product_no, order_no, loan_amount, loan_term, loan_type, loan_type_remark, 
+    status, check_reason, apply_amount, apply_term, submit_time, check_back_time, check_pass_time, 
+    check_reject_time, check_cancle_time, confirm_amount, confirm_time, money_time, contract_sign_time, 
+    contract_file_name, view_payment_plan, apply_address, app_type, total_rate, contract_read_status_loan, 
+    contract_read_status_consult, create_time, update_time, wealth_platfrom, bqs_token_key, 
+    st_task_id
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from front_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.Order">
+    insert into front_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="productNo != null">
+        product_no,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="loanAmount != null">
+        loan_amount,
+      </if>
+      <if test="loanTerm != null">
+        loan_term,
+      </if>
+      <if test="loanType != null">
+        loan_type,
+      </if>
+      <if test="loanTypeRemark != null">
+        loan_type_remark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="checkReason != null">
+        check_reason,
+      </if>
+      <if test="applyAmount != null">
+        apply_amount,
+      </if>
+      <if test="applyTerm != null">
+        apply_term,
+      </if>
+      <if test="submitTime != null">
+        submit_time,
+      </if>
+      <if test="checkBackTime != null">
+        check_back_time,
+      </if>
+      <if test="checkPassTime != null">
+        check_pass_time,
+      </if>
+      <if test="checkRejectTime != null">
+        check_reject_time,
+      </if>
+      <if test="checkCancleTime != null">
+        check_cancle_time,
+      </if>
+      <if test="confirmAmount != null">
+        confirm_amount,
+      </if>
+      <if test="confirmTime != null">
+        confirm_time,
+      </if>
+      <if test="moneyTime != null">
+        money_time,
+      </if>
+      <if test="contractSignTime != null">
+        contract_sign_time,
+      </if>
+      <if test="contractFileName != null">
+        contract_file_name,
+      </if>
+      <if test="viewPaymentPlan != null">
+        view_payment_plan,
+      </if>
+      <if test="applyAddress != null">
+        apply_address,
+      </if>
+      <if test="appType != null">
+        app_type,
+      </if>
+      <if test="totalRate != null">
+        total_rate,
+      </if>
+      <if test="contractReadStatusLoan != null">
+        contract_read_status_loan,
+      </if>
+      <if test="contractReadStatusConsult != null">
+        contract_read_status_consult,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="wealthPlatfrom != null">
+        wealth_platfrom,
+      </if>
+      <if test="bqsTokenKey != null">
+        bqs_token_key,
+      </if>
+      <if test="stTaskId != null">
+        st_task_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null">
+        #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="loanTerm != null">
+        #{loanTerm,jdbcType=INTEGER},
+      </if>
+      <if test="loanType != null">
+        #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTypeRemark != null">
+        #{loanTypeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="checkReason != null">
+        #{checkReason,jdbcType=VARCHAR},
+      </if>
+      <if test="applyAmount != null">
+        #{applyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="applyTerm != null">
+        #{applyTerm,jdbcType=INTEGER},
+      </if>
+      <if test="submitTime != null">
+        #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkBackTime != null">
+        #{checkBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkPassTime != null">
+        #{checkPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkRejectTime != null">
+        #{checkRejectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkCancleTime != null">
+        #{checkCancleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmAmount != null">
+        #{confirmAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="confirmTime != null">
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyTime != null">
+        #{moneyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractSignTime != null">
+        #{contractSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractFileName != null">
+        #{contractFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="viewPaymentPlan != null">
+        #{viewPaymentPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="applyAddress != null">
+        #{applyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null">
+        #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRate != null">
+        #{totalRate,jdbcType=DECIMAL},
+      </if>
+      <if test="contractReadStatusLoan != null">
+        #{contractReadStatusLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="contractReadStatusConsult != null">
+        #{contractReadStatusConsult,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wealthPlatfrom != null">
+        #{wealthPlatfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="bqsTokenKey != null">
+        #{bqsTokenKey,jdbcType=VARCHAR},
+      </if>
+      <if test="stTaskId != null">
+        #{stTaskId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.Order">
+    update front_order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null">
+        product_no = #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        loan_amount = #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="loanTerm != null">
+        loan_term = #{loanTerm,jdbcType=INTEGER},
+      </if>
+      <if test="loanType != null">
+        loan_type = #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTypeRemark != null">
+        loan_type_remark = #{loanTypeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="checkReason != null">
+        check_reason = #{checkReason,jdbcType=VARCHAR},
+      </if>
+      <if test="applyAmount != null">
+        apply_amount = #{applyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="applyTerm != null">
+        apply_term = #{applyTerm,jdbcType=INTEGER},
+      </if>
+      <if test="submitTime != null">
+        submit_time = #{submitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkBackTime != null">
+        check_back_time = #{checkBackTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkPassTime != null">
+        check_pass_time = #{checkPassTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkRejectTime != null">
+        check_reject_time = #{checkRejectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkCancleTime != null">
+        check_cancle_time = #{checkCancleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmAmount != null">
+        confirm_amount = #{confirmAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="confirmTime != null">
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moneyTime != null">
+        money_time = #{moneyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractSignTime != null">
+        contract_sign_time = #{contractSignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractFileName != null">
+        contract_file_name = #{contractFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="viewPaymentPlan != null">
+        view_payment_plan = #{viewPaymentPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="applyAddress != null">
+        apply_address = #{applyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="appType != null">
+        app_type = #{appType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRate != null">
+        total_rate = #{totalRate,jdbcType=DECIMAL},
+      </if>
+      <if test="contractReadStatusLoan != null">
+        contract_read_status_loan = #{contractReadStatusLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="contractReadStatusConsult != null">
+        contract_read_status_consult = #{contractReadStatusConsult,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wealthPlatfrom != null">
+        wealth_platfrom = #{wealthPlatfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="bqsTokenKey != null">
+        bqs_token_key = #{bqsTokenKey,jdbcType=VARCHAR},
+      </if>
+      <if test="stTaskId != null">
+        st_task_id = #{stTaskId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.Order" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_order
+    <where>
+      <if test="id != null">
+         and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="userId != null">
+         and user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="productNo != null">
+         and product_no = #{productNo,jdbcType=VARCHAR}
+      </if>
+      <if test="orderNo != null">
+         and order_no = #{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="loanAmount != null">
+         and loan_amount = #{loanAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="loanTerm != null">
+         and loan_term = #{loanTerm,jdbcType=INTEGER}
+      </if>
+      <if test="loanType != null">
+         and loan_type = #{loanType,jdbcType=VARCHAR}
+      </if>
+      <if test="loanTypeRemark != null">
+         and loan_type_remark = #{loanTypeRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null">
+         and status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="checkReason != null">
+         and check_reason = #{checkReason,jdbcType=VARCHAR}
+      </if>
+      <if test="applyAmount != null">
+         and apply_amount = #{applyAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="applyTerm != null">
+         and apply_term = #{applyTerm,jdbcType=INTEGER}
+      </if>
+      <if test="submitTime != null">
+         and submit_time = #{submitTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="checkBackTime != null">
+         and check_back_time = #{checkBackTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="checkPassTime != null">
+         and check_pass_time = #{checkPassTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="checkRejectTime != null">
+         and check_reject_time = #{checkRejectTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="checkCancleTime != null">
+         and check_cancle_time = #{checkCancleTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="confirmAmount != null">
+         and confirm_amount = #{confirmAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="confirmTime != null">
+         and confirm_time = #{confirmTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="moneyTime != null">
+         and money_time = #{moneyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="contractSignTime != null">
+         and contract_sign_time = #{contractSignTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="contractFileName != null">
+         and contract_file_name = #{contractFileName,jdbcType=VARCHAR}
+      </if>
+      <if test="viewPaymentPlan != null">
+         and view_payment_plan = #{viewPaymentPlan,jdbcType=VARCHAR}
+      </if>
+      <if test="applyAddress != null">
+         and apply_address = #{applyAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="appType != null">
+         and app_type = #{appType,jdbcType=VARCHAR}
+      </if>
+      <if test="totalRate != null">
+         and total_rate = #{totalRate,jdbcType=DECIMAL}
+      </if>
+      <if test="contractReadStatusLoan != null">
+         and contract_read_status_loan = #{contractReadStatusLoan,jdbcType=VARCHAR}
+      </if>
+      <if test="contractReadStatusConsult != null">
+         and contract_read_status_consult = #{contractReadStatusConsult,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="wealthPlatfrom != null">
+         and wealth_platfrom = #{wealthPlatfrom,jdbcType=VARCHAR}
+      </if>
+      <if test="bqsTokenKey != null">
+         and bqs_token_key = #{bqsTokenKey,jdbcType=VARCHAR}
+      </if>
+      <if test="stTaskId != null">
+         and st_task_id = #{stTaskId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

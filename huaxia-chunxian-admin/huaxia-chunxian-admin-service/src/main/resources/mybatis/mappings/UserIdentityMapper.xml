@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="useridentity">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.UserIdentity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="front_photo_id" jdbcType="VARCHAR" property="frontPhotoId" />
+    <result column="back_photo_id" jdbcType="VARCHAR" property="backPhotoId" />
+    <result column="face_photo_id" jdbcType="VARCHAR" property="facePhotoId" />
+    <result column="face_photo_id1" jdbcType="VARCHAR" property="facePhotoId1" />
+    <result column="face_photo_id2" jdbcType="VARCHAR" property="facePhotoId2" />
+    <result column="face_photo_id3" jdbcType="VARCHAR" property="facePhotoId3" />
+    <result column="face_photo_id4" jdbcType="VARCHAR" property="facePhotoId4" />
+    <result column="archives_temp_id" jdbcType="VARCHAR" property="archivesTempId" />
+    <result column="id_card_start_time" jdbcType="DATE" property="idCardStartTime" />
+    <result column="id_card_end_time" jdbcType="VARCHAR" property="idCardEndTime" />
+    <result column="live_address" jdbcType="VARCHAR" property="liveAddress" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="issued_dep" jdbcType="VARCHAR" property="issuedDep" />
+    <result column="face_photo_collect_time" jdbcType="TIMESTAMP" property="facePhotoCollectTime" />
+    <result column="blacklist" jdbcType="INTEGER" property="blacklist" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, user_id, id_card, name, sex, front_photo_id, back_photo_id, face_photo_id, face_photo_id1, 
+    face_photo_id2, face_photo_id3, face_photo_id4, archives_temp_id, id_card_start_time, 
+    id_card_end_time, live_address, birthday, issued_dep, face_photo_collect_time, blacklist, 
+    create_time, update_time
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_user_identity
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from front_user_identity
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.UserIdentity">
+    insert into front_user_identity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="frontPhotoId != null">
+        front_photo_id,
+      </if>
+      <if test="backPhotoId != null">
+        back_photo_id,
+      </if>
+      <if test="facePhotoId != null">
+        face_photo_id,
+      </if>
+      <if test="facePhotoId1 != null">
+        face_photo_id1,
+      </if>
+      <if test="facePhotoId2 != null">
+        face_photo_id2,
+      </if>
+      <if test="facePhotoId3 != null">
+        face_photo_id3,
+      </if>
+      <if test="facePhotoId4 != null">
+        face_photo_id4,
+      </if>
+      <if test="archivesTempId != null">
+        archives_temp_id,
+      </if>
+      <if test="idCardStartTime != null">
+        id_card_start_time,
+      </if>
+      <if test="idCardEndTime != null">
+        id_card_end_time,
+      </if>
+      <if test="liveAddress != null">
+        live_address,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="issuedDep != null">
+        issued_dep,
+      </if>
+      <if test="facePhotoCollectTime != null">
+        face_photo_collect_time,
+      </if>
+      <if test="blacklist != null">
+        blacklist,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="frontPhotoId != null">
+        #{frontPhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="backPhotoId != null">
+        #{backPhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoId != null">
+        #{facePhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoId1 != null">
+        #{facePhotoId1,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoId2 != null">
+        #{facePhotoId2,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoId3 != null">
+        #{facePhotoId3,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoId4 != null">
+        #{facePhotoId4,jdbcType=VARCHAR},
+      </if>
+      <if test="archivesTempId != null">
+        #{archivesTempId,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardStartTime != null">
+        #{idCardStartTime,jdbcType=DATE},
+      </if>
+      <if test="idCardEndTime != null">
+        #{idCardEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null">
+        #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="issuedDep != null">
+        #{issuedDep,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoCollectTime != null">
+        #{facePhotoCollectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blacklist != null">
+        #{blacklist,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.UserIdentity">
+    update front_user_identity
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="frontPhotoId != null">
+        front_photo_id = #{frontPhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="backPhotoId != null">
+        back_photo_id = #{backPhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoId != null">
+        face_photo_id = #{facePhotoId,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoId1 != null">
+        face_photo_id1 = #{facePhotoId1,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoId2 != null">
+        face_photo_id2 = #{facePhotoId2,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoId3 != null">
+        face_photo_id3 = #{facePhotoId3,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoId4 != null">
+        face_photo_id4 = #{facePhotoId4,jdbcType=VARCHAR},
+      </if>
+      <if test="archivesTempId != null">
+        archives_temp_id = #{archivesTempId,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardStartTime != null">
+        id_card_start_time = #{idCardStartTime,jdbcType=DATE},
+      </if>
+      <if test="idCardEndTime != null">
+        id_card_end_time = #{idCardEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null">
+        live_address = #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="issuedDep != null">
+        issued_dep = #{issuedDep,jdbcType=VARCHAR},
+      </if>
+      <if test="facePhotoCollectTime != null">
+        face_photo_collect_time = #{facePhotoCollectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="blacklist != null">
+        blacklist = #{blacklist,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.UserIdentity" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_user_identity
+    <where>
+      <if test="id != null">
+         and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="userId != null">
+         and user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="idCard != null">
+         and id_card = #{idCard,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null">
+         and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="sex != null">
+         and sex = #{sex,jdbcType=VARCHAR}
+      </if>
+      <if test="frontPhotoId != null">
+         and front_photo_id = #{frontPhotoId,jdbcType=VARCHAR}
+      </if>
+      <if test="backPhotoId != null">
+         and back_photo_id = #{backPhotoId,jdbcType=VARCHAR}
+      </if>
+      <if test="facePhotoId != null">
+         and face_photo_id = #{facePhotoId,jdbcType=VARCHAR}
+      </if>
+      <if test="facePhotoId1 != null">
+         and face_photo_id1 = #{facePhotoId1,jdbcType=VARCHAR}
+      </if>
+      <if test="facePhotoId2 != null">
+         and face_photo_id2 = #{facePhotoId2,jdbcType=VARCHAR}
+      </if>
+      <if test="facePhotoId3 != null">
+         and face_photo_id3 = #{facePhotoId3,jdbcType=VARCHAR}
+      </if>
+      <if test="facePhotoId4 != null">
+         and face_photo_id4 = #{facePhotoId4,jdbcType=VARCHAR}
+      </if>
+      <if test="archivesTempId != null">
+         and archives_temp_id = #{archivesTempId,jdbcType=VARCHAR}
+      </if>
+      <if test="idCardStartTime != null">
+         and id_card_start_time = #{idCardStartTime,jdbcType=DATE}
+      </if>
+      <if test="idCardEndTime != null">
+         and id_card_end_time = #{idCardEndTime,jdbcType=VARCHAR}
+      </if>
+      <if test="liveAddress != null">
+         and live_address = #{liveAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="birthday != null">
+         and birthday = #{birthday,jdbcType=DATE}
+      </if>
+      <if test="issuedDep != null">
+         and issued_dep = #{issuedDep,jdbcType=VARCHAR}
+      </if>
+      <if test="facePhotoCollectTime != null">
+         and face_photo_collect_time = #{facePhotoCollectTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="blacklist != null">
+         and blacklist = #{blacklist,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null">
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

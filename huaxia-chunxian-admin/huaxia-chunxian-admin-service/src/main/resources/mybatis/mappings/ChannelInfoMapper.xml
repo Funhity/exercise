@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="channelinfo">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.ChannelInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="channel_code" jdbcType="VARCHAR" property="channelCode" />
+    <result column="channel_name" jdbcType="VARCHAR" property="channelName" />
+    <result column="channel_desc" jdbcType="VARCHAR" property="channelDesc" />
+    <result column="channel_path" jdbcType="VARCHAR" property="channelPath" />
+    <result column="channel_status" jdbcType="INTEGER" property="channelStatus" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, channel_code, channel_name, channel_desc, channel_path, channel_status, create_by, 
+    update_by, create_time, update_time
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_channel_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from front_channel_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.ChannelInfo">
+    insert into front_channel_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="channelCode != null">
+        channel_code,
+      </if>
+      <if test="channelName != null">
+        channel_name,
+      </if>
+      <if test="channelDesc != null">
+        channel_desc,
+      </if>
+      <if test="channelPath != null">
+        channel_path,
+      </if>
+      <if test="channelStatus != null">
+        channel_status,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="channelCode != null">
+        #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null">
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelDesc != null">
+        #{channelDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPath != null">
+        #{channelPath,jdbcType=INTEGER},
+      </if>
+      <if test="channelStatus != null">
+        #{channelStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.ChannelInfo">
+    update front_channel_info
+    <set>
+      <if test="channelCode != null">
+        channel_code = #{channelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null">
+        channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelDesc != null">
+        channel_desc = #{channelDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="channelPath != null">
+        channel_path = #{channelPath,jdbcType=INTEGER},
+      </if>
+      <if test="channelStatus != null">
+        channel_status = #{channelStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.ChannelInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_channel_info
+    <where>
+      <if test="id != null">
+         and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="channelCode != null">
+         and channel_code = #{channelCode,jdbcType=VARCHAR}
+      </if>
+      <if test="channelName != null">
+         and channel_name like CONCAT('%',#{channelName},'%')
+      </if>
+      <if test="channelDesc != null">
+         and channel_desc = #{channelDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="channelPath != null">
+         and channel_path = #{channelPath,jdbcType=INTEGER}
+      </if>
+      <if test="channelStatus != null">
+         and channel_status = #{channelStatus,jdbcType=INTEGER}
+      </if>
+      <if test="createBy != null">
+         and create_by = #{createBy,jdbcType=VARCHAR}
+      </if>
+      <if test="updateBy != null">
+         and update_by = #{updateBy,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="editstartdate != null">
+         and create_time &gt;=#{editstartdate,jdbcType=TIMESTAMP}
+      </if>
+       <if test="editenddate != null">
+         and create_time &lt;=#{editenddate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+     order by create_time desc
+  </select>
+</mapper>

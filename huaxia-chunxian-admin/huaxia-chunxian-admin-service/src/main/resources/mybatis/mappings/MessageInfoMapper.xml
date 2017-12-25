@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="messageinfo">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.MessageInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MESSAGE_TYPE" jdbcType="INTEGER" property="messageType" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="send_status" jdbcType="VARCHAR" property="sendStatus" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    ID, MESSAGE_TYPE, CONTENT, STATE, CREATE_TIME, update_time, user_id, title, login_name, 
+    create_user, update_user, send_time, send_status, delete_time
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_message_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from front_message_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.MessageInfo">
+    insert into front_message_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="messageType != null">
+        MESSAGE_TYPE,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="sendTime != null">
+        send_time,
+      </if>
+      <if test="sendStatus != null">
+        send_status,
+      </if>
+      <if test="deleteTime != null">
+        delete_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="messageType != null">
+        #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendStatus != null">
+        #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.MessageInfo">
+    update front_message_info
+    <set>
+      <if test="messageType != null">
+        MESSAGE_TYPE = #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendStatus != null">
+        send_status = #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null">
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.MessageInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_message_info
+    <where>
+      <if test="id != null">
+         and ID = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="messageType != null">
+         and MESSAGE_TYPE = #{messageType,jdbcType=INTEGER}
+      </if>
+      <if test="content != null">
+         and CONTENT = #{content,jdbcType=VARCHAR}
+      </if>
+      <if test="state != null">
+         and STATE = #{state,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null">
+         and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userId != null">
+         and user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="title != null">
+         and title = #{title,jdbcType=VARCHAR}
+      </if>
+      <if test="loginName != null">
+         and login_name = #{loginName,jdbcType=VARCHAR}
+      </if>
+      <if test="createUser != null">
+         and create_user = #{createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="updateUser != null">
+         and update_user = #{updateUser,jdbcType=VARCHAR}
+      </if>
+      <if test="sendTime != null">
+         and send_time = #{sendTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="sendStatus != null">
+         and send_status = #{sendStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="deleteTime != null">
+         and delete_time = #{deleteTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectMessageByCondition" parameterType="chunxian.admin.model.MessageInfo" resultMap="BaseResultMap">
+    select
+	m.id,
+	m.title,
+	m.content,
+	m.send_time,
+	m.send_status,
+	i.`name` login_name,
+	a.phone create_user,
+	m.update_user,
+	m.update_time
+from
+	front_message_info m
+left join front_user_identity i on m.user_id = i.user_id
+left join front_accout_info a on m.user_id = a.user_id
+where
+	m.delete_time is null
+    <if test="loginName != null">
+      and i.`name` #{loginName,jdbcType=VARCHAR}
+    </if>
+    <if test="createUser != null">
+      and a.phone = #{createUser,jdbcType=VARCHAR}
+    </if>
+    <if test="id != null">
+      and ID = #{id,jdbcType=INTEGER}
+    </if>
+  </select>
+</mapper>

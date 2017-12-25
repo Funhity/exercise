@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userauth">
+
+	<resultMap id="BaseResultMap" type="chunxian.admin.model.UserAuth">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="operator_auth_time" jdbcType="TIMESTAMP"
+			property="operatorAuthTime" />
+		<result column="bank_auth_h2x4_time" jdbcType="TIMESTAMP"
+			property="bankAuthH2x4Time" />
+		<result column="bank_auth_h1x1_time" jdbcType="TIMESTAMP"
+			property="bankAuthH1x1Time" />
+		<result column="fund_auth_time" jdbcType="TIMESTAMP" property="fundAuthTime" />
+		<result column="policy_auth_time" jdbcType="TIMESTAMP"
+			property="policyAuthTime" />
+		<result column="credit_card_auth_time" jdbcType="TIMESTAMP"
+			property="creditCardAuthTime" />
+		<result column="zhima_auth_time" jdbcType="TIMESTAMP" property="zhimaAuthTime" />
+		<result column="operator_auth_taskid" jdbcType="VARCHAR"
+			property="operatorAuthTaskid" />
+		<result column="operator_auth_telephone" jdbcType="VARCHAR"
+			property="operatorAuthTelephone" />
+		<result column="credit_card_auth_taskid" jdbcType="VARCHAR"
+			property="creditCardAuthTaskid" />
+		<result column="credit_card_auth_emailid" jdbcType="VARCHAR"
+			property="creditCardAuthEmailid" />
+		<result column="credit_card_auth_email" jdbcType="VARCHAR"
+			property="creditCardAuthEmail" />
+		<result column="credit_card_auth_msg" jdbcType="VARCHAR"
+			property="creditCardAuthMsg" />
+		<result column="policy_login_name" jdbcType="VARCHAR" property="policyLoginName" />
+		<result column="cpf_user_name" jdbcType="VARCHAR" property="cpfUserName" />
+		<result column="cpf_account" jdbcType="VARCHAR" property="cpfAccount" />
+		<result column="cpf_insured_unit" jdbcType="VARCHAR" property="cpfInsuredUnit" />
+		<result column="cpf_base" jdbcType="VARCHAR" property="cpfBase" />
+		<result column="cpf_pay_status" jdbcType="VARCHAR" property="cpfPayStatus" />
+		<result column="cpf_pay_month" jdbcType="VARCHAR" property="cpfPayMonth" />
+		<result column="cpf_total_month" jdbcType="VARCHAR" property="cpfTotalMonth" />
+		<result column="cpf_city" jdbcType="VARCHAR" property="cpfCity" />
+		<result column="cpf_real_name" jdbcType="VARCHAR" property="cpfRealName" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, user_id, operator_auth_time, bank_auth_h2x4_time,
+		bank_auth_h1x1_time, fund_auth_time,
+		policy_auth_time, credit_card_auth_time, zhima_auth_time, operator_auth_taskid,
+		operator_auth_telephone,
+		credit_card_auth_taskid, credit_card_auth_emailid, credit_card_auth_email,
+		credit_card_auth_msg,
+		policy_login_name, cpf_user_name, cpf_account, cpf_insured_unit, cpf_base,
+		cpf_pay_status,
+		cpf_pay_month, cpf_total_month, cpf_city, cpf_real_name, create_time, update_time
+	</sql>
+
+	<select id="selectById" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from front_user_auth
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from front_user_auth
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="chunxian.admin.model.UserAuth">
+		insert into front_user_auth
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="operatorAuthTime != null">
+				operator_auth_time,
+			</if>
+			<if test="bankAuthH2x4Time != null">
+				bank_auth_h2x4_time,
+			</if>
+			<if test="bankAuthH1x1Time != null">
+				bank_auth_h1x1_time,
+			</if>
+			<if test="fundAuthTime != null">
+				fund_auth_time,
+			</if>
+			<if test="policyAuthTime != null">
+				policy_auth_time,
+			</if>
+			<if test="creditCardAuthTime != null">
+				credit_card_auth_time,
+			</if>
+			<if test="zhimaAuthTime != null">
+				zhima_auth_time,
+			</if>
+			<if test="operatorAuthTaskid != null">
+				operator_auth_taskid,
+			</if>
+			<if test="operatorAuthTelephone != null">
+				operator_auth_telephone,
+			</if>
+			<if test="creditCardAuthTaskid != null">
+				credit_card_auth_taskid,
+			</if>
+			<if test="creditCardAuthEmailid != null">
+				credit_card_auth_emailid,
+			</if>
+			<if test="creditCardAuthEmail != null">
+				credit_card_auth_email,
+			</if>
+			<if test="creditCardAuthMsg != null">
+				credit_card_auth_msg,
+			</if>
+			<if test="policyLoginName != null">
+				policy_login_name,
+			</if>
+			<if test="cpfUserName != null">
+				cpf_user_name,
+			</if>
+			<if test="cpfAccount != null">
+				cpf_account,
+			</if>
+			<if test="cpfInsuredUnit != null">
+				cpf_insured_unit,
+			</if>
+			<if test="cpfBase != null">
+				cpf_base,
+			</if>
+			<if test="cpfPayStatus != null">
+				cpf_pay_status,
+			</if>
+			<if test="cpfPayMonth != null">
+				cpf_pay_month,
+			</if>
+			<if test="cpfTotalMonth != null">
+				cpf_total_month,
+			</if>
+			<if test="cpfCity != null">
+				cpf_city,
+			</if>
+			<if test="cpfRealName != null">
+				cpf_real_name,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="operatorAuthTime != null">
+				#{operatorAuthTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="bankAuthH2x4Time != null">
+				#{bankAuthH2x4Time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="bankAuthH1x1Time != null">
+				#{bankAuthH1x1Time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fundAuthTime != null">
+				#{fundAuthTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="policyAuthTime != null">
+				#{policyAuthTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creditCardAuthTime != null">
+				#{creditCardAuthTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="zhimaAuthTime != null">
+				#{zhimaAuthTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operatorAuthTaskid != null">
+				#{operatorAuthTaskid,jdbcType=VARCHAR},
+			</if>
+			<if test="operatorAuthTelephone != null">
+				#{operatorAuthTelephone,jdbcType=VARCHAR},
+			</if>
+			<if test="creditCardAuthTaskid != null">
+				#{creditCardAuthTaskid,jdbcType=VARCHAR},
+			</if>
+			<if test="creditCardAuthEmailid != null">
+				#{creditCardAuthEmailid,jdbcType=VARCHAR},
+			</if>
+			<if test="creditCardAuthEmail != null">
+				#{creditCardAuthEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="creditCardAuthMsg != null">
+				#{creditCardAuthMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="policyLoginName != null">
+				#{policyLoginName,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfUserName != null">
+				#{cpfUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfAccount != null">
+				#{cpfAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfInsuredUnit != null">
+				#{cpfInsuredUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfBase != null">
+				#{cpfBase,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfPayStatus != null">
+				#{cpfPayStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfPayMonth != null">
+				#{cpfPayMonth,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfTotalMonth != null">
+				#{cpfTotalMonth,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfCity != null">
+				#{cpfCity,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfRealName != null">
+				#{cpfRealName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="chunxian.admin.model.UserAuth">
+		update front_user_auth
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="operatorAuthTime != null">
+				operator_auth_time = #{operatorAuthTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="bankAuthH2x4Time != null">
+				bank_auth_h2x4_time = #{bankAuthH2x4Time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="bankAuthH1x1Time != null">
+				bank_auth_h1x1_time = #{bankAuthH1x1Time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="fundAuthTime != null">
+				fund_auth_time = #{fundAuthTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="policyAuthTime != null">
+				policy_auth_time = #{policyAuthTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creditCardAuthTime != null">
+				credit_card_auth_time = #{creditCardAuthTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="zhimaAuthTime != null">
+				zhima_auth_time = #{zhimaAuthTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operatorAuthTaskid != null">
+				operator_auth_taskid = #{operatorAuthTaskid,jdbcType=VARCHAR},
+			</if>
+			<if test="operatorAuthTelephone != null">
+				operator_auth_telephone = #{operatorAuthTelephone,jdbcType=VARCHAR},
+			</if>
+			<if test="creditCardAuthTaskid != null">
+				credit_card_auth_taskid = #{creditCardAuthTaskid,jdbcType=VARCHAR},
+			</if>
+			<if test="creditCardAuthEmailid != null">
+				credit_card_auth_emailid = #{creditCardAuthEmailid,jdbcType=VARCHAR},
+			</if>
+			<if test="creditCardAuthEmail != null">
+				credit_card_auth_email = #{creditCardAuthEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="creditCardAuthMsg != null">
+				credit_card_auth_msg = #{creditCardAuthMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="policyLoginName != null">
+				policy_login_name = #{policyLoginName,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfUserName != null">
+				cpf_user_name = #{cpfUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfAccount != null">
+				cpf_account = #{cpfAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfInsuredUnit != null">
+				cpf_insured_unit = #{cpfInsuredUnit,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfBase != null">
+				cpf_base = #{cpfBase,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfPayStatus != null">
+				cpf_pay_status = #{cpfPayStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfPayMonth != null">
+				cpf_pay_month = #{cpfPayMonth,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfTotalMonth != null">
+				cpf_total_month = #{cpfTotalMonth,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfCity != null">
+				cpf_city = #{cpfCity,jdbcType=VARCHAR},
+			</if>
+			<if test="cpfRealName != null">
+				cpf_real_name = #{cpfRealName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByCondition" parameterType="chunxian.admin.model.UserAuth"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from front_user_auth
+		<where>
+			<if test="id != null">
+				and id = #{id,jdbcType=BIGINT}
+			</if>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=VARCHAR}
+			</if>
+			<if test="operatorAuthTime != null">
+				and operator_auth_time = #{operatorAuthTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="bankAuthH2x4Time != null">
+				and bank_auth_h2x4_time = #{bankAuthH2x4Time,jdbcType=TIMESTAMP}
+			</if>
+			<if test="bankAuthH1x1Time != null">
+				and bank_auth_h1x1_time = #{bankAuthH1x1Time,jdbcType=TIMESTAMP}
+			</if>
+			<if test="fundAuthTime != null">
+				and fund_auth_time = #{fundAuthTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="policyAuthTime != null">
+				and policy_auth_time = #{policyAuthTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="creditCardAuthTime != null">
+				and credit_card_auth_time = #{creditCardAuthTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="zhimaAuthTime != null">
+				and zhima_auth_time = #{zhimaAuthTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="operatorAuthTaskid != null">
+				and operator_auth_taskid = #{operatorAuthTaskid,jdbcType=VARCHAR}
+			</if>
+			<if test="operatorAuthTelephone != null">
+				and operator_auth_telephone = #{operatorAuthTelephone,jdbcType=VARCHAR}
+			</if>
+			<if test="creditCardAuthTaskid != null">
+				and credit_card_auth_taskid = #{creditCardAuthTaskid,jdbcType=VARCHAR}
+			</if>
+			<if test="creditCardAuthEmailid != null">
+				and credit_card_auth_emailid =
+				#{creditCardAuthEmailid,jdbcType=VARCHAR}
+			</if>
+			<if test="creditCardAuthEmail != null">
+				and credit_card_auth_email = #{creditCardAuthEmail,jdbcType=VARCHAR}
+			</if>
+			<if test="creditCardAuthMsg != null">
+				and credit_card_auth_msg = #{creditCardAuthMsg,jdbcType=VARCHAR}
+			</if>
+			<if test="policyLoginName != null">
+				and policy_login_name = #{policyLoginName,jdbcType=VARCHAR}
+			</if>
+			<if test="cpfUserName != null">
+				and cpf_user_name = #{cpfUserName,jdbcType=VARCHAR}
+			</if>
+			<if test="cpfAccount != null">
+				and cpf_account = #{cpfAccount,jdbcType=VARCHAR}
+			</if>
+			<if test="cpfInsuredUnit != null">
+				and cpf_insured_unit = #{cpfInsuredUnit,jdbcType=VARCHAR}
+			</if>
+			<if test="cpfBase != null">
+				and cpf_base = #{cpfBase,jdbcType=VARCHAR}
+			</if>
+			<if test="cpfPayStatus != null">
+				and cpf_pay_status = #{cpfPayStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="cpfPayMonth != null">
+				and cpf_pay_month = #{cpfPayMonth,jdbcType=VARCHAR}
+			</if>
+			<if test="cpfTotalMonth != null">
+				and cpf_total_month = #{cpfTotalMonth,jdbcType=VARCHAR}
+			</if>
+			<if test="cpfCity != null">
+				and cpf_city = #{cpfCity,jdbcType=VARCHAR}
+			</if>
+			<if test="cpfRealName != null">
+				and cpf_real_name = #{cpfRealName,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateTime != null">
+				and update_time = #{updateTime,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+	</select>
+
+
+
+
+	<select id="selectSignByCondition" parameterType="chunxian.admin.model.UserAuth"
+		resultMap="BaseResultMap">
+		SELECT
+		thh.cpfRealName,createTime,
+         thh.user_id,
+         if(thh.id=0,"0","1") id
+		FROM
+		(
+		SELECT
+		'运营商认证' cpfRealName,
+		th.operator_auth_time createTime,
+		th.user_id,
+		IFNULL(th.operator_auth_time, '0') id
+		FROM
+		front_user_auth th
+		UNION ALL
+		SELECT
+		'银行卡认证-华夏财富平台' cpfRealName,
+		th.bank_auth_h2x4_time createTime,
+		th.user_id,
+		IFNULL(th.bank_auth_h2x4_time, '0') id
+		FROM
+		front_user_auth th
+		UNION ALL
+		SELECT
+		'银行卡认证-花虾财富平台' cpfRealName,
+		th.bank_auth_h1x1_time createTime,
+		th.user_id,
+		IFNULL(th.bank_auth_h1x1_time, '0') id
+		FROM
+		front_user_auth th
+		UNION ALL
+		SELECT
+		'公积金认证' cpfRealName,
+		th.fund_auth_time createTime,
+		th.user_id,
+		IFNULL(th.fund_auth_time, '0') id
+		FROM
+		front_user_auth th
+		UNION ALL
+		SELECT
+		'保单认证' cpfRealName,
+		th.policy_auth_time createTime,
+		th.user_id,
+		IFNULL(th.policy_auth_time, '0') id
+		FROM
+		front_user_auth th
+		UNION ALL
+		SELECT
+		'邮箱信用卡认证' cpfRealName,
+		th.credit_card_auth_time createTime,
+		th.user_id,
+		IFNULL(
+		th.credit_card_auth_time,
+		'0'
+		) id
+		FROM
+		front_user_auth th
+		UNION ALL
+		SELECT
+		'芝麻信用认证' cpfRealName,
+		th.zhima_auth_time createTime,
+		th.user_id,
+		IFNULL(th.zhima_auth_time, '0') id
+		FROM
+		front_user_auth th
+		) thh
+		<where>
+			<if test="userId != null">
+				and user_id = #{userId,jdbcType=VARCHAR}
+			</if>
+		</where>
+		ORDER BY
+		thh.createTime DESC
+
+	</select>
+
+
+</mapper>

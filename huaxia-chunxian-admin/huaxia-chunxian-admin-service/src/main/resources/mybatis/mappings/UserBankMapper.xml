@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userbank">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.UserBank">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    <result column="BANK_CELLPHONE" jdbcType="VARCHAR" property="bankCellphone" />
+    <result column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+    <result column="BANK_CARD" jdbcType="VARCHAR" property="bankCard" />
+    <result column="REAL_NAME" jdbcType="VARCHAR" property="realName" />
+    <result column="RESULT_CODE" jdbcType="VARCHAR" property="resultCode" />
+    <result column="RESULT_MSG" jdbcType="VARCHAR" property="resultMsg" />
+    <result column="CREATE_ACCOUNT_DATE" jdbcType="VARCHAR" property="createAccountDate" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CUS_ACCT_ID" jdbcType="VARCHAR" property="cusAcctId" />
+    <result column="ID_CARD" jdbcType="VARCHAR" property="idCard" />
+    <result column="card_type" jdbcType="VARCHAR" property="cardType" />
+    <result column="deleted" jdbcType="VARCHAR" property="deleted" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="bind_id" jdbcType="VARCHAR" property="bindId" />
+    <result column="wealth_platfrom" jdbcType="VARCHAR" property="wealthPlatfrom" />
+    <result column="flow_order_id" jdbcType="VARCHAR" property="flowOrderId" />
+    <result column="acct_status" jdbcType="VARCHAR" property="acctStatus" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, LOGIN_NAME, BANK_CELLPHONE, BANK_CODE, BANK_CARD, REAL_NAME, RESULT_CODE, RESULT_MSG, 
+    CREATE_ACCOUNT_DATE, CREATE_TIME, CUS_ACCT_ID, ID_CARD, card_type, deleted, update_time, 
+    bind_id, wealth_platfrom, flow_order_id, acct_status
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_user_bank
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from front_user_bank
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.UserBank">
+    insert into front_user_bank
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME,
+      </if>
+      <if test="bankCellphone != null">
+        BANK_CELLPHONE,
+      </if>
+      <if test="bankCode != null">
+        BANK_CODE,
+      </if>
+      <if test="bankCard != null">
+        BANK_CARD,
+      </if>
+      <if test="realName != null">
+        REAL_NAME,
+      </if>
+      <if test="resultCode != null">
+        RESULT_CODE,
+      </if>
+      <if test="resultMsg != null">
+        RESULT_MSG,
+      </if>
+      <if test="createAccountDate != null">
+        CREATE_ACCOUNT_DATE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="cusAcctId != null">
+        CUS_ACCT_ID,
+      </if>
+      <if test="idCard != null">
+        ID_CARD,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="bindId != null">
+        bind_id,
+      </if>
+      <if test="wealthPlatfrom != null">
+        wealth_platfrom,
+      </if>
+      <if test="flowOrderId != null">
+        flow_order_id,
+      </if>
+      <if test="acctStatus != null">
+        acct_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCellphone != null">
+        #{bankCellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCard != null">
+        #{bankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="resultCode != null">
+        #{resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resultMsg != null">
+        #{resultMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="createAccountDate != null">
+        #{createAccountDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cusAcctId != null">
+        #{cusAcctId,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bindId != null">
+        #{bindId,jdbcType=VARCHAR},
+      </if>
+      <if test="wealthPlatfrom != null">
+        #{wealthPlatfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="flowOrderId != null">
+        #{flowOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="acctStatus != null">
+        #{acctStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.UserBank">
+    update front_user_bank
+    <set>
+      <if test="loginName != null">
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCellphone != null">
+        BANK_CELLPHONE = #{bankCellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCard != null">
+        BANK_CARD = #{bankCard,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="resultCode != null">
+        RESULT_CODE = #{resultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resultMsg != null">
+        RESULT_MSG = #{resultMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="createAccountDate != null">
+        CREATE_ACCOUNT_DATE = #{createAccountDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cusAcctId != null">
+        CUS_ACCT_ID = #{cusAcctId,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        ID_CARD = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bindId != null">
+        bind_id = #{bindId,jdbcType=VARCHAR},
+      </if>
+      <if test="wealthPlatfrom != null">
+        wealth_platfrom = #{wealthPlatfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="flowOrderId != null">
+        flow_order_id = #{flowOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="acctStatus != null">
+        acct_status = #{acctStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.UserBank" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_user_bank
+    <where>
+      <if test="id != null">
+         and id = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="loginName != null">
+         and LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+      </if>
+      <if test="bankCellphone != null">
+         and BANK_CELLPHONE = #{bankCellphone,jdbcType=VARCHAR}
+      </if>
+      <if test="bankCode != null">
+         and BANK_CODE = #{bankCode,jdbcType=VARCHAR}
+      </if>
+      <if test="bankCard != null">
+         and BANK_CARD = #{bankCard,jdbcType=VARCHAR}
+      </if>
+      <if test="realName != null">
+         and REAL_NAME = #{realName,jdbcType=VARCHAR}
+      </if>
+      <if test="resultCode != null">
+         and RESULT_CODE = #{resultCode,jdbcType=VARCHAR}
+      </if>
+      <if test="resultMsg != null">
+         and RESULT_MSG = #{resultMsg,jdbcType=VARCHAR}
+      </if>
+      <if test="createAccountDate != null">
+         and CREATE_ACCOUNT_DATE = #{createAccountDate,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+         and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="cusAcctId != null">
+         and CUS_ACCT_ID = #{cusAcctId,jdbcType=VARCHAR}
+      </if>
+      <if test="idCard != null">
+         and ID_CARD = #{idCard,jdbcType=VARCHAR}
+      </if>
+      <if test="cardType != null">
+         and card_type = #{cardType,jdbcType=VARCHAR}
+      </if>
+      <if test="deleted != null">
+         and deleted = #{deleted,jdbcType=VARCHAR}
+      </if>
+      <if test="updateTime != null">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="bindId != null">
+         and bind_id = #{bindId,jdbcType=VARCHAR}
+      </if>
+      <if test="wealthPlatfrom != null">
+         and wealth_platfrom = #{wealthPlatfrom,jdbcType=VARCHAR}
+      </if>
+      <if test="flowOrderId != null">
+         and flow_order_id = #{flowOrderId,jdbcType=VARCHAR}
+      </if>
+      <if test="acctStatus != null">
+         and acct_status = #{acctStatus,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

@@ -1,0 +1,95 @@
+.prgressBox {
+	width: 1200px;
+	height: 120px;
+	position: relative;
+	margin: 20px auto;
+}
+
+.prgressBox span {
+	display: inline-block;
+}
+
+.prgressLine {
+	position: absolute;
+	top: 40%;
+	-webkit-transform: translateY(-40%);
+	transform: translateY(-40%);
+	background-color: #929292;
+	height: 2px;
+	left: 50%;
+	margin-left: -38%;
+	width: 76%;
+}
+
+.prgressSLine {
+	position: absolute;
+	top: 40%;
+	-webkit-transform: translateY(-40%);
+	transform: translateY(-40%);
+	background-color: #36AE78;
+	height: 2px;
+	left: 50%;
+	margin-left: -38%;
+	width: 0%;
+}
+
+.prgressBox ul li {
+	width: 25%;
+	float: left;
+	height: 120px;
+	position: relative;
+}
+
+
+/*.prgressBox ul li:nth-child(even){background-color: orangered;}
+						.prgressBox ul li:nth-child(odd){background-color: cadetblue;}*/
+
+.prgressBox ul li span {
+	position: absolute;
+	left: 50%;
+}
+
+.prgressBox ul li .preOne {
+	width: 100px;
+	margin-left: -50px;
+	text-align: center;
+	top: 5px;
+	font-weight: bold;
+}
+
+.prgressBox ul li .preCircle {
+	width: 30px;
+	height: 30px;
+	top: 26%;
+	border-radius: 20px;
+	border: 1px #ddd solid;
+	margin-left: -15px;
+	background-color: #36AE78;
+}
+
+.prgressBox ul li .preCircle i {
+	margin-top: 7px;
+	margin-left: 7px;
+	text-align: center;
+	color: white;
+	display: inline-block;
+}
+
+.preerror {
+	background-color: #929292 !important;
+}
+
+.prgressBox ul li .preCircle i.iconlue {
+	margin-top: 7px;
+	margin-left: 7px;
+	text-align: center;
+	color: white;
+	display: inline-block;
+}
+
+.prgressBox ul li .preText {
+	width: 80%;
+	margin-left: -40%;
+	top: 64px;
+	text-align: left;
+}

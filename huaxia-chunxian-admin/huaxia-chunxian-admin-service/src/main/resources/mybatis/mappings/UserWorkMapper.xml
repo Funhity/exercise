@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userwork">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.UserWork">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
+    <result column="unit_nature" jdbcType="VARCHAR" property="unitNature" />
+    <result column="unit_phone" jdbcType="VARCHAR" property="unitPhone" />
+    <result column="entry_date" jdbcType="DATE" property="entryDate" />
+    <result column="unit_province" jdbcType="VARCHAR" property="unitProvince" />
+    <result column="unit_city" jdbcType="VARCHAR" property="unitCity" />
+    <result column="unit_distinct" jdbcType="VARCHAR" property="unitDistinct" />
+    <result column="unit_address" jdbcType="VARCHAR" property="unitAddress" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, user_id, unit_name, unit_nature, unit_phone, entry_date, unit_province, unit_city, 
+    unit_distinct, unit_address, create_time, update_time
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_user_work
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from front_user_work
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.UserWork">
+    insert into front_user_work
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="unitName != null">
+        unit_name,
+      </if>
+      <if test="unitNature != null">
+        unit_nature,
+      </if>
+      <if test="unitPhone != null">
+        unit_phone,
+      </if>
+      <if test="entryDate != null">
+        entry_date,
+      </if>
+      <if test="unitProvince != null">
+        unit_province,
+      </if>
+      <if test="unitCity != null">
+        unit_city,
+      </if>
+      <if test="unitDistinct != null">
+        unit_distinct,
+      </if>
+      <if test="unitAddress != null">
+        unit_address,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null">
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNature != null">
+        #{unitNature,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPhone != null">
+        #{unitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null">
+        #{entryDate,jdbcType=DATE},
+      </if>
+      <if test="unitProvince != null">
+        #{unitProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCity != null">
+        #{unitCity,jdbcType=VARCHAR},
+      </if>
+      <if test="unitDistinct != null">
+        #{unitDistinct,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAddress != null">
+        #{unitAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.UserWork">
+    update front_user_work
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null">
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitNature != null">
+        unit_nature = #{unitNature,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPhone != null">
+        unit_phone = #{unitPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null">
+        entry_date = #{entryDate,jdbcType=DATE},
+      </if>
+      <if test="unitProvince != null">
+        unit_province = #{unitProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCity != null">
+        unit_city = #{unitCity,jdbcType=VARCHAR},
+      </if>
+      <if test="unitDistinct != null">
+        unit_distinct = #{unitDistinct,jdbcType=VARCHAR},
+      </if>
+      <if test="unitAddress != null">
+        unit_address = #{unitAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.UserWork" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_user_work
+    <where>
+      <if test="id != null">
+         and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="userId != null">
+         and user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="unitName != null">
+         and unit_name = #{unitName,jdbcType=VARCHAR}
+      </if>
+      <if test="unitNature != null">
+         and unit_nature = #{unitNature,jdbcType=VARCHAR}
+      </if>
+      <if test="unitPhone != null">
+         and unit_phone = #{unitPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="entryDate != null">
+         and entry_date = #{entryDate,jdbcType=DATE}
+      </if>
+      <if test="unitProvince != null">
+         and unit_province = #{unitProvince,jdbcType=VARCHAR}
+      </if>
+      <if test="unitCity != null">
+         and unit_city = #{unitCity,jdbcType=VARCHAR}
+      </if>
+      <if test="unitDistinct != null">
+         and unit_distinct = #{unitDistinct,jdbcType=VARCHAR}
+      </if>
+      <if test="unitAddress != null">
+         and unit_address = #{unitAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

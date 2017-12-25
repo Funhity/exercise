@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="consumer">
+	<resultMap id="BaseResultMap" type="chunxian.admin.model.Consumer">
+		<id column="ID" jdbcType="INTEGER" property="id" />
+		<result column="HXXC_USER_ID" jdbcType="VARCHAR" property="id" />
+		<result column="PHONE" jdbcType="VARCHAR" property="phone" />
+		<result column="REAL_NAME" jdbcType="VARCHAR" property="realName" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="id_card" jdbcType="VARCHAR" property="idCard" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+		<result column="app_type" jdbcType="VARCHAR" property="appType" />
+		<result column="DEVIC_TYPE" jdbcType="VARCHAR" property="devicType" />
+		<result column="device_model_register" jdbcType="VARCHAR"
+			property="deviceModelRegister" />
+		<result column="register_channel" jdbcType="VARCHAR" property="registerChannel" />
+	</resultMap>
+
+
+	<sql id="getListSql">
+		SELECT info1.HXXC_USER_ID id ,ty.name REAL_NAME,ty.id_card id_card,ty.sex,
+		info1.PHONE,info1.app_type, info1.device_model_register
+		,info1.DEVIC_TYPE,info1.register_channel,info1.CREATE_TIME from front_accout_info info1 left
+		JOIN front_user_identity ty on info1.user_id=ty.user_id
+		where
+		info1.app_type='1'
+
+		UNION all
+
+		select info2.HXXC_USER_ID id ,ord.REAL_NAME REAL_NAME,ord.IDENTITY_ID
+		id_card,ord.SEX,
+		info2.PHONE,info2.app_type,info2.device_model_register
+		,info2.DEVIC_TYPE,info2.register_channel,info2.CREATE_TIME from front_accout_info info2 LEFT
+		JOIN front_order_info ord on info2.PHONE=ord.LOGIN_NAME
+		where
+		info2.app_type !='1'
+	</sql>
+
+	<select id="selectAccountInfoByparams" parameterType="chunxian.admin.model.Consumer"
+		resultMap="BaseResultMap">
+
+		select * from (
+		<include refid="getListSql" />
+		) t <!-- #{}表示参数化输出，${}表示直接输出不进行任何转义操作，自己进行转移 -->
+		<where>
+			<if test="hxxcUserId != null">
+				and id = #{hxxcUserId,jdbcType=VARCHAR}
+			</if>
+			<if test="phone != null">
+				and PHONE = #{phone,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null">
+				and REAL_NAME like CONCAT('%',#{realName},'%')
+			</if>
+			<if test="devicType != null">
+				and DEVIC_TYPE = #{devicType,jdbcType=VARCHAR}
+			</if>
+			<if test="editstartdate != null">
+				and create_time &gt;=#{editstartdate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="editenddate != null">
+				and create_time &lt;=#{editenddate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="registerChannel != null">
+				and register_channel = #{registerChannel,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by create_time desc
+	</select>
+
+</mapper> 

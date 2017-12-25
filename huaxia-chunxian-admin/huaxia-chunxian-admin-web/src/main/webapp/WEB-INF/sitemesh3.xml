@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+	<mapping path="/main/*" exclude="true" />
+	<mapping path="/static/*" exclude="true" />
+	<mapping path="/order/*" exclude="true" />
+	<mapping path="/consumer/*" exclude="true" />
+	<mapping path="/channel/*" exclude="true" />
+	<mapping path="/appsetting/*" exclude="true" />
+	<mapping path="/productmanage/*" exclude="true" />
+	<mapping path="/productmarket/*" exclude="true" />
+	<mapping path="/images/*" exclude="true" />
+	<mapping path="/feedback/*" exclude="true" />
+	<mapping path="/helpcenter/*" exclude="true" />
+	<mapping path="/messagecenter/*" exclude="true" />
+	<mapping path="/*" decorator="/WEB-INF/views/layouts/default.jsp" />
+</sitemesh>

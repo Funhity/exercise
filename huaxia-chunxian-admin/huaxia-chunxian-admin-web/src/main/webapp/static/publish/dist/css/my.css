@@ -1,0 +1,548 @@
+.sidebar-menu, .main-sidebar .user-panel, .sidebar-menu > li.header {
+    overflow: initial
+}
+
+/*.main-sidebar {
+    overflow-x: scroll ;
+    background: #f9fafc;
+}*/
+
+.sidebar {
+    overflow: auto;
+    /*background: #f4f4f5;*/
+    padding-bottom: 0px;
+    margin-right: 10px;
+}
+
+.sidebar-menu li > a > .pull-right-container {
+    right: 0px;
+}
+
+.main-sidebar {
+    /*background-color: #f4f4f5;*/
+}
+
+.wrapper {
+    /*margin-left: 0px;*/
+    background-color: #fff;
+    background-color: #ECF0F5;
+}
+
+/*++++++valiDate.html-form-class++++++*/
+.form-valid {
+    display: block;
+}
+
+/*表单验证css*/
+#register-form {
+    width: 500px;
+    margin: 0 auto;
+}
+
+#register-form::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+#register-form label {
+    display: inline-block;
+    width: 15%;
+    text-align: right;
+}
+
+#register-form input {
+    display: inline-block;
+    width: 84%;
+}
+
+#register-form .text-danger {
+    margin: 10px 0 5px 80px;
+}
+
+#register-form button[type=submit] {
+    float: right;
+    width: 180px;
+}
+
+.page_tab_title {
+    padding: 0 5px;
+}
+
+/*下拉菜单form*/
+.dropdown-select {
+    height: 500px;
+}
+
+/*+++++++++++++++++++表单样式设置++++++++++++++++++++*/
+.add-form {
+    display: none;
+}
+
+#formValid {
+    background: #fff;
+    font-size: 14px;
+}
+
+.form-item {
+    clear: both;
+    margin: 10px 0;
+    position: relative;
+}
+.form-checkbox-raido{
+    line-height:50px;
+}
+
+.form-item .form-title {
+    display: inline-block;
+    width: 100px;
+    margin-right: 15px;
+    text-align: right;
+    float: left;
+}
+
+.form-item input[type="text"], .form-item input[type="password"] {
+    outline: none;
+    width: 280px;
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #ddd;
+    background: #fff;
+    text-indent: 10px;
+    font-size: 14px;
+}
+
+.form-item input[type="radio"], .form-item input[type="checkbox"] {
+    display: inline-block;
+    outline: none;
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-top: 17px;
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+.form-item .radioSpan, .form-item .checkboxSpan {
+    float: left;
+    display: inline-block;
+    width: 50px;
+}
+
+.form-item input[type="submit"] {
+    clear: both;
+    display: inline-block;
+    border: 1px solid #1E9FFF;
+    outline: none;
+    height: 28px;
+    padding: 0 15px;
+    border-radius: 2px;
+    background: #1E9FFF;
+    line-height: 28px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 115px;
+}
+
+.form-item input[type="reset"] {
+    clear: both;
+    display: inline-block;
+    border: 1px solid #dedede;
+    outline: none;
+    height: 28px;
+    padding: 0 15px;
+    border-radius: 2px;
+    background: #fff;
+    line-height: 28px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.form-item input[type="submit"]:hover {
+    opacity: .9;
+}
+
+.form-item input[type="button"]:hover {
+    opacity: .9;
+}
+
+/*设置默认的错误提示的样式*/
+.form-item .prompt {
+    position: absolute;
+    left: 415px;
+    top: 17px;
+    max-width: 485px;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.form-item .prompt .iconfont {
+    width: 16px;
+    height: 16px;
+    background: url(../images/tip-icon.png) no-repeat;
+    display: none;
+}
+
+.form-item .prompt span {
+    float: left;
+    margin-left: 5px;
+}
+
+.form-item .false {
+    color: #d81e06;
+}
+
+.form-item .right {
+    color: #008004;
+}
+
+.form-item .false .iconfont {
+    background-position: -16px 0;
+    display: inline-block;
+    float: left;
+}
+
+.form-item .right .iconfont {
+    background-position: 0 0;
+    display: inline-block;
+}
+
+.form-item input.false {
+    border: 1px solid #d81e06;
+}
+
+.form-item input.right {
+    border: 1px solid #008004;
+}
+
+.form-item select {
+    width: 280px;
+    height: 32px;
+    line-height: 32px;
+    text-indent: 5px;
+}
+
+.form-item select option {
+    color: #000 !important;
+}
+
+.form-item select.false {
+    border: 1px solid #d81e06;
+}
+
+.form-item select.right {
+    border: 1px solid #008004;
+}
+
+/*++++ 下拉搜索表格 ++++*/
+.selectSearchBlock {
+    padding: 50px;
+    min-height: 700px;
+}
+
+.selectdSearch {
+    border: 1px solid #e2e2e2;
+    position: relative;
+    background-color: #f7f7f7;
+    padding: 10px;
+    width: auto;
+}
+
+/*.selectSearch:after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-left: 1px solid #000;
+    border-bottom: 1px solid #000;
+    position: absolute;
+    top: 11px;
+    right: 12px;
+    transform: rotate(-45deg);
+}*/
+
+/*.selectSearch.open:after {*/
+/*transform: rotate(-225deg);*/
+/*top: 18px;*/
+/*}*/
+
+.selectSearch input.selectInput {
+    display: block;
+    width: 100%;
+    height: 38px;
+    line-height: 38px \9;
+    border: 0;
+    outline: 0;
+    background: none;
+}
+
+.selectSearch .selectSearchBox {
+    background: #fff;
+    /*width: 800px;*/
+    padding: 30px;
+    display: none;
+    position: absolute;
+    left: -1px;
+    top: 40px;
+    overflow: hidden;
+    min-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #000;
+    box-shadow: 0 3px 5px #888;
+    z-index: 9999;
+}
+
+.closeBtn {
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    right: 7px;
+    cursor: pointer;
+}
+
+.selectSearchBox .searchForm {
+    width: 300px;
+    height: 40px;
+}
+
+.selectSearchBox .searchForm input {
+    width: 170px;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 5px;
+    border: 1px solid #ccc;
+}
+
+.selectSearchBox .searchForm input:focus {
+    border: 1px solid #999;
+}
+
+/*.selectSearchBox .searchForm button {
+    margin-left:5px;
+    height: 32px;
+    width: 60px;
+    text-align: center;
+    background:#0f74a8;
+    color:#fff;
+    font-size:14px;
+    border:none;
+    border-radius:3px;
+}
+.selectSearchBox .searchForm button:hover{
+    background:#1268A8;
+}*/
+.peyton-label{
+    position: relative;
+    float: left;
+    display: block;
+    padding: 3px 15px;
+    -webkit-box-sizing: content-box !important;
+    width: 80px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: right;
+}
+.peyton-detail{
+    position: relative;
+    float: left;
+    display: block;
+    padding: 3px 15px;
+    -webkit-box-sizing: content-box !important;
+    width: 140px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: left;
+}
+.pad30{
+    padding: 30px;
+}
+body{overflow-y: scroll;}
+/*适用于弹出层内容过多，显示不全*/
+.layui-layer-content{max-height:830px !important}
+
+.pat0{
+    padding-top: 0px !important;
+}
+
+
+
+
+/*适用于 新增的信贷demo*/
+.creditvettingBox{
+    height: 24px;
+    background-color: white;
+    padding: 15px 10px;
+    text-indent: 5px;
+}
+.cttBox2{
+    background-color: white;
+    padding: 5px 10px;
+    /*text-indent: 5px;*/
+}
+
+.bottomLine{
+    border-bottom: 2px #ddd solid;
+}
+.bigFont{
+    font-size: 20px;
+    font-weight: bold;
+}
+.rightLine{
+    height: 16px;
+    line-height: 16px;
+    border-right: 1px #ccc solid;
+}
+.fixedBefter{
+
+}
+.fixedBox{
+    position: fixed;
+    z-index: 999999;
+    display: block;
+    background-color: #f9f9f9;
+    width: 98%;
+    top: 0px;
+}
+.fixedBox2{
+    position: fixed;
+    z-index: 999999;
+    display: block;
+    background-color: #f9f9f9;
+    width: 98%;
+    top: 110px;
+}
+.liebian{
+    position: relative;
+    display: block;
+    top: 390px;
+}
+.shenqInfo{
+    background-color: #fff;
+    width: 98%;
+    min-height: 130px;
+    padding: 10px 0;
+}
+.ListTitle,.ListText{
+    height: 20px;
+    line-height: 20px;
+    margin: 5px 0;
+    float: left;
+    text-align: left;
+    width: 20%;
+}
+.ListTitle{
+    color:#000;
+    font-weight: bold;
+}
+.ListText{
+    height: 20px;
+    line-height: 20px;
+    margin: 5px 0;
+    float: left;
+    text-align: left;
+    color: #666;
+    width: 20%;
+}
+/*黄色的树形菜单*/
+body .layui-tree-skin-yellow .layui-tree-branch{color: #E3B84B;}
+
+body .layui-tree-skin-yellow  .layui-tree-leaf{color: #E3B84B;}
+.layui-form-select .layui-tree {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 42px;
+    padding: 5px 0;
+    z-index: 999;
+    min-width: 100%;
+    border: 1px solid #d2d2d2;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12);
+    box-sizing: border-box;
+}
+
+.layui-form-selected .layui-tree {
+    display: block;
+}
+
+
+/*----------------滚动条样式------------------*/
+div {
+    scrollbar-face-color: #44aaff;
+    scrollbar-arrow-color: #44aaff;
+    scrollbar-3dlight-color: #FFFFFF;
+    scrollbar-highlight-color: #FFFFFF;
+    scrollbar-shadow-color: #FFFFFF;
+    scrollbar-darkshadow-color: #FFFFFF;
+    scrollbar-track-color: #FFFFFF;
+}
+
+/*------------CHROME 滚动条样式--------------*/
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #44aaff;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #FFFFFF;
+    -webkit-border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #44aaff;
+    border: solid 1px #44aaff;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: #44aaff;
+}
+
+::-webkit-resizer {
+    background-repeat: no-repeat;
+    background-position: bottom right;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #44aaff;
+}
+
+/*chrome 默认的文本框 边线
+input:focus, textarea:focus {
+    outline: none;
+}*/
+
+
+/*------------------------------------滚动条样式鑹�  end--------------------------------------*/
+
+/*--------顶部菜单栏 补丁---------*/
+
+
+@media (min-width: 768px){
+    .content-tabs  {
+        height: 37px !important;
+    }
+    .content-tabs button{
+        height: 38px !important;
+        border-bottom: solid 2px #3c8dbc !important;
+    }
+    .content-tabs .roll-right.btn-group{
+        height: 37px !important;
+    }
+
+}
+.labelBd{
+    width: 120px !important;
+    text-align: left !important;
+    padding-left: 0px !important;
+}

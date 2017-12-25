@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="productmarketing">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.ProductMarketing">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="product_no" jdbcType="VARCHAR" property="productNo" />
+    <result column="marketing_name" jdbcType="VARCHAR" property="marketingName" />
+    <result column="marketing_summary" jdbcType="VARCHAR" property="marketingSummary" />
+    <result column="marketing_switch" jdbcType="VARCHAR" property="marketingSwitch" />
+    <result column="marketing_icon" jdbcType="VARCHAR" property="marketingIcon" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, product_no, marketing_name, marketing_summary, marketing_switch, marketing_icon, 
+    create_time, update_time
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_product_marketing
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from front_product_marketing
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.ProductMarketing">
+    insert into front_product_marketing
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productNo != null">
+        product_no,
+      </if>
+      <if test="marketingName != null">
+        marketing_name,
+      </if>
+      <if test="marketingSummary != null">
+        marketing_summary,
+      </if>
+      <if test="marketingSwitch != null">
+        marketing_switch,
+      </if>
+      <if test="marketingIcon != null">
+        marketing_icon,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="productNo != null">
+        #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingName != null">
+        #{marketingName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingSummary != null">
+        #{marketingSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingSwitch != null">
+        #{marketingSwitch,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingIcon != null">
+        #{marketingIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.ProductMarketing">
+    update front_product_marketing
+    <set>
+      <if test="productNo != null">
+        product_no = #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingName != null">
+        marketing_name = #{marketingName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingSummary != null">
+        marketing_summary = #{marketingSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingSwitch != null">
+        marketing_switch = #{marketingSwitch,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingIcon != null">
+        marketing_icon = #{marketingIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.ProductMarketing" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_product_marketing
+    <where>
+      <if test="id != null">
+         and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="productNo != null">
+         and product_no = #{productNo,jdbcType=VARCHAR}
+      </if>
+      <if test="marketingName != null">
+         and marketing_name = #{marketingName,jdbcType=VARCHAR}
+      </if>
+      <if test="marketingSummary != null">
+         and marketing_summary = #{marketingSummary,jdbcType=VARCHAR}
+      </if>
+      <if test="marketingSwitch != null">
+         and marketing_switch = #{marketingSwitch,jdbcType=VARCHAR}
+      </if>
+      <if test="marketingIcon != null">
+         and marketing_icon = #{marketingIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

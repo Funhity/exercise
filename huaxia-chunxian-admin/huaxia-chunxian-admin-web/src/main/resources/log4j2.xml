@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status="OFF"，可以去掉，它的含义为是否记录log4j2本身的event信息，默认是OFF -->
+<Configuration>
+	<!-- ****************日志存放的路径等**************** -->
+	<Properties>
+		<!-- 应用名称  -->
+		<Property name="APPLICATION_NAME">huaxia-chunxian-admin-web</Property>
+		<!-- 日志基本配置 -->
+		<Property name="ROOT_LEVEL">info, Console,FILE</Property>
+		<Property name="LOG_HOME">/opt/logs/</Property>
+		<Property name="LOG_FILE_NAME">huaxia-chunxian-admin-web.log</Property>
+		<Property name="LOG_ROLLING_FILE_NAME">${LOG_HOME}/${APPLICATION_NAME}/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}-log%i.gz</Property>
+		<Property name="LOG_PATTERN">[%-5level]-[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%c]-{%m}%n</Property>
+	</Properties>
+	<!-- ****************Appenders**************** -->
+	<Appenders>
+		<!-- ######日志输出到窗口 target可以是"SYSTEM_OUT"或者"SYSTEM_ERR".默认是"SYSTEM_ERR".###### -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout charset="GB18030" pattern="${LOG_PATTERN}" />
+		</Console>
+		<!-- ######日志输出到文件###### -->
+		<RollingRandomAccessFile name="RollingRandomAccessFile" fileName="${LOG_FILE_NAME}" filePattern="${LOG_ROLLING_FILE_NAME}" immediateFlush="false" append="false">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<!--每次启动生成一个新的日志文件 -->
+				<OnStartupTriggeringPolicy />
+				<!--每隔六小时生成一个新的日志文件 24/4=6 modulate调节到整倍数 -->
+				<TimeBasedTriggeringPolicy interval="4"
+					modulate="true" />
+				<!--每到10MB生成一个新的日志文件 -->
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<!-- 最大保持文件数 超过后会删除旧的文件 -->
+			<DefaultRolloverStrategy max="1000" />
+		</RollingRandomAccessFile>
+		<Async name="AsyncRollingRandomAccessFile">
+			<AppenderRef ref="RollingRandomAccessFile" />
+		</Async>		
+	</Appenders>
+	<!-- ****************Loggers**************** -->
+	<Loggers>
+		<!-- 第三方日志 AsyncLogger暂时不能用 -->
+	    <!-- 
+		<Logger name="org.springframework" level="DEBUG">
+			<AppenderRef ref="Console" />
+		</Logger>
+		-->
+		<Logger name="org.mybatis" level="DEBUG">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="org.apache.shiro" level="ERROR" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="org.quartz" level="ERROR" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="org.apache.commons" level="ERROR" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="com.opensymphony.oscache" level="WARN" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="com.huaxia" level="DEBUG" additivity="false">
+			<AppenderRef ref="RollingRandomAccessFile" />
+			<AppenderRef ref="Console" />
+		</Logger>
+		<logger name="java.sql.Connection" level="DEBUG" additivity="false">
+			<AppenderRef ref="Console" />
+		</logger>
+		<logger name="java.sql.Statement" level="DEBUG" additivity="false">
+			<AppenderRef ref="Console" />
+		</logger>
+		<logger name="java.sql.PreparedStatement" level="DEBUG" additivity="false">
+			<AppenderRef ref="Console" />
+		</logger>
+		<logger name="java.sql.ResultSet" level="DEBUG" additivity="false">
+			<AppenderRef ref="Console" />
+		</logger>
+		<!-- Root -->
+		<Root level="${ROOT_LEVEL}" includeLocation="false">
+			<AppenderRef ref="Console" level="INFO" />
+			<AppenderRef ref="AsyncRollingRandomAccessFile" level="INFO" />
+		</Root>
+	</Loggers>
+</Configuration>

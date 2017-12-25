@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="productinfo">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.ProductInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="LOGO" jdbcType="VARCHAR" property="logo" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="PRODUCT_NO" jdbcType="VARCHAR" property="productNo" />
+    <result column="TERM" jdbcType="VARCHAR" property="term" />
+    <result column="MAX_AMCOUNT" jdbcType="DOUBLE" property="maxAmcount" />
+    <result column="MIN_AMCOUNT" jdbcType="DOUBLE" property="minAmcount" />
+    <result column="MAX_INTEREST_RATE" jdbcType="DOUBLE" property="maxInterestRate" />
+    <result column="MIN_INTEREST_RATE" jdbcType="DOUBLE" property="minInterestRate" />
+    <result column="INTEREST_RATE_REMARK" jdbcType="VARCHAR" property="interestRateRemark" />
+    <result column="SUPPORT_CITY" jdbcType="VARCHAR" property="supportCity" />
+    <result column="INFORMATION" jdbcType="VARCHAR" property="information" />
+    <result column="APPLY_CONDITION" jdbcType="VARCHAR" property="applyCondition" />
+    <result column="SUMMARY" jdbcType="VARCHAR" property="summary" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="CREATE_USER" jdbcType="VARCHAR" property="createUser" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="PUBLISH_STATUS" jdbcType="INTEGER" property="publishStatus" />
+    <result column="PUBLISH_TIME" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="CONTENT_LOGO" jdbcType="VARCHAR" property="contentLogo" />
+    <result column="rate_level" jdbcType="VARCHAR" property="rateLevel" />
+    <result column="default_loan_term" jdbcType="INTEGER" property="defaultLoanTerm" />
+    <result column="marketing_icon" jdbcType="VARCHAR" property="marketingIcon" />
+    <result column="marketing_rate_remark" jdbcType="VARCHAR" property="marketingRateRemark" />
+    <result column="marketing_rate" jdbcType="DECIMAL" property="marketingRate" />
+    <result column="marketing_max_amcount_remark" jdbcType="VARCHAR" property="marketingMaxAmcountRemark" />
+    <result column="marketing_max_amcount" jdbcType="VARCHAR" property="marketingMaxAmcount" />
+    <result column="recommend" jdbcType="VARCHAR" property="recommend" />
+    <result column="share_switch" jdbcType="VARCHAR" property="shareSwitch" />
+    <result column="share_title" jdbcType="VARCHAR" property="shareTitle" />
+    <result column="share_content" jdbcType="VARCHAR" property="shareContent" />
+    <result column="share_icon" jdbcType="VARCHAR" property="shareIcon" />
+    <result column="share_url" jdbcType="VARCHAR" property="shareUrl" />
+    <result column="share_tooltip" jdbcType="VARCHAR" property="shareTooltip" />
+    <result column="share_time" jdbcType="INTEGER" property="shareTime" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="necessary_certification" jdbcType="VARCHAR" property="necessaryCertification" />
+    <result column="unnecessary_certification" jdbcType="VARCHAR" property="unnecessaryCertification" />
+    <result column="unit" jdbcType="INTEGER" property="unit" />
+    <result column="show_on_app" jdbcType="INTEGER" property="showOnApp" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="anshuo_create_time" jdbcType="TIMESTAMP" property="anshuoCreateTime" />
+    <result column="anshuo_sync_time" jdbcType="TIMESTAMP" property="anshuoSyncTime" />
+      <result column="anshuo_product_name" jdbcType="VARCHAR" property="anshuoproductName" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    ID, LOGO, PRODUCT_NAME, PRODUCT_NO, TERM, MAX_AMCOUNT, MIN_AMCOUNT, MAX_INTEREST_RATE, 
+    MIN_INTEREST_RATE, INTEREST_RATE_REMARK, SUPPORT_CITY, INFORMATION, APPLY_CONDITION, 
+    SUMMARY, CONTENT, CREATE_USER, CREATE_TIME, PUBLISH_STATUS, PUBLISH_TIME, CONTENT_LOGO, 
+    rate_level, default_loan_term, marketing_icon, marketing_rate_remark, marketing_rate, 
+    marketing_max_amcount_remark, marketing_max_amcount, recommend, share_switch, share_title, 
+    share_content, share_icon, share_url, share_tooltip, share_time, sort, necessary_certification, 
+    unnecessary_certification, unit, show_on_app, update_user, anshuo_create_time, anshuo_sync_time,anshuo_product_name
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_product_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from front_product_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.ProductInfo">
+    insert into front_product_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="logo != null">
+        LOGO,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="anshuoproductName != null">
+        anshuo_product_name,
+      </if>
+      <if test="productNo != null">
+        PRODUCT_NO,
+      </if>
+      <if test="term != null">
+        TERM,
+      </if>
+      <if test="maxAmcount != null">
+        MAX_AMCOUNT,
+      </if>
+      <if test="minAmcount != null">
+        MIN_AMCOUNT,
+      </if>
+      <if test="maxInterestRate != null">
+        MAX_INTEREST_RATE,
+      </if>
+      <if test="minInterestRate != null">
+        MIN_INTEREST_RATE,
+      </if>
+      <if test="interestRateRemark != null">
+        INTEREST_RATE_REMARK,
+      </if>
+      <if test="supportCity != null">
+        SUPPORT_CITY,
+      </if>
+      <if test="information != null">
+        INFORMATION,
+      </if>
+      <if test="applyCondition != null">
+        APPLY_CONDITION,
+      </if>
+      <if test="summary != null">
+        SUMMARY,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="createUser != null">
+        CREATE_USER,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="publishStatus != null">
+        PUBLISH_STATUS,
+      </if>
+      <if test="publishTime != null">
+        PUBLISH_TIME,
+      </if>
+      <if test="contentLogo != null">
+        CONTENT_LOGO,
+      </if>
+      <if test="rateLevel != null">
+        rate_level,
+      </if>
+      <if test="defaultLoanTerm != null">
+        default_loan_term,
+      </if>
+      <if test="marketingIcon != null">
+        marketing_icon,
+      </if>
+      <if test="marketingRateRemark != null">
+        marketing_rate_remark,
+      </if>
+      <if test="marketingRate != null">
+        marketing_rate,
+      </if>
+      <if test="marketingMaxAmcountRemark != null">
+        marketing_max_amcount_remark,
+      </if>
+      <if test="marketingMaxAmcount != null">
+        marketing_max_amcount,
+      </if>
+      <if test="recommend != null">
+        recommend,
+      </if>
+      <if test="shareSwitch != null">
+        share_switch,
+      </if>
+      <if test="shareTitle != null">
+        share_title,
+      </if>
+      <if test="shareContent != null">
+        share_content,
+      </if>
+      <if test="shareIcon != null">
+        share_icon,
+      </if>
+      <if test="shareUrl != null">
+        share_url,
+      </if>
+      <if test="shareTooltip != null">
+        share_tooltip,
+      </if>
+      <if test="shareTime != null">
+        share_time,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="necessaryCertification != null">
+        necessary_certification,
+      </if>
+      <if test="unnecessaryCertification != null">
+        unnecessary_certification,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="showOnApp != null">
+        show_on_app,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="anshuoCreateTime != null">
+        anshuo_create_time,
+      </if>
+      <if test="anshuoSyncTime != null">
+        anshuo_sync_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="anshuoproductName != null">
+        #{anshuoproductName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null">
+        #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="term != null">
+        #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="maxAmcount != null">
+        #{maxAmcount,jdbcType=DOUBLE},
+      </if>
+      <if test="minAmcount != null">
+        #{minAmcount,jdbcType=DOUBLE},
+      </if>
+      <if test="maxInterestRate != null">
+        #{maxInterestRate,jdbcType=DOUBLE},
+      </if>
+      <if test="minInterestRate != null">
+        #{minInterestRate,jdbcType=DOUBLE},
+      </if>
+      <if test="interestRateRemark != null">
+        #{interestRateRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="supportCity != null">
+        #{supportCity,jdbcType=VARCHAR},
+      </if>
+      <if test="information != null">
+        #{information,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCondition != null">
+        #{applyCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null">
+        #{publishStatus,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contentLogo != null">
+        #{contentLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="rateLevel != null">
+        #{rateLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultLoanTerm != null">
+        #{defaultLoanTerm,jdbcType=INTEGER},
+      </if>
+      <if test="marketingIcon != null">
+        #{marketingIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingRateRemark != null">
+        #{marketingRateRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingRate != null">
+        #{marketingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="marketingMaxAmcountRemark != null">
+        #{marketingMaxAmcountRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingMaxAmcount != null">
+        #{marketingMaxAmcount,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null">
+        #{recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="shareSwitch != null">
+        #{shareSwitch,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTitle != null">
+        #{shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="shareContent != null">
+        #{shareContent,jdbcType=VARCHAR},
+      </if>
+      <if test="shareIcon != null">
+        #{shareIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="shareUrl != null">
+        #{shareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTooltip != null">
+        #{shareTooltip,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTime != null">
+        #{shareTime,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="necessaryCertification != null">
+        #{necessaryCertification,jdbcType=VARCHAR},
+      </if>
+      <if test="unnecessaryCertification != null">
+        #{unnecessaryCertification,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=INTEGER},
+      </if>
+      <if test="showOnApp != null">
+        #{showOnApp,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="anshuoCreateTime != null">
+        #{anshuoCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="anshuoSyncTime != null">
+        #{anshuoSyncTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.ProductInfo">
+    update front_product_info
+    <set>
+      <if test="logo != null">
+        LOGO = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null">
+        PRODUCT_NO = #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="term != null">
+        TERM = #{term,jdbcType=VARCHAR},
+      </if>
+      <if test="maxAmcount != null">
+        MAX_AMCOUNT = #{maxAmcount,jdbcType=DOUBLE},
+      </if>
+      <if test="minAmcount != null">
+        MIN_AMCOUNT = #{minAmcount,jdbcType=DOUBLE},
+      </if>
+      <if test="maxInterestRate != null">
+        MAX_INTEREST_RATE = #{maxInterestRate,jdbcType=DOUBLE},
+      </if>
+      <if test="minInterestRate != null">
+        MIN_INTEREST_RATE = #{minInterestRate,jdbcType=DOUBLE},
+      </if>
+      <if test="interestRateRemark != null">
+        INTEREST_RATE_REMARK = #{interestRateRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="supportCity != null">
+        SUPPORT_CITY = #{supportCity,jdbcType=VARCHAR},
+      </if>
+      <if test="information != null">
+        INFORMATION = #{information,jdbcType=VARCHAR},
+      </if>
+      <if test="applyCondition != null">
+        APPLY_CONDITION = #{applyCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        SUMMARY = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishStatus != null">
+        PUBLISH_STATUS = #{publishStatus,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null">
+        PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contentLogo != null">
+        CONTENT_LOGO = #{contentLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="rateLevel != null">
+        rate_level = #{rateLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultLoanTerm != null">
+        default_loan_term = #{defaultLoanTerm,jdbcType=INTEGER},
+      </if>
+      <if test="marketingIcon != null">
+        marketing_icon = #{marketingIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingRateRemark != null">
+        marketing_rate_remark = #{marketingRateRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingRate != null">
+        marketing_rate = #{marketingRate,jdbcType=DECIMAL},
+      </if>
+      <if test="marketingMaxAmcountRemark != null">
+        marketing_max_amcount_remark = #{marketingMaxAmcountRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="marketingMaxAmcount != null">
+        marketing_max_amcount = #{marketingMaxAmcount,jdbcType=VARCHAR},
+      </if>
+      <if test="recommend != null">
+        recommend = #{recommend,jdbcType=VARCHAR},
+      </if>
+      <if test="shareSwitch != null">
+        share_switch = #{shareSwitch,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTitle != null">
+        share_title = #{shareTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="shareContent != null">
+        share_content = #{shareContent,jdbcType=VARCHAR},
+      </if>
+      <if test="shareIcon != null">
+        share_icon = #{shareIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="shareUrl != null">
+        share_url = #{shareUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTooltip != null">
+        share_tooltip = #{shareTooltip,jdbcType=VARCHAR},
+      </if>
+      <if test="shareTime != null">
+        share_time = #{shareTime,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="necessaryCertification != null">
+        necessary_certification = #{necessaryCertification,jdbcType=VARCHAR},
+      </if>
+      <if test="unnecessaryCertification != null">
+        unnecessary_certification = #{unnecessaryCertification,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=INTEGER},
+      </if>
+      <if test="showOnApp != null">
+        show_on_app = #{showOnApp,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="anshuoCreateTime != null">
+        anshuo_create_time = #{anshuoCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="anshuoSyncTime != null">
+        anshuo_sync_time = #{anshuoSyncTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.ProductInfo" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_product_info
+    <where>
+      <if test="id != null">
+         and ID = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="logo != null">
+         and LOGO = #{logo,jdbcType=VARCHAR}
+      </if>
+      <if test="productName != null">
+         and PRODUCT_NAME like "%"#{productName,jdbcType=VARCHAR}"%"
+      </if>
+      <if test="productNo != null">
+         and PRODUCT_NO = #{productNo,jdbcType=VARCHAR}
+      </if>
+      <if test="term != null">
+         and TERM = #{term,jdbcType=VARCHAR}
+      </if>
+      <if test="maxAmcount != null">
+         and MAX_AMCOUNT = #{maxAmcount,jdbcType=DOUBLE}
+      </if>
+      <if test="minAmcount != null">
+         and MIN_AMCOUNT = #{minAmcount,jdbcType=DOUBLE}
+      </if>
+      <if test="maxInterestRate != null">
+         and MAX_INTEREST_RATE = #{maxInterestRate,jdbcType=DOUBLE}
+      </if>
+      <if test="minInterestRate != null">
+         and MIN_INTEREST_RATE = #{minInterestRate,jdbcType=DOUBLE}
+      </if>
+      <if test="interestRateRemark != null">
+         and INTEREST_RATE_REMARK = #{interestRateRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="supportCity != null">
+         and SUPPORT_CITY = #{supportCity,jdbcType=VARCHAR}
+      </if>
+      <if test="information != null">
+         and INFORMATION = #{information,jdbcType=VARCHAR}
+      </if>
+      <if test="applyCondition != null">
+         and APPLY_CONDITION = #{applyCondition,jdbcType=VARCHAR}
+      </if>
+      <if test="summary != null">
+         and SUMMARY = #{summary,jdbcType=VARCHAR}
+      </if>
+      <if test="content != null">
+         and CONTENT = #{content,jdbcType=VARCHAR}
+      </if>
+      <if test="createUser != null">
+         and CREATE_USER = #{createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+         and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="publishStatus != null">
+         and PUBLISH_STATUS = #{publishStatus,jdbcType=INTEGER}
+      </if>
+      <if test="publishTime != null">
+         and PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="contentLogo != null">
+         and CONTENT_LOGO = #{contentLogo,jdbcType=VARCHAR}
+      </if>
+      <if test="rateLevel != null">
+         and rate_level = #{rateLevel,jdbcType=VARCHAR}
+      </if>
+      <if test="defaultLoanTerm != null">
+         and default_loan_term = #{defaultLoanTerm,jdbcType=INTEGER}
+      </if>
+      <if test="marketingIcon != null">
+         and marketing_icon = #{marketingIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="marketingRateRemark != null">
+         and marketing_rate_remark = #{marketingRateRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="marketingRate != null">
+         and marketing_rate = #{marketingRate,jdbcType=DECIMAL}
+      </if>
+      <if test="marketingMaxAmcountRemark != null">
+         and marketing_max_amcount_remark = #{marketingMaxAmcountRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="marketingMaxAmcount != null">
+         and marketing_max_amcount = #{marketingMaxAmcount,jdbcType=VARCHAR}
+      </if>
+      <if test="recommend != null">
+         and recommend = #{recommend,jdbcType=VARCHAR}
+      </if>
+      <if test="shareSwitch != null">
+         and share_switch = #{shareSwitch,jdbcType=VARCHAR}
+      </if>
+      <if test="shareTitle != null">
+         and share_title = #{shareTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="shareContent != null">
+         and share_content = #{shareContent,jdbcType=VARCHAR}
+      </if>
+      <if test="shareIcon != null">
+         and share_icon = #{shareIcon,jdbcType=VARCHAR}
+      </if>
+      <if test="shareUrl != null">
+         and share_url = #{shareUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="shareTooltip != null">
+         and share_tooltip = #{shareTooltip,jdbcType=VARCHAR}
+      </if>
+      <if test="shareTime != null">
+         and share_time = #{shareTime,jdbcType=INTEGER}
+      </if>
+      <if test="sort != null">
+         and sort = #{sort,jdbcType=INTEGER}
+      </if>
+      <if test="necessaryCertification != null">
+         and necessary_certification = #{necessaryCertification,jdbcType=VARCHAR}
+      </if>
+      <if test="unnecessaryCertification != null">
+         and unnecessary_certification = #{unnecessaryCertification,jdbcType=VARCHAR}
+      </if>
+      <if test="unit != null">
+         and unit = #{unit,jdbcType=INTEGER}
+      </if>
+      <if test="showOnApp != null">
+         and show_on_app = #{showOnApp,jdbcType=INTEGER}
+      </if>
+      <if test="updateUser != null">
+         and update_user = #{updateUser,jdbcType=VARCHAR}
+      </if>
+      <if test="anshuoCreateTime != null">
+         and anshuo_create_time = #{anshuoCreateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="anshuoSyncTime != null">
+         and anshuo_sync_time = #{anshuoSyncTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by sort
+  </select>
+</mapper>

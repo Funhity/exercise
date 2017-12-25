@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="productmoudle">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.ProductMoudle">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="product_no" jdbcType="VARCHAR" property="productNo" />
+    <result column="moudle_name" jdbcType="VARCHAR" property="moudleName" />
+    <result column="moudle_summary" jdbcType="VARCHAR" property="moudleSummary" />
+    <result column="moudle_switch" jdbcType="VARCHAR" property="moudleSwitch" />
+    <result column="moudle_content" jdbcType="VARCHAR" property="moudleContent" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, product_no, moudle_name, moudle_summary, moudle_switch, moudle_content, sort, 
+    create_time, update_time
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_product_moudle
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from front_product_moudle
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.ProductMoudle">
+    insert into front_product_moudle
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productNo != null">
+        product_no,
+      </if>
+      <if test="moudleName != null">
+        moudle_name,
+      </if>
+      <if test="moudleSummary != null">
+        moudle_summary,
+      </if>
+      <if test="moudleSwitch != null">
+        moudle_switch,
+      </if>
+      <if test="moudleContent != null">
+        moudle_content,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="productNo != null">
+        #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleName != null">
+        #{moudleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleSummary != null">
+        #{moudleSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleSwitch != null">
+        #{moudleSwitch,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleContent != null">
+        #{moudleContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.ProductMoudle">
+    update front_product_moudle
+    <set>
+      <if test="productNo != null">
+        product_no = #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleName != null">
+        moudle_name = #{moudleName,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleSummary != null">
+        moudle_summary = #{moudleSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleSwitch != null">
+        moudle_switch = #{moudleSwitch,jdbcType=VARCHAR},
+      </if>
+      <if test="moudleContent != null">
+        moudle_content = #{moudleContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.ProductMoudle" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_product_moudle
+    <where>
+      <if test="id != null">
+         and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="productNo != null">
+         and product_no = #{productNo,jdbcType=VARCHAR}
+      </if>
+      <if test="moudleName != null">
+         and moudle_name = #{moudleName,jdbcType=VARCHAR}
+      </if>
+      <if test="moudleSummary != null">
+         and moudle_summary = #{moudleSummary,jdbcType=VARCHAR}
+      </if>
+      <if test="moudleSwitch != null">
+         and moudle_switch = #{moudleSwitch,jdbcType=VARCHAR}
+      </if>
+      <if test="moudleContent != null">
+         and moudle_content = #{moudleContent,jdbcType=VARCHAR}
+      </if>
+      <if test="sort != null">
+         and sort = #{sort,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null">
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by sort
+  </select>
+  
+  <update id="updateSortBySort" parameterType="java.util.Map">
+    update front_product_moudle
+    <set>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sort = #{condition,jdbcType=INTEGER}
+  </update>
+<!--   
+  <update id="updateSort" parameterType="java.util.List">
+		update front_jump_image_config
+		<trim prefix="set" suffixOverrides=",">
+			<trim prefix="sort =case" suffix="end,">
+				<foreach collection="list" item="item" index="index">
+					when id=#{item.id} then #{item.sort}
+				</foreach>
+			</trim>
+		</trim>
+		where id in
+		<foreach collection="list" index="index" item="item"
+			separator="," open="(" close=")">
+			#{item.id,jdbcType=BIGINT}
+		</foreach>
+	</update>
+
+	<select id="selectGreaterEqualOld" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select id,sort from front_jump_image_config
+		<where>
+
+			<if test="sort != null">
+				and sort &gt;= #{sort,jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				and type = #{type,jdbcType=INTEGER}
+			</if>
+			and delete_time is null
+		</where>
+		order by sort
+	</select>
+
+	<select id="selectGreaterOldAndLessEqualNew" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select id,sort from front_jump_image_config
+		<where>
+
+			<if test="oldSort != null">
+				and sort &gt; #{oldSort,jdbcType=INTEGER}
+			</if>
+			<if test="newSort != null">
+				and sort &lt;= #{newSort,jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				and type = #{type,jdbcType=INTEGER}
+			</if>
+			and delete_time is null
+		</where>
+		order by sort
+	</select>
+
+	<select id="selectGreaterEqualNewAndLessOld" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select id,sort from front_jump_image_config
+		<where>
+
+			<if test="newSort != null">
+				and sort &gt;= #{newSort,jdbcType=INTEGER}
+			</if>
+			<if test="oldSort != null">
+				and sort &lt; #{oldSort,jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				and type = #{type,jdbcType=INTEGER}
+			</if>
+			and delete_time is null
+		</where>
+		order by sort
+	</select>
+	 -->
+	
+	
+	<select id="countBySort" parameterType="chunxian.admin.model.JumpImageConfig" resultType="java.lang.Integer">
+		select count(1) from front_product_moudle
+		where sort = #{sort,jdbcType=INTEGER} 
+	</select>
+	
+	
+		<update id="updateSortByLowToHigh" parameterType="chunxian.admin.model.JumpImageConfig">
+		update front_product_moudle
+		<set>
+			sort = sort + 1,
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where sort &gt;= #{toSort,jdbcType=INTEGER} 
+	</update>
+
+	<update id="updateSortByHighToLow" parameterType="chunxian.admin.model.JumpImageConfig">
+		update front_product_moudle
+		<set>
+			sort = sort + 1,
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where sort &gt;= #{sort,jdbcType=INTEGER} and
+		sort &lt; #{toSort,jdbcType=INTEGER}
+	</update>
+	
+	
+	
+	
+	
+	
+</mapper>

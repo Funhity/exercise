@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderinfodo">
+	<resultMap id="BaseResultMap" type="chunxian.admin.model.OrderInfoDO">
+		<id column="ID" jdbcType="INTEGER" property="id" />
+		<result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+		<result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+		<result column="REAL_NAME" jdbcType="VARCHAR" property="realName" />
+		<result column="PHONE" jdbcType="VARCHAR" property="phone" />
+		<result column="loan_amount" jdbcType="DECIMAL" property="loanAmount" />
+		<result column="loan_term" jdbcType="INTEGER" property="loanTerm" />
+		<result column="product_no" jdbcType="VARCHAR" property="productNo" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="app_type" jdbcType="VARCHAR" property="appType" />
+		<result column="loan_type" jdbcType="VARCHAR" property="loanType" />
+		<result column="register_channel" jdbcType="VARCHAR" property="registerChannel" />
+		<result column="LOGIN_NUM" jdbcType="INTEGER" property="loginNum" />
+		<result column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+	</resultMap>
+
+	<sql id="getListSql">
+		SELECT
+		r.user_id,
+		r.order_no,
+		(select y.name from
+		front_user_identity y where y.user_id=r.user_id limit 1) REAL_NAME,
+		fy.PHONE,
+		r.loan_amount,
+		r.loan_term,
+		r.product_no,
+		DATE_FORMAT(r.submit_time,'%Y-%m-%d %H:%i:%S') CREATE_TIME,
+		r.app_type,
+		r.status,
+		r.loan_type,
+		fy.register_channel
+		FROM
+		front_order r
+		LEFT JOIN front_accout_info fy ON fy.user_id = r.user_id
+
+		UNION all
+
+		SELECT
+		a.user_id,
+		ff.ORDER_NO,
+		ff.REAL_NAME,
+		ff.LOGIN_NAME PHONE,
+		ff.LOAN_AMOUNT,
+		ff.TERM,
+		ff.PRODUCT_NO,
+		DATE_FORMAT(ff.submit_time,'%Y-%m-%d %H:%i:%S') CREATE_TIME,
+		a.app_type,
+		ff.STATE status,
+		ff.loan_type,
+		ff.SOURCE_TYPE
+		register_channel
+		FROM
+		front_order_info ff
+		LEFT JOIN front_accout_info a
+		ON ff.LOGIN_NAME = a.PHONE
+	</sql>
+
+	<select id="selectorderInfoByparams" parameterType="chunxian.admin.model.OrderInfoDO"
+		resultMap="BaseResultMap">
+		select * from (
+		<include refid="getListSql" />
+		) t <!-- #{}表示参数化输出，${}表示直接输出不进行任何转义操作，自己进行转移 -->
+		<where>
+			<if test="orderNo != null">
+				and ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+			</if>
+			<if test="realName != null">
+				and REAL_NAME like CONCAT('%',#{realName},'%')
+			</if>
+			<if test="phone != null">
+				and PHONE like CONCAT('%',#{phone},'%')
+			</if>
+			<if test="appType != null">
+				and app_type like CONCAT('%',#{appType},'%')
+			</if>
+			<if test="registerChannel != null">
+				and register_channel like CONCAT('%',#{registerChannel},'%')
+			</if>
+			<if test="status != null">
+				and status = #{status,jdbcType=INTEGER}
+			</if>
+			<if test="editstartdate != null">
+				and create_time &gt;=#{editstartdate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="editenddate != null">
+				and create_time &lt;=#{editenddate,jdbcType=TIMESTAMP}
+			</if>
+		</where>
+		order by create_time desc
+	</select>
+
+	<select id="selectCountOrderCondition" parameterType="chunxian.admin.model.OrderInfoDO"
+		resultMap="BaseResultMap">
+		SELECT
+		date_format(t.CREATE_TIME, '%Y-%m-%d') loginName,
+		COUNT(1) LOGIN_NUM
+		FROM
+		(
+		SELECT
+		r.order_no,
+		r.create_time
+		FROM
+		front_order r
+		UNION ALL
+		SELECT
+		f.ORDER_NO,
+		f.CREATE_TIME
+		FROM
+		front_order_info f
+		) t
+
+		where date_format(t.CREATE_TIME,'%Y-%m-%d')
+		&gt;=#{realName,jdbcType=TIMESTAMP}
+		and
+		date_format(t.CREATE_TIME,'%Y-%m-%d')
+		&lt;=#{loginName,jdbcType=TIMESTAMP}
+		GROUP BY
+		date_format(t.CREATE_TIME, '%Y-%m-%d')
+		ORDER BY
+		date_format(t.CREATE_TIME, '%Y-%m-%d');
+
+
+	</select>
+
+
+
+
+</mapper> 

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+
+	<resultMap id="BaseResultMap" type="chunxian.admin.model.Notice">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="share_switch" jdbcType="VARCHAR" property="shareSwitch" />
+		<result column="share_title" jdbcType="VARCHAR" property="shareTitle" />
+		<result column="share_content" jdbcType="VARCHAR" property="shareContent" />
+		<result column="share_icon" jdbcType="VARCHAR" property="shareIcon" />
+		<result column="share_url" jdbcType="VARCHAR" property="shareUrl" />
+		<result column="share_tooltip" jdbcType="VARCHAR" property="shareTooltip" />
+		<result column="share_time" jdbcType="INTEGER" property="shareTime" />
+		<result column="create_user" jdbcType="VARCHAR" property="createUser" />
+		<result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+		<result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+		<result column="send_status" jdbcType="VARCHAR" property="sendStatus" />
+		<result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, title, content, create_time, update_time, share_switch, share_title,
+		share_content,
+		share_icon, share_url, share_tooltip, share_time, create_user, update_user,
+		send_time,
+		send_status, delete_time
+	</sql>
+
+	<select id="selectById" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from front_notice
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from front_notice
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="chunxian.admin.model.Notice">
+		insert into front_notice
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="shareSwitch != null">
+				share_switch,
+			</if>
+			<if test="shareTitle != null">
+				share_title,
+			</if>
+			<if test="shareContent != null">
+				share_content,
+			</if>
+			<if test="shareIcon != null">
+				share_icon,
+			</if>
+			<if test="shareUrl != null">
+				share_url,
+			</if>
+			<if test="shareTooltip != null">
+				share_tooltip,
+			</if>
+			<if test="shareTime != null">
+				share_time,
+			</if>
+			<if test="createUser != null">
+				create_user,
+			</if>
+			<if test="updateUser != null">
+				update_user,
+			</if>
+			<if test="sendTime != null">
+				send_time,
+			</if>
+			<if test="sendStatus != null">
+				send_status,
+			</if>
+			<if test="deleteTime != null">
+				delete_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="shareSwitch != null">
+				#{shareSwitch,jdbcType=VARCHAR},
+			</if>
+			<if test="shareTitle != null">
+				#{shareTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="shareContent != null">
+				#{shareContent,jdbcType=VARCHAR},
+			</if>
+			<if test="shareIcon != null">
+				#{shareIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="shareUrl != null">
+				#{shareUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="shareTooltip != null">
+				#{shareTooltip,jdbcType=VARCHAR},
+			</if>
+			<if test="shareTime != null">
+				#{shareTime,jdbcType=INTEGER},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="updateUser != null">
+				#{updateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="sendTime != null">
+				#{sendTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="sendStatus != null">
+				#{sendStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteTime != null">
+				#{deleteTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="chunxian.admin.model.Notice">
+		update front_notice
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="shareSwitch != null">
+				share_switch = #{shareSwitch,jdbcType=VARCHAR},
+			</if>
+			<if test="shareTitle != null">
+				share_title = #{shareTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="shareContent != null">
+				share_content = #{shareContent,jdbcType=VARCHAR},
+			</if>
+			<if test="shareIcon != null">
+				share_icon = #{shareIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="shareUrl != null">
+				share_url = #{shareUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="shareTooltip != null">
+				share_tooltip = #{shareTooltip,jdbcType=VARCHAR},
+			</if>
+			<if test="shareTime != null">
+				share_time = #{shareTime,jdbcType=INTEGER},
+			</if>
+			<if test="createUser != null">
+				create_user = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="updateUser != null">
+				update_user = #{updateUser,jdbcType=VARCHAR},
+			</if>
+				send_time = #{sendTime,jdbcType=TIMESTAMP},
+			<if test="sendStatus != null">
+				send_status = #{sendStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteTime != null">
+				delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByCondition" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from front_notice
+		where delete_time is null
+			<if test="title != null">
+				and title like concat(#{title,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="sendStatus != null">
+				and send_status = #{sendStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="sendTimeStart != null">
+				and send_time &gt; #{sendTimeStart,jdbcType=TIMESTAMP}
+			</if>
+			<if test="sendTimeEnd != null">
+				and send_time &lt;= #{sendTimeEnd,jdbcType=TIMESTAMP}
+			</if>
+			order by id desc
+	</select>
+</mapper>

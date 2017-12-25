@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jumpimageconfig">
+
+	<resultMap id="BaseResultMap" type="chunxian.admin.model.JumpImageConfig">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="image" jdbcType="VARCHAR" property="image" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="jump_type" jdbcType="VARCHAR" property="jumpType" />
+		<result column="jump_page_url" jdbcType="VARCHAR" property="jumpPageUrl" />
+		<result column="sort" jdbcType="INTEGER" property="sort" />
+		<result column="app_start_image_time" jdbcType="INTEGER"
+			property="appStartImageTime" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="create_user" jdbcType="VARCHAR" property="createUser" />
+		<result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+		<result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, type, image, title, jump_type, jump_page_url, sort,
+		app_start_image_time, create_time,
+		update_time, create_user,
+		update_user, delete_time
+	</sql>
+
+	<select id="selectById" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from front_jump_image_config
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<delete id="delete" parameterType="java.lang.Long">
+		delete from
+		front_jump_image_config
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="chunxian.admin.model.JumpImageConfig">
+		insert into front_jump_image_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="image != null">
+				image,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="jumpType != null">
+				jump_type,
+			</if>
+			<if test="jumpPageUrl != null">
+				jump_page_url,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="appStartImageTime != null">
+				app_start_image_time,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="createUser != null">
+				create_user,
+			</if>
+			<if test="updateUser != null">
+				update_user,
+			</if>
+			<if test="deleteTime != null">
+				delete_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				#{image,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="jumpType != null">
+				#{jumpType,jdbcType=VARCHAR},
+			</if>
+			<if test="jumpPageUrl != null">
+				#{jumpPageUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="appStartImageTime != null">
+				#{appStartImageTime,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="updateUser != null">
+				#{updateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteTime != null">
+				#{deleteTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="update" parameterType="chunxian.admin.model.JumpImageConfig">
+		update front_jump_image_config
+		<set>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="image != null">
+				image = #{image,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="jumpType != null">
+				jump_type = #{jumpType,jdbcType=VARCHAR},
+			</if>
+			<if test="jumpPageUrl != null">
+				jump_page_url = #{jumpPageUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="appStartImageTime != null">
+				app_start_image_time =
+				#{appStartImageTime,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				create_user = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="updateUser != null">
+				update_user = #{updateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteTime != null">
+				delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<update id="updateSortBySort" parameterType="java.util.Map">
+		update front_jump_image_config
+		<set>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="updateUser != null">
+				update_user = #{updateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where sort = #{condition,jdbcType=INTEGER} and
+		type=#{type,jdbcType=VARCHAR}
+	</update>
+
+	<select id="countBySort" parameterType="chunxian.admin.model.JumpImageConfig" resultType="java.lang.Integer">
+		select count(1) from front_jump_image_config
+		where sort = #{sort,jdbcType=INTEGER} and
+		type=#{type,jdbcType=VARCHAR}
+		and delete_time is null
+	</select>
+
+	<update id="updateSortByLowToHigh" parameterType="chunxian.admin.model.JumpImageConfig">
+		update front_jump_image_config
+		<set>
+			sort = sort + 1,
+			<if test="updateUser != null">
+				update_user = #{updateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where sort &gt;= #{toSort,jdbcType=INTEGER} and
+		type=#{type,jdbcType=VARCHAR}
+		and delete_time is null
+	</update>
+
+	<update id="updateSortByHighToLow" parameterType="chunxian.admin.model.JumpImageConfig">
+		update front_jump_image_config
+		<set>
+			sort = sort + 1,
+			<if test="updateUser != null">
+				update_user = #{updateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where sort &gt;= #{sort,jdbcType=INTEGER} and
+		sort &lt; #{toSort,jdbcType=INTEGER} and
+		type=#{type,jdbcType=VARCHAR}
+		and delete_time is null
+	</update>
+
+	<select id="selectByCondition" parameterType="chunxian.admin.model.JumpImageConfig"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from front_jump_image_config
+		<where>
+			<if test="id != null">
+				and id = #{id,jdbcType=BIGINT}
+			</if>
+			<if test="type != null">
+				and type = #{type,jdbcType=VARCHAR}
+			</if>
+			<if test="image != null">
+				and image = #{image,jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				and title = #{title,jdbcType=VARCHAR}
+			</if>
+			<if test="jumpType != null">
+				and jump_type = #{jumpType,jdbcType=VARCHAR}
+			</if>
+			<if test="jumpPageUrl != null">
+				and jump_page_url = #{jumpPageUrl,jdbcType=VARCHAR}
+			</if>
+			<if test="sort != null">
+				and sort = #{sort,jdbcType=INTEGER}
+			</if>
+			<if test="appStartImageTime != null">
+				and app_start_image_time =
+				#{appStartImageTime,jdbcType=INTEGER}
+			</if>
+			<if test="createTime != null">
+				and create_time = #{createTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="updateTime != null">
+				and update_time = #{updateTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="createUser != null">
+				and create_user = #{createUser,jdbcType=VARCHAR}
+			</if>
+			<if test="updateUser != null">
+				and update_user = #{updateUser,jdbcType=VARCHAR}
+			</if>
+			and delete_time is null
+		</where>
+		order by sort
+	</select>
+
+	<update id="softDelete" parameterType="java.util.Map">
+		update front_jump_image_config
+		<set>
+			<if test="deleteTime != null">
+				delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<update id="updateSort" parameterType="java.util.List">
+		update front_jump_image_config
+		<trim prefix="set" suffixOverrides=",">
+			<trim prefix="sort =case" suffix="end,">
+				<foreach collection="list" item="item" index="index">
+					when id=#{item.id} then #{item.sort}
+				</foreach>
+			</trim>
+		</trim>
+		where id in
+		<foreach collection="list" index="index" item="item"
+			separator="," open="(" close=")">
+			#{item.id,jdbcType=BIGINT}
+		</foreach>
+	</update>
+
+	<select id="selectGreaterEqualOld" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select id,sort from front_jump_image_config
+		<where>
+
+			<if test="sort != null">
+				and sort &gt;= #{sort,jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				and type = #{type,jdbcType=INTEGER}
+			</if>
+			and delete_time is null
+		</where>
+		order by sort
+	</select>
+
+	<select id="selectGreaterOldAndLessEqualNew" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select id,sort from front_jump_image_config
+		<where>
+
+			<if test="oldSort != null">
+				and sort &gt; #{oldSort,jdbcType=INTEGER}
+			</if>
+			<if test="newSort != null">
+				and sort &lt;= #{newSort,jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				and type = #{type,jdbcType=INTEGER}
+			</if>
+			and delete_time is null
+		</where>
+		order by sort
+	</select>
+
+	<select id="selectGreaterEqualNewAndLessOld" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select id,sort from front_jump_image_config
+		<where>
+
+			<if test="newSort != null">
+				and sort &gt;= #{newSort,jdbcType=INTEGER}
+			</if>
+			<if test="oldSort != null">
+				and sort &lt; #{oldSort,jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				and type = #{type,jdbcType=INTEGER}
+			</if>
+			and delete_time is null
+		</where>
+		order by sort
+	</select>
+</mapper>

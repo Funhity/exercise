@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="feedback">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.Feedback">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, type, content, create_time, update_time, user_id
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_feedback
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from front_feedback
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="chunxian.admin.model.Feedback" useGeneratedKeys="true">
+    insert into front_feedback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        type,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.Feedback">
+    update front_feedback
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <!-- <select id="selectByCondition" parameterType="Feedback" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_feedback
+    <where>
+      <if test="id != null">
+         and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="type != null">
+         and type = #{type,jdbcType=INTEGER}
+      </if>
+      <if test="content != null">
+         and content = #{content,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userId != null">
+         and user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select> -->
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.Feedback" resultMap="BaseResultMap">
+	  select account.user_id, identity.name, account.phone, (select feedbackType.title from front_feedback_type feedbackType where feedbackType.id =  feedback.type) as feedbackType, feedback.content, feedback.create_time from (
+		(front_feedback feedback left join front_accout_info account on  feedback.user_id = account.user_id)
+		left join front_user_identity identity on  feedback.user_id = identity.user_id)
+
+	<where>
+      feedback.user_id &lt;&gt; ''
+      <if test="searchName != null">
+         and identity.name like "%"#{searchName,jdbcType=VARCHAR}"%"
+      </if>
+      <if test="searchPhone != null">
+         and account.phone like "%"#{searchPhone,jdbcType=VARCHAR}"%"
+      </if>
+      <if test="searchFeedbackType != null">
+         and feedback.type = #{searchFeedbackType,jdbcType=VARCHAR}
+      </if>
+      <if test="searchStartDate != null">
+         and feedback.create_time &gt; #{searchStartDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="searchEndDate != null">
+         and feedback.create_time &lt; #{searchEndDate,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+
+		order by feedback.create_time asc
+  </select>
+  
+  
+</mapper>

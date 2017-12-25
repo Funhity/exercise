@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userpersonal">
+  
+  <resultMap id="BaseResultMap" type="chunxian.admin.model.UserPersonal">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="marriage" jdbcType="VARCHAR" property="marriage" />
+    <result column="is_local" jdbcType="VARCHAR" property="isLocal" />
+    <result column="move_in_date" jdbcType="DATE" property="moveInDate" />
+    <result column="live_type" jdbcType="VARCHAR" property="liveType" />
+    <result column="rent" jdbcType="DECIMAL" property="rent" />
+    <result column="live_province" jdbcType="VARCHAR" property="liveProvince" />
+    <result column="live_city" jdbcType="VARCHAR" property="liveCity" />
+    <result column="live_distinct" jdbcType="VARCHAR" property="liveDistinct" />
+    <result column="live_address" jdbcType="VARCHAR" property="liveAddress" />
+    <result column="live_date" jdbcType="DATE" property="liveDate" />
+    <result column="car_state" jdbcType="VARCHAR" property="carState" />
+    <result column="car_safe_state" jdbcType="VARCHAR" property="carSafeState" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id, user_id, education, marriage, is_local, move_in_date, live_type, rent, live_province, 
+    live_city, live_distinct, live_address, live_date, car_state, car_safe_state, create_time, 
+    update_time
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_user_personal
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from front_user_personal
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="chunxian.admin.model.UserPersonal">
+    insert into front_user_personal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="marriage != null">
+        marriage,
+      </if>
+      <if test="isLocal != null">
+        is_local,
+      </if>
+      <if test="moveInDate != null">
+        move_in_date,
+      </if>
+      <if test="liveType != null">
+        live_type,
+      </if>
+      <if test="rent != null">
+        rent,
+      </if>
+      <if test="liveProvince != null">
+        live_province,
+      </if>
+      <if test="liveCity != null">
+        live_city,
+      </if>
+      <if test="liveDistinct != null">
+        live_distinct,
+      </if>
+      <if test="liveAddress != null">
+        live_address,
+      </if>
+      <if test="liveDate != null">
+        live_date,
+      </if>
+      <if test="carState != null">
+        car_state,
+      </if>
+      <if test="carSafeState != null">
+        car_safe_state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="isLocal != null">
+        #{isLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="moveInDate != null">
+        #{moveInDate,jdbcType=DATE},
+      </if>
+      <if test="liveType != null">
+        #{liveType,jdbcType=VARCHAR},
+      </if>
+      <if test="rent != null">
+        #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="liveProvince != null">
+        #{liveProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCity != null">
+        #{liveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="liveDistinct != null">
+        #{liveDistinct,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null">
+        #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="liveDate != null">
+        #{liveDate,jdbcType=DATE},
+      </if>
+      <if test="carState != null">
+        #{carState,jdbcType=VARCHAR},
+      </if>
+      <if test="carSafeState != null">
+        #{carSafeState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="update" parameterType="chunxian.admin.model.UserPersonal">
+    update front_user_personal
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="isLocal != null">
+        is_local = #{isLocal,jdbcType=VARCHAR},
+      </if>
+      <if test="moveInDate != null">
+        move_in_date = #{moveInDate,jdbcType=DATE},
+      </if>
+      <if test="liveType != null">
+        live_type = #{liveType,jdbcType=VARCHAR},
+      </if>
+      <if test="rent != null">
+        rent = #{rent,jdbcType=DECIMAL},
+      </if>
+      <if test="liveProvince != null">
+        live_province = #{liveProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="liveCity != null">
+        live_city = #{liveCity,jdbcType=VARCHAR},
+      </if>
+      <if test="liveDistinct != null">
+        live_distinct = #{liveDistinct,jdbcType=VARCHAR},
+      </if>
+      <if test="liveAddress != null">
+        live_address = #{liveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="liveDate != null">
+        live_date = #{liveDate,jdbcType=DATE},
+      </if>
+      <if test="carState != null">
+        car_state = #{carState,jdbcType=VARCHAR},
+      </if>
+      <if test="carSafeState != null">
+        car_safe_state = #{carSafeState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByCondition" parameterType="chunxian.admin.model.UserPersonal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from front_user_personal
+    <where>
+      <if test="id != null">
+         and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="userId != null">
+         and user_id = #{userId,jdbcType=VARCHAR}
+      </if>
+      <if test="education != null">
+         and education = #{education,jdbcType=VARCHAR}
+      </if>
+      <if test="marriage != null">
+         and marriage = #{marriage,jdbcType=VARCHAR}
+      </if>
+      <if test="isLocal != null">
+         and is_local = #{isLocal,jdbcType=VARCHAR}
+      </if>
+      <if test="moveInDate != null">
+         and move_in_date = #{moveInDate,jdbcType=DATE}
+      </if>
+      <if test="liveType != null">
+         and live_type = #{liveType,jdbcType=VARCHAR}
+      </if>
+      <if test="rent != null">
+         and rent = #{rent,jdbcType=DECIMAL}
+      </if>
+      <if test="liveProvince != null">
+         and live_province = #{liveProvince,jdbcType=VARCHAR}
+      </if>
+      <if test="liveCity != null">
+         and live_city = #{liveCity,jdbcType=VARCHAR}
+      </if>
+      <if test="liveDistinct != null">
+         and live_distinct = #{liveDistinct,jdbcType=VARCHAR}
+      </if>
+      <if test="liveAddress != null">
+         and live_address = #{liveAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="liveDate != null">
+         and live_date = #{liveDate,jdbcType=DATE}
+      </if>
+      <if test="carState != null">
+         and car_state = #{carState,jdbcType=VARCHAR}
+      </if>
+      <if test="carSafeState != null">
+         and car_safe_state = #{carSafeState,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+         and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+         and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>
